@@ -47,7 +47,7 @@ export default function Home() {
 
           <div className="relative -mx-6 aspect-[4/3] overflow-hidden md:-mx-12 lg:hidden">
             <Image
-              src="/hero-test.jpg"
+              src="/hero-test2.jpg"
               alt="Mums United supporting families and communities"
               fill
               className="object-cover object-center"
@@ -59,7 +59,7 @@ export default function Home() {
 
         <div className="absolute inset-y-0 right-0 hidden w-[48vw] lg:block">
           <Image
-            src="/hero-test.jpg"
+            src="/hero-test2.jpg"
             alt="Mums United supporting families and communities"
             fill
             className="object-cover object-center"
