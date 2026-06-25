@@ -9,11 +9,11 @@ export function DonationAmountSelector() {
     useState<(typeof donationAmounts)[number]>("£25");
 
   return (
-    <div>
+    <div className="flex w-full flex-col gap-6">
       <div
         role="radiogroup"
         aria-label="Choose donation amount"
-        className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-2"
+        className="grid grid-cols-2 gap-3"
       >
         {donationAmounts.map((amount) => {
           const isSelected = selectedAmount === amount;
@@ -25,10 +25,10 @@ export function DonationAmountSelector() {
               role="radio"
               aria-checked={isSelected}
               onClick={() => setSelectedAmount(amount)}
-              className={`rounded-2xl border px-4 py-4 text-center text-xl font-bold transition-all duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#436169] active:scale-[0.98] ${
+              className={`btn-interactive rounded-xl px-4 py-5 text-center text-2xl font-semibold leading-[22px] tracking-[-0.02em] transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#446169] ${
                 isSelected
-                  ? "border-[#E2B39F] bg-[#E2B39F] text-[#1F1F1D]"
-                  : "border-[#DDD4CE] bg-white text-[#1F1F1D] hover:border-[#436169] hover:text-[#436169]"
+                  ? "bg-[#efeadf] text-[#17171c]"
+                  : "bg-white text-[#17171c] hover:bg-[#f5f5f5]"
               }`}
             >
               {amount}
@@ -38,7 +38,7 @@ export function DonationAmountSelector() {
       </div>
       <a
         href="#donation-options"
-        className="mt-6 block rounded-full bg-[#344C52] px-6 py-4 text-center text-lg font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#2a3d42] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#436169] active:scale-[0.98]"
+        className="btn-interactive inline-flex w-full items-center justify-center rounded-full border border-white px-5 py-5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#446169]"
       >
         Donate Now
       </a>
