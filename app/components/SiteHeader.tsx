@@ -2,9 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 
 const logoSrc = "/mums-united-logo.png";
+
+const DESKTOP_NAV_BREAKPOINT = 1060;
+const COMPACT_SCROLL_THRESHOLD = 60;
+
+function getScrollY() {
+  return window.scrollY || document.documentElement.scrollTop || 0;
+}
 
 const navigationLinks = [
   ["Home", "/"],
@@ -73,6 +80,7 @@ function MenuIcon({ open }: { open: boolean }) {
 
 export function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
 
   const closeMenu = useCallback(() => {
     setMenuOpen(false);
@@ -108,17 +116,78 @@ export function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
     closeMenu();
   }, [currentPath, closeMenu]);
 
+  useEffect(() => {
+    if (!menuOpen) {
+      return;
+    }
+
+    const onScroll = () => {
+      closeMenu();
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [menuOpen, closeMenu]);
+
+  useLayoutEffect(() => {
+    const mediaQuery = window.matchMedia(
+      `(min-width: ${DESKTOP_NAV_BREAKPOINT}px)`,
+    );
+
+    const syncCompact = () => {
+      if (!mediaQuery.matches) {
+        setIsCompact(false);
+        return;
+      }
+
+      setIsCompact(getScrollY() >= COMPACT_SCROLL_THRESHOLD);
+    };
+
+    let frame = 0;
+
+    const onScroll = () => {
+      if (frame) {
+        return;
+      }
+
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        syncCompact();
+      });
+    };
+
+    syncCompact();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    mediaQuery.addEventListener("change", syncCompact);
+
+    return () => {
+      if (frame) {
+        window.cancelAnimationFrame(frame);
+      }
+
+      window.removeEventListener("scroll", onScroll);
+      mediaQuery.removeEventListener("change", syncCompact);
+    };
+  }, []);
+
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-[rgba(0,0,0,0.05)] bg-[rgba(255,255,255,0.82)] px-6 shadow-[0_1px_8px_rgba(0,0,0,0.03)] backdrop-blur-[14px] [-webkit-backdrop-filter:blur(14px)] md:px-12 lg:px-[85px]">
-        <div className="mx-auto flex h-[116px] max-w-[1280px] items-center justify-between gap-4">
+      <header
+        className={`site-header sticky top-0 z-50 border-b border-[rgba(0,0,0,0.05)] bg-[rgba(255,255,255,0.82)] px-6 shadow-[0_1px_8px_rgba(0,0,0,0.03)] backdrop-blur-[14px] [-webkit-backdrop-filter:blur(14px)] md:px-12 lg:px-[85px] ${
+          isCompact ? "site-header--compact" : ""
+        }`}
+      >
+        <div className="site-header__inner mx-auto flex h-[116px] max-w-[1280px] items-center justify-between gap-4">
           <Link href="/" aria-label="Mums United home" className="block shrink-0">
             <Image
               src={logoSrc}
               alt="Mums United"
               width={135}
               height={62}
-              className="h-[62px] w-[135px] object-contain"
+              className="site-header__logo h-[62px] w-[135px] object-contain"
               priority
             />
           </Link>
@@ -144,7 +213,7 @@ export function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
           <div className="flex shrink-0 items-center gap-3 sm:gap-4">
             <Link
               href="/donate"
-              className="btn-interactive shrink-0 rounded-full bg-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2"
+              className="site-header__donate btn-interactive shrink-0 rounded-full bg-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2"
             >
               Donate
             </Link>
@@ -163,22 +232,20 @@ export function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
         </div>
       </header>
 
-      <div
-        className={`fixed inset-0 z-[60] bg-[rgba(0,0,0,0.28)] transition-opacity duration-300 ease-out motion-reduce:transition-none min-[1060px]:hidden ${
-          menuOpen
-            ? "pointer-events-auto opacity-100"
-            : "pointer-events-none opacity-0"
-        }`}
-        aria-hidden={!menuOpen}
-        onClick={closeMenu}
-      />
+      {menuOpen ? (
+        <div
+          className="fixed inset-0 z-[60] bg-[rgba(0,0,0,0.28)] min-[1060px]:hidden"
+          aria-hidden={false}
+          onClick={closeMenu}
+        />
+      ) : null}
 
       <aside
         id="site-nav-panel"
         className={`fixed inset-y-0 right-0 z-[70] w-full max-w-[380px] border-l border-[rgba(0,0,0,0.06)] bg-[#FBF6F3] shadow-[-12px_0_40px_rgba(0,0,0,0.08)] transition-[transform,opacity] duration-300 ease-out motion-reduce:transition-none min-[1060px]:hidden ${
           menuOpen
             ? "translate-x-0 opacity-100"
-            : "pointer-events-none translate-x-full opacity-0"
+            : "pointer-events-none invisible translate-x-full opacity-0"
         }`}
         aria-hidden={!menuOpen}
         onClick={(event) => event.stopPropagation()}

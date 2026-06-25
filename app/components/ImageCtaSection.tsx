@@ -20,10 +20,10 @@ type ImageCtaSectionProps = {
 };
 
 const primaryButtonClassName =
-  "btn-interactive rounded-full bg-[#436169] px-6 py-3 text-center font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#344C52] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black active:scale-[0.98]";
+  "image-cta-btn inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#436169] px-4 py-3 text-sm font-semibold text-white hover:bg-[#344C52] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-6 md:py-3 md:text-base";
 
 const secondaryButtonClassName =
-  "btn-interactive rounded-full border border-white px-6 py-3 text-center font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black active:scale-[0.98]";
+  "image-cta-btn inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-white px-4 py-3 text-sm font-semibold text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-6 md:py-3 md:text-base";
 
 export function ImageCtaSection({
   heading,
@@ -39,7 +39,7 @@ export function ImageCtaSection({
   return (
     <section
       id={id}
-      className={`${className} relative flex min-h-[400px] items-center justify-center overflow-hidden px-6 py-[60px] text-white md:min-h-[550px] md:px-12 md:py-20 lg:px-24`}
+      className={`${className} relative flex min-h-[400px] items-center justify-center overflow-hidden text-white md:min-h-[550px] md:px-12 md:py-20 lg:px-24`}
     >
       <Image
         src={imageSrc}
@@ -54,7 +54,7 @@ export function ImageCtaSection({
           backgroundColor: `rgba(0, 0, 0, ${overlayOpacity})`,
         }}
       />
-      <div className="relative z-10 mx-auto max-w-[700px] text-center">
+      <div className="home-cta-content-padding relative z-10 mx-auto w-full max-w-[700px] text-center">
         {eyebrow ? (
           <p className="text-sm font-semibold uppercase tracking-wide text-[#E2B39F]">
             {eyebrow}
@@ -66,7 +66,7 @@ export function ImageCtaSection({
           {heading}
         </h2>
         <p className="mt-6 text-lg leading-8 text-white">{body}</p>
-        <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+        <div className="mt-8 flex flex-row flex-nowrap items-center justify-center gap-4">
           {buttons.map((button) => (
             <Link
               key={button.href + button.label}

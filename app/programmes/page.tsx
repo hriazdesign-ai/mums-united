@@ -45,14 +45,14 @@ const programmes: Programme[] = [
     "Youth Development",
     "Current",
     true,
-    "/IMG_2372.jpg"
+    "/programmes-featured-figma.jpg"
   ),
 
   makeProgramme(
     "empowering-next-generation-creators",
     "Empowering the Next Generation of Creators",
     "Creative workshops helping young people explore ideas, build confidence and develop new skills.",
-    "Creative Skills",
+    "Youth Development",
     "Completed",
     false,
     "/programmes/empowering.jpg"
@@ -61,7 +61,7 @@ const programmes: Programme[] = [
     "christmas-party",
     "Christmas Party",
     "A festive community celebration bringing families together through activities, food and support.",
-    "Community Events",
+    "Youth Development",
     "Completed",
     false,
     "/programmes/xmas.jpg"
@@ -70,7 +70,7 @@ const programmes: Programme[] = [
     "mega-music-mingle",
     "Mega Music Mingle",
     "Music-focused activities encouraging creativity, participation and community connection.",
-    "Community Events",
+    "Youth Development",
     "Completed",
     false,
     "/programmes/mega.jpg"
@@ -79,7 +79,7 @@ const programmes: Programme[] = [
     "netheredge-festival",
     "Netheredge Festival",
     "Community festival activities supporting local engagement and family participation.",
-    "Community Events",
+    "Youth Development",
     "Completed",
     false,
     "/programmes/nether.jpg"
@@ -88,7 +88,7 @@ const programmes: Programme[] = [
     "pakistan-flood-appeal",
     "Pakistan Flood Appeal",
     "Fundraising and community support for families affected by flooding in Pakistan.",
-    "Fundraising",
+    "Youth Development",
     "Completed",
     false,
     "/programmes/pk-1.jpg"
@@ -97,7 +97,7 @@ const programmes: Programme[] = [
     "building-resilience-after-trauma",
     "Building Resilience After Trauma",
     "Support sessions focused on recovery, resilience and emotional wellbeing.",
-    "Health & Wellbeing",
+    "Youth Development",
     "Completed",
     false,
     "/programmes/resilience.jpg"
@@ -511,36 +511,42 @@ const programmes: Programme[] = [
 
 const filters: Array<"All" | ProgrammeStatus> = ["All", "Current", "Completed"];
 
-function StatusBadge({ status }: { status: ProgrammeStatus }) {
-  return (
-    <span className="rounded-full bg-[#E2B39F]/35 px-3 py-1 text-xs font-semibold text-[#1F1F1D]">
-      {status}
-    </span>
-  );
-}
+const sectionTagClassName =
+  "inline-flex rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-normal leading-4 text-[#17171c]";
 
-function ProgrammeImage({
-  programme,
-  className = "",
+const blockEyebrowClassName =
+  "text-[12px] font-normal leading-4 text-[#17171c]";
+
+const heroHeadingClassName =
+  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[76px] lg:leading-[80px]";
+
+const sectionHeadingClassName =
+  "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] md:text-[40px] md:leading-[48px] lg:text-[48px] lg:leading-[53px]";
+
+const blockHeadingClassName =
+  "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] lg:text-[48px] lg:leading-[53px]";
+
+const statusBadgeClassName =
+  "inline-flex shrink-0 items-center justify-center rounded-full bg-[#17171c] px-[10px] py-2 text-[12px] font-semibold leading-3 text-white";
+
+const categoryBadgeClassName =
+  "inline-flex shrink-0 items-center justify-center rounded-full border border-[#17171c] px-[10px] py-2 text-[12px] font-semibold leading-3 text-[#17171c]";
+
+function ProgrammeBadges({
+  status,
+  category,
+  statusLabel,
 }: {
-  programme: Programme;
-  className?: string;
+  status: ProgrammeStatus;
+  category: string;
+  statusLabel?: string;
 }) {
   return (
-    <div className={`relative aspect-video overflow-hidden bg-[#DDD4CE] ${className}`}>
-      {programme.image ? (
-        <Image
-          src={programme.image}
-          alt={programme.imageAlt}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
-          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-        />
-      ) : (
-        <div className="flex h-full items-center justify-center px-6 text-center text-sm font-semibold text-[#6F6864]">
-          Image Coming Soon
-        </div>
-      )}
+    <div className="flex flex-wrap items-center gap-3">
+      <span className={statusBadgeClassName}>
+        {statusLabel ?? status}
+      </span>
+      <span className={categoryBadgeClassName}>{category}</span>
     </div>
   );
 }
@@ -549,57 +555,36 @@ function ProgrammeCard({ programme }: { programme: Programme }) {
   return (
     <article
       id={programme.id}
-      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[#DDD4CE] bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+      className="card-interactive flex flex-col overflow-hidden rounded-xl bg-white"
     >
-      <ProgrammeImage programme={programme} className="rounded-t-3xl" />
-      <div className="flex flex-1 flex-col p-6">
-        <div className="flex flex-wrap items-center gap-3">
-          <StatusBadge status={programme.status} />
-          <p className="text-sm font-semibold text-[#436169]">
-            {programme.category}
-          </p>
-        </div>
-        <h3 className="mt-5 text-2xl font-bold">{programme.title}</h3>
-        <p className="mt-4 flex-1 leading-7 text-[#6F6864]">
-          {programme.description}
-        </p>
-      </div>
-    </article>
-  );
-}
-
-function FeaturedProgrammeCard({ programme }: { programme: Programme }) {
-  return (
-    <article
-      id="current-programme"
-      className="group grid bg-[#446169] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"
-    >
-      <div className="relative aspect-[4/3] overflow-hidden bg-[#DDD4CE] lg:aspect-auto lg:min-h-[620px]">
+      <div className="image-interactive relative h-[222px] w-full overflow-hidden">
         {programme.image ? (
           <Image
             src={programme.image}
             alt={programme.imageAlt}
             fill
-            className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover object-center"
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
           />
         ) : (
-          <div className="flex h-full items-center justify-center px-6 text-center text-sm font-semibold text-[#6F6864]">
+          <div className="flex h-full items-center justify-center bg-[#efeadf] px-6 text-center text-sm font-semibold text-[#6F6864]">
             Image Coming Soon
           </div>
         )}
       </div>
-
-      <div className="flex flex-col justify-center px-6 py-16 md:px-12 lg:min-h-[620px] lg:px-20 lg:py-24">
-        <p className="text-sm font-semibold uppercase tracking-wide text-[#E2B39F]">
-          Current Programme
-        </p>
-        <h2 className="mt-4 text-3xl font-bold text-white md:text-5xl">
-          {programme.title}
-        </h2>
-        <p className="mt-6 text-lg leading-8 text-[#F6F1EE]">
-          {programme.description}
-        </p>
+      <div className="flex flex-col gap-10 px-6 pb-[34px] pt-6">
+        <ProgrammeBadges
+          status={programme.status}
+          category={programme.category}
+        />
+        <div className="flex flex-col gap-[18px]">
+          <h3 className="text-2xl font-semibold leading-[26px] tracking-[-0.02em]">
+            {programme.title}
+          </h3>
+          <p className="text-base font-normal leading-[22px]">
+            {programme.description}
+          </p>
+        </div>
       </div>
     </article>
   );
@@ -608,32 +593,33 @@ function FeaturedProgrammeCard({ programme }: { programme: Programme }) {
 function ProgrammeSection({
   title,
   label,
-  programmes,
+  programmes: sectionProgrammes,
 }: {
   title: string;
   label: string;
   programmes: Programme[];
 }) {
-  if (programmes.length === 0) return null;
+  if (sectionProgrammes.length === 0) return null;
 
   return (
-    <section>
-      <div className="max-w-2xl">
-        <h3 className="text-2xl font-bold md:text-3xl">{title}</h3>
-        <p className="mt-2 text-sm leading-6 text-[#6F6864]">{label}</p>
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-[18px] pb-10">
+        <h3 className="text-2xl font-semibold leading-7 tracking-[-0.02em]">
+          {title}
+        </h3>
+        <p className="text-base font-normal leading-[22px]">{label}</p>
       </div>
 
-      <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {programmes.map((programme) => (
+      <div className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+        {sectionProgrammes.map((programme) => (
           <ProgrammeCard key={programme.id} programme={programme} />
         ))}
       </div>
-    </section>
+    </div>
   );
 }
 
 export default function ProgrammesPage() {
-  const overlayOpacity = 0.5;
   const [activeFilter, setActiveFilter] =
     useState<(typeof filters)[number]>("All");
 
@@ -642,7 +628,6 @@ export default function ProgrammesPage() {
     () => programmes.filter((programme) => programme.status === "Current"),
     []
   );
-  
   const completedProgrammes = useMemo(
     () => programmes.filter((programme) => programme.status === "Completed"),
     []
@@ -659,72 +644,127 @@ export default function ProgrammesPage() {
     <>
       <SiteHeader currentPath="/programmes" />
 
-      <main className="min-h-screen bg-[#FBF6F3] text-[#1F1F1D]">
-        <section className="px-6 pb-14 pt-[60px] md:px-12 md:pb-16 md:pt-20 lg:px-24">
-          <div className="mx-auto max-w-6xl">
-            <div className="max-w-3xl">
-              <p className="text-sm font-semibold uppercase tracking-wide text-[#436169]">
-                Programmes & Workshops
-              </p>
-              <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-6xl">
-                Supporting families through practical programmes, workshops and
-                community initiatives.
-              </h1>
-              <p className="mt-6 text-lg leading-8 text-[#6F6864]">
-                Mums United delivers a range of activities, workshops and
-                support programmes designed to strengthen families, empower
-                young people and build safer communities.
-              </p>
-            </div>
-          </div>
-        </section>
+      <main className="bg-white pb-[60px] text-[#17171c] md:pb-20">
+        <div className="mx-auto flex w-full max-w-[1330px] flex-col px-6 lg:px-[60px]">
+          {/* Hero + Featured Programme */}
+          <section className="flex w-full flex-col">
+            <div className="flex flex-col items-center px-0 py-16 text-center md:px-8 md:py-20 lg:px-[60px] lg:py-[80px]">
+              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+                <p className={sectionTagClassName}>Programmes &amp; Workshops</p>
 
-        {featuredProgramme ? (
-          <section className="bg-[#446169]">
-            <FeaturedProgrammeCard programme={featuredProgramme} />
-          </section>
-        ) : null}
+                <h1 className={heroHeadingClassName}>
+                  Supporting families through practical programmes, workshops
+                  and community initiatives.
+                </h1>
 
-        <section
-          id="programme-list-heading"
-          className="bg-white px-6 section-padding-y md:px-12 lg:px-24"
-        >
-          <div className="mx-auto max-w-6xl">
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <div className="max-w-2xl">
-                <p className="text-sm font-semibold uppercase tracking-wide text-[#436169]">
-                  Programme Archive
+                <p className="max-w-[910px] text-base font-normal leading-[22px] md:px-8 lg:px-[150px]">
+                  Mums United delivers a range of activities, workshops and
+                  support programmes designed to strengthen families, empower
+                  young people and build safer communities.
                 </p>
-                <h2 className="mt-3 text-3xl font-bold md:text-4xl">
+              </div>
+            </div>
+
+            {featuredProgramme ? (
+              <div
+                id="current-programme"
+                className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-[1.04fr_0.51fr]"
+              >
+                <div className="image-interactive relative aspect-[881/455] w-full overflow-hidden rounded-xl lg:h-[455px] lg:aspect-auto">
+                  {featuredProgramme.image ? (
+                    <Image
+                      src={featuredProgramme.image}
+                      alt={featuredProgramme.imageAlt}
+                      fill
+                      className="object-cover object-center"
+                      priority
+                      sizes="(min-width: 1024px) 66vw, 100vw"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center bg-[#efeadf] px-6 text-center text-sm font-semibold text-[#6F6864]">
+                      Image Coming Soon
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex flex-col justify-center">
+                  <div className="flex flex-col gap-6 px-8 py-[42px]">
+                    <p className={blockEyebrowClassName}>Current Programme</p>
+                    <div className="flex flex-col gap-[22px]">
+                      <h2 className={blockHeadingClassName}>
+                        {featuredProgramme.title}
+                      </h2>
+                      <ProgrammeBadges
+                        status={featuredProgramme.status}
+                        category="Community Support"
+                        statusLabel="Available"
+                      />
+                      <p className="text-base font-normal leading-[22px]">
+                        {featuredProgramme.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : null}
+          </section>
+
+          {/* Programme Archive */}
+          <section
+            aria-labelledby="programme-archive-heading"
+            className="mt-[60px] flex w-full flex-col gap-10 lg:mt-20"
+          >
+            <div className="scroll-reveal flex flex-col gap-8">
+              <span className="inline-flex w-fit items-center self-start rounded bg-[rgba(163,182,180,0.3)] px-3 py-1 text-xs font-normal leading-4 text-[#17171c]">
+                Programme Archive
+              </span>
+              <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+                <h2
+                  id="programme-archive-heading"
+                  className={`${sectionHeadingClassName} max-w-[720px]`}
+                >
                   Programmes, workshops and community initiatives.
                 </h2>
-              </div>
 
-              <div className="flex flex-wrap gap-3">
-                {filters.map((filter) => (
-                  <button
-                    key={filter}
-                    type="button"
-                    onClick={() => setActiveFilter(filter)}
-                    className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-300 hover:scale-[1.02] ${
-                      activeFilter === filter
-                        ? "border-[#436169] bg-[#436169] text-white"
-                        : "border-[#DDD4CE] bg-white text-[#1F1F1D] hover:bg-[#FBF6F3]"
-                    }`}
-                  >
-                    {filter}
-                  </button>
-                ))}
+                <div
+                  className="flex flex-wrap items-center gap-3 lg:shrink-0"
+                  role="group"
+                  aria-label="Filter programmes"
+                >
+                {filters.map((filter) => {
+                  const isActive = activeFilter === filter;
+                  return (
+                    <button
+                      key={filter}
+                      type="button"
+                      aria-pressed={isActive}
+                      onClick={() => setActiveFilter(filter)}
+                      className={`btn-interactive rounded-full px-[10px] py-2 text-[12px] font-semibold leading-3 transition-colors focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2 ${
+                        isActive
+                          ? "bg-[#17171c] text-white"
+                          : "border border-[#17171c] text-[#17171c] hover:bg-[#17171c]/5"
+                      }`}
+                    >
+                      {filter}
+                    </button>
+                  );
+                })}
+                </div>
               </div>
             </div>
 
             {activeFilter === "All" ? (
-              <div className="mt-10 space-y-16">
+              <div className="flex flex-col">
                 <ProgrammeSection
                   title="Current Programmes"
                   label="Activities currently running in the community."
                   programmes={currentProgrammes}
                 />
+
+                {currentProgrammes.length > 0 &&
+                completedProgrammes.length > 0 ? (
+                  <hr className="my-[60px] border-0 border-t border-[#17171c]/15 md:my-20" />
+                ) : null}
 
                 <ProgrammeSection
                   title="Past Programmes"
@@ -733,51 +773,58 @@ export default function ProgrammesPage() {
                 />
               </div>
             ) : (
-              <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
                 {filteredProgrammes.map((programme) => (
                   <ProgrammeCard key={programme.id} programme={programme} />
                 ))}
               </div>
             )}
-          </div>
-        </section>
+          </section>
 
-        <section className="relative flex min-h-[400px] items-center justify-center overflow-hidden px-6 py-[60px] text-white md:min-h-[550px] md:px-12 md:py-20 lg:px-24">
-          <Image
-            src="/Donations-2.jpg"
-            alt=""
-            fill
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-          <div
-            className="absolute inset-0"
-            style={{ backgroundColor: `rgba(0, 0, 0, ${overlayOpacity})` }}
-          />
-          <div className="relative z-10 mx-auto max-w-[700px] text-center">
-            <h2 className="text-3xl font-bold md:text-5xl">
-              Want to get involved?
-            </h2>
-            <p className="mt-6 text-lg leading-8 text-white">
-              Whether you are looking for support, volunteering opportunities or
-              community activities, we would love to hear from you.
-            </p>
-            <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-              <Link
-                href="/contact"
-                className="rounded-full bg-[#436169] px-6 py-3 text-center font-semibold text-white hover:bg-[#344C52]"
-              >
-                Contact Us
-              </Link>
-              <Link
-                href="/donate"
-                className="rounded-full border border-white px-6 py-3 text-center font-semibold text-white hover:bg-white/10"
-              >
-                Donate
-              </Link>
+          {/* Bottom CTA */}
+          <section
+            aria-labelledby="programmes-cta-heading"
+            className="scroll-reveal relative mt-[60px] flex min-h-[400px] items-center justify-center overflow-hidden rounded-xl md:h-[500px] lg:mt-20"
+          >
+            <div className="absolute inset-0 rounded-xl bg-black" aria-hidden />
+            <Image
+              src="/programmes-cta-figma.jpg"
+              alt="Hands stacked together in a gesture of community support"
+              fill
+              className="object-cover object-center opacity-60"
+              sizes="100vw"
+            />
+            <div className="home-cta-content-padding relative z-10 flex w-full flex-col items-center text-center text-white md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
+              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+                <h2
+                  id="programmes-cta-heading"
+                  className={sectionHeadingClassName}
+                >
+                  Want to get involved?
+                </h2>
+                <p className="max-w-[910px] text-base font-semibold leading-[22px] md:px-8 lg:px-[150px]">
+                  Whether you are looking for support, volunteering
+                  opportunities or community activities, we would love to hear
+                  from you.
+                </p>
+                <div className="flex flex-row flex-nowrap items-center justify-center gap-4">
+                  <Link
+                    href="/contact"
+                    className="btn-interactive image-cta-btn inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                  >
+                    Contact Us
+                  </Link>
+                  <Link
+                    href="/donate"
+                    className="btn-interactive image-cta-btn inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                  >
+                    Donate
+                  </Link>
+                </div>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </main>
     </>
   );

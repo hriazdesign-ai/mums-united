@@ -357,16 +357,16 @@ export default function Home() {
                   young people and families across Sheffield through practical
                   help, trusted relationships and community support.
                 </p>
-                <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-7">
+                <div className="flex flex-row flex-nowrap items-center justify-center gap-4">
                   <Link
                     href="/donate"
-                    className="btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-5 py-3.5 text-base font-semibold leading-[22px] tracking-[-0.04em] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                    className="btn-interactive inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
                   >
                     Donate Now
                   </Link>
                   <Link
                     href="/impact"
-                    className="btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full border border-white px-5 py-3.5 text-base font-semibold leading-[22px] tracking-[-0.04em] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                    className="btn-interactive inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
                   >
                     Learn About Our Impact
                   </Link>

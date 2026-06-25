@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ImageCtaSection } from "../components/ImageCtaSection";
 import { SiteHeader } from "../components/SiteHeader";
 
 type MediaType = "Radio" | "TV" | "Press" | "Podcast" | "Community";
@@ -293,11 +292,11 @@ const mediaItems: MediaItem[] = mediaLinkSources.map((source, index) => {
       index === 0
         ? "/media/featured-media-1.jpg"
         : index === 1
-        ? "/media/featured-media-2.jpg"
-        : index === 2
-        ? "/media/featured-media-3.jpg"
-        : "",
-    imageAlt: "Media coverage",
+          ? "/media/featured-media-2.jpg"
+          : index === 2
+            ? "/media/featured-media-3.jpg"
+            : "",
+    imageAlt: `${source.title ?? getMediaTitle(source)} media coverage`,
   };
 });
 
@@ -349,6 +348,32 @@ const communityStories = [
 
 const archivePageSize = 5;
 
+const sectionTagClassName =
+  "inline-flex w-fit items-center rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-normal leading-4 text-[#17171c]";
+
+const heroHeadingClassName =
+  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[76px] lg:leading-[80px]";
+
+const sectionHeadingClassName =
+  "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] md:text-[40px] md:leading-[48px] lg:text-[48px] lg:leading-[53px]";
+
+const statusBadgeClassName =
+  "inline-flex shrink-0 items-center justify-center rounded-full bg-[#17171c] px-[10px] py-2 text-[12px] font-semibold leading-3 text-white";
+
+const primaryDarkButtonClassName =
+  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-3 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
+
+const outlineDarkButtonClassName =
+  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full border border-[#17171c] bg-white px-5 py-3 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#17171c]/5 focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
+
+const exploreLinks = [
+  ["Featured Media", "#featured-media"],
+  ["Media Archive", "#media-archive"],
+  ["Podcast", "#podcast"],
+  ["Recognition", "#recognition"],
+  ["Community Stories", "#community-stories"],
+] as const;
+
 function formatDate(date: string) {
   return new Intl.DateTimeFormat("en-GB", {
     day: "numeric",
@@ -389,45 +414,46 @@ function groupMediaByYearAndMonth(items: MediaItem[]) {
 
 function FeaturedMediaCard({ item }: { item: MediaItem }) {
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[#DDD4CE] bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-      <div
-        className="relative aspect-video bg-[#DDD4CE]"
-        aria-label={item.image ? undefined : item.imageAlt}
-      >
+    <article className="card-interactive flex flex-col overflow-hidden rounded-xl bg-white">
+      <div className="image-interactive relative h-[222px] w-full overflow-hidden">
         {item.image ? (
           <Image
             src={item.image}
             alt={item.imageAlt ?? ""}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-            sizes="(min-width: 768px) 33vw, 100vw"
+            className="object-cover object-center"
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
           />
         ) : (
-          <div className="flex h-full items-center justify-center px-6 text-center text-sm font-semibold text-[#6F6864]">
+          <div className="flex h-full items-center justify-center bg-[#efeadf] px-6 text-center text-sm font-semibold text-[#6F6864]">
             Media image coming soon
           </div>
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex flex-col gap-10 px-6 pb-6 pt-6">
         <div className="flex flex-wrap items-center gap-3">
-          <span className="rounded-full bg-[#E2B39F]/35 px-3 py-1 text-xs font-semibold text-[#1F1F1D]">
-            {item.type}
+          <span className={statusBadgeClassName}>{item.type}</span>
+          <span className="text-[12px] font-semibold leading-3 text-[#17171c]">
+            {formatDate(item.date)}
           </span>
-          <p className="text-sm text-[#6F6864]">{formatDate(item.date)}</p>
         </div>
-        <h3 className="mt-5 text-2xl font-bold">{item.title}</h3>
-        <p className="mt-4 flex-1 leading-7 text-[#6F6864]">
-          {item.description}
-        </p>
-        <a
-          href={item.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-6 inline-block rounded-full bg-[#436169] px-5 py-3 text-center text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#344C52] focus:outline-none focus:ring-2 focus:ring-[#436169] focus:ring-offset-2 active:scale-[0.98]"
-        >
-          View Coverage
-        </a>
+        <div className="flex flex-1 flex-col gap-[18px]">
+          <h3 className="text-2xl font-semibold leading-[26px] tracking-[-0.02em]">
+            {item.title}
+          </h3>
+          <p className="text-base font-normal leading-[22px]">
+            {item.description}
+          </p>
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${primaryDarkButtonClassName} mt-2`}
+          >
+            View Coverage
+          </a>
+        </div>
       </div>
     </article>
   );
@@ -435,29 +461,35 @@ function FeaturedMediaCard({ item }: { item: MediaItem }) {
 
 function ArchiveMediaItem({ item }: { item: MediaItem }) {
   return (
-    <a
-      href={item.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block rounded-3xl border border-[#DDD4CE] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#436169] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#436169] focus:ring-offset-2"
-    >
-      <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-        <div className="max-w-3xl">
+    <article className="card-interactive overflow-hidden rounded-xl bg-white">
+      <div className="flex flex-col gap-10 px-6 py-[34px] lg:flex-row lg:items-start lg:justify-between lg:gap-[70px]">
+        <div className="flex min-w-0 flex-1 flex-col gap-10">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="rounded-full bg-[#E2B39F]/35 px-3 py-1 text-xs font-semibold text-[#1F1F1D]">
-              {item.type}
+            <span className={statusBadgeClassName}>{item.type}</span>
+            <span className="text-[12px] font-semibold leading-3 text-[#17171c]">
+              {formatDate(item.date)}
             </span>
-            <p className="text-sm text-[#6F6864]">{formatDate(item.date)}</p>
           </div>
-          <h3 className="mt-4 text-xl font-bold">{item.title}</h3>
-          <p className="mt-2 leading-7 text-[#6F6864]">{item.description}</p>
+          <div className="flex flex-col gap-[18px]">
+            <h3 className="text-2xl font-semibold leading-[26px] tracking-[-0.02em]">
+              {item.title}
+            </h3>
+            <p className="text-base font-normal leading-[22px]">
+              {item.description}
+            </p>
+          </div>
         </div>
 
-        <span className="shrink-0 rounded-full bg-[#436169] px-5 py-3 text-center text-sm font-semibold text-white">
+        <a
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${primaryDarkButtonClassName} shrink-0 self-start px-5 py-2.5`}
+        >
           {getArchiveActionLabel(item.type)}
-        </span>
+        </a>
       </div>
-    </a>
+    </article>
   );
 }
 
@@ -493,276 +525,336 @@ export default function MediaPage() {
     <>
       <SiteHeader currentPath="/media" />
 
-      <main className="min-h-screen bg-[#FBF6F3] text-[#1F1F1D]">
-        <section className="scroll-reveal px-6 pt-[60px] pb-16 md:px-12 md:pt-20 lg:px-24">
-          <div className="mx-auto max-w-6xl">
-            <div className="max-w-3xl">
-              <p className="text-sm font-semibold uppercase tracking-wide text-[#436169]">
-                Media & Stories
-              </p>
-              <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-6xl">
-                Coverage, conversations and community voices from Mums United.
-              </h1>
-              <p className="mt-6 text-lg leading-8 text-[#6F6864]">
-                Explore media appearances, podcast episodes and stories that
-                show how Mums United supports families, young people and
-                communities across Sheffield.
-              </p>
-            </div>
+      <main className="bg-white pb-[60px] text-[#17171c] md:pb-20">
+        <div className="mx-auto w-full max-w-[1330px] px-6 lg:px-[60px]">
+          {/* Hero + Featured Media */}
+          <section
+            id="featured-media"
+            aria-labelledby="featured-media-heading"
+            className="flex w-full flex-col"
+          >
+            <div className="flex flex-col items-center px-0 py-16 text-center md:px-8 md:py-20 lg:px-[60px] lg:py-[80px]">
+              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+                <span className={sectionTagClassName}>Media &amp; Stories</span>
 
-            <nav
-              aria-label="Explore this page"
-              className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2"
-            >
-              <span className="text-sm font-semibold text-[#1F1F1D]">
-                Explore:
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  ["Featured Media", "#featured-media"],
-                  ["Media Archive", "#media-archive"],
-                  ["Podcast", "#podcast"],
-                  ["Recognition", "#recognition"],
-                  ["Community Stories", "#community-stories"],
-                ].map(([label, href]) => (
-                  <a
-                    key={href}
-                    href={href}
-                    className="inline-flex rounded-full border border-[#DDD4CE] bg-white px-3 py-1.5 text-sm font-semibold text-[#1F1F1D] transition-colors duration-300 hover:border-[#436169] hover:bg-[#FBF6F3] focus:outline-none focus:ring-2 focus:ring-[#436169] focus:ring-offset-2"
-                  >
-                    {label}
-                  </a>
-                ))}
+                <h1 className={heroHeadingClassName}>
+                  Coverage, conversations and community voices from Mums United.
+                </h1>
+
+                <p className="max-w-[910px] text-base font-normal leading-[22px] md:px-8 lg:px-[150px]">
+                  Explore media appearances, podcast episodes and stories that
+                  show how Mums United supports families, young people and
+                  communities across Sheffield.
+                </p>
+
+                <nav
+                  aria-label="Explore this page"
+                  className="flex flex-wrap items-center justify-center gap-3"
+                >
+                  {exploreLinks.map(([label, href]) => (
+                    <a
+                      key={href}
+                      href={href}
+                      className="btn-interactive rounded-full border border-[#17171c] px-[10px] py-2 text-[12px] font-semibold leading-3 text-[#17171c] transition-colors hover:bg-[#17171c]/5 focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2"
+                    >
+                      {label}
+                    </a>
+                  ))}
+                </nav>
               </div>
-            </nav>
-          </div>
-        </section>
-
-        <section
-          id="featured-media"
-          className="scroll-reveal scroll-mt-28 px-6 pt-[60px] pb-[60px] md:px-12 md:pb-20 md:pt-16 lg:px-24"
-        >
-          <div className="mx-auto max-w-6xl">
-            <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-wide text-[#436169]">
-                Featured Media
-              </p>
-              <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-                Recent coverage and community moments.
-              </h2>
             </div>
 
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <div className="scroll-reveal flex flex-col items-center px-0 pb-10 text-center md:px-8 lg:px-[60px]">
+              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+                <span className={sectionTagClassName}>Featured Media</span>
+                <h2
+                  id="featured-media-heading"
+                  className={sectionHeadingClassName}
+                >
+                  Recent coverage and community moments.
+                </h2>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {featuredMedia.map((item) => (
                 <FeaturedMediaCard key={item.id} item={item} />
               ))}
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
 
+        {/* Media Archive */}
         <section
           id="media-archive"
-          className="scroll-reveal scroll-mt-28 border-y border-[#DDD4CE] bg-white px-6 section-padding-y md:px-12 lg:px-24"
+          aria-labelledby="media-archive-heading"
+          className="scroll-mt-28 mt-[60px] bg-[#efeadf] lg:mt-20"
         >
-          <div className="mx-auto max-w-6xl">
-            <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-wide text-[#436169]">
-                Media Timeline / Archive
-              </p>
-              <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-                Stories, interviews and features.
-              </h2>
-            </div>
-
-            <div
-              aria-label="Filter media archive by year"
-              className="mt-8 flex flex-wrap gap-3"
-            >
-              {yearFilters.map((year) => (
-                <button
-                  key={year}
-                  type="button"
-                  onClick={() => {
-                    setActiveYear(year);
-                    setVisibleArchiveCount(archivePageSize);
-                  }}
-                  className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#436169] focus:ring-offset-2 active:scale-[0.98] ${
-                    activeYear === year
-                      ? "border-[#436169] bg-[#436169] text-white"
-                      : "border-[#DDD4CE] bg-white text-[#1F1F1D] hover:bg-[#FBF6F3]"
-                  }`}
+          <div className="mx-auto w-full max-w-[1330px] px-6 pt-[60px] lg:px-[60px] lg:pt-20">
+            <div className="scroll-reveal flex flex-col items-center pb-10 text-center">
+              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+                <span className={sectionTagClassName}>
+                  Media Timeline / Archive
+                </span>
+                <h2
+                  id="media-archive-heading"
+                  className={sectionHeadingClassName}
                 >
-                  {year}
-                </button>
-              ))}
+                  Stories, interviews and features.
+                </h2>
+
+                <div
+                  aria-label="Filter media archive by year"
+                  className="flex flex-wrap items-center justify-center gap-3"
+                  role="group"
+                >
+                  {yearFilters.map((year) => {
+                    const isActive = activeYear === year;
+                    return (
+                      <button
+                        key={year}
+                        type="button"
+                        aria-pressed={isActive}
+                        onClick={() => {
+                          setActiveYear(year);
+                          setVisibleArchiveCount(archivePageSize);
+                        }}
+                        className={`btn-interactive rounded-full px-[10px] py-2 text-[12px] font-semibold leading-3 transition-colors focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2 ${
+                          isActive
+                            ? "bg-[#17171c] text-white"
+                            : "border border-[#17171c] text-[#17171c] hover:bg-[#17171c]/5"
+                        }`}
+                      >
+                        {year}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
 
-            <div className="mt-10 space-y-12">
+            <div className="flex flex-col gap-4">
               {visibleArchiveYears.map((year) => (
-                <section key={year} aria-labelledby={`media-year-${year}`}>
-                  <h3 id={`media-year-${year}`} className="text-2xl font-bold">
+                <div key={year} aria-labelledby={`media-year-${year}`}>
+                  <h3
+                    id={`media-year-${year}`}
+                    className="pb-5 text-2xl font-semibold leading-[26px] tracking-[-0.02em]"
+                  >
                     {year}
                   </h3>
 
-                  <div className="mt-6 space-y-8">
-                    {Object.entries(archiveGroups[year] ?? {}).map(([month, items]) => (
-                      <div key={`${year}-${month}`}>
-                        <p className="text-sm font-semibold uppercase tracking-wide text-[#436169]">
-                          {month}
-                        </p>
-                        <div className="mt-3 space-y-4">
-                          {items.map((item) => (
-                            <ArchiveMediaItem key={item.id} item={item} />
-                          ))}
+                  <div className="flex flex-col gap-4">
+                    {Object.entries(archiveGroups[year] ?? {}).map(
+                      ([month, items]) => (
+                        <div key={`${year}-${month}`}>
+                          <p className="pb-5 text-base font-normal leading-4">
+                            {month}
+                          </p>
+                          <div className="flex flex-col gap-4">
+                            {items.map((item) => (
+                              <ArchiveMediaItem key={item.id} item={item} />
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ),
+                    )}
                   </div>
-                </section>
+                </div>
               ))}
             </div>
 
             {hasMoreArchiveItems ? (
-              <div className="mt-10 text-center">
+              <div className="mt-10 flex justify-center">
                 <button
                   type="button"
                   onClick={() =>
                     setVisibleArchiveCount((count) => count + archivePageSize)
                   }
-                  className="rounded-full bg-[#436169] px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#344C52] focus:outline-none focus:ring-2 focus:ring-[#436169] focus:ring-offset-2 active:scale-[0.98]"
+                  className={outlineDarkButtonClassName}
                 >
-                  Load more media
+                  Load More Media
                 </button>
               </div>
             ) : null}
           </div>
         </section>
 
-        <section
-          id="podcast"
-          className="scroll-reveal scroll-mt-28 relative flex min-h-[400px] items-center overflow-hidden px-6 py-[60px] md:min-h-[550px] md:px-12 md:py-20 lg:px-24"
-        >
-          <Image
-            src="/podcast-1.jpg"
-            alt=""
-            fill
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-black/50" />
+        <div className="mx-auto w-full max-w-[1330px] px-6 lg:px-[60px]">
+          {/* Podcast */}
+          <section
+            id="podcast"
+            aria-labelledby="podcast-heading"
+            className="scroll-reveal scroll-mt-28 relative mt-[60px] flex min-h-[400px] items-center justify-center overflow-hidden rounded-xl md:h-[500px] lg:mt-20"
+          >
+            <div className="absolute inset-0 rounded-xl bg-black" aria-hidden />
+            <Image
+              src="/media/media-podcast-figma.jpg"
+              alt=""
+              fill
+              className="object-cover object-center opacity-60"
+              sizes="100vw"
+            />
+            <div className="home-cta-content-padding relative z-10 flex w-full justify-center md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
+              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8 bg-white px-6 py-[60px] text-center md:px-12">
+                <h2
+                  id="podcast-heading"
+                  className={sectionHeadingClassName}
+                >
+                  Listen to our podcast
+                </h2>
+                <p className="max-w-[910px] text-base font-normal leading-[22px] md:px-8 lg:px-[150px]">
+                  Hear conversations from the community, families and people
+                  working to create positive change.
+                </p>
+                <a href="#" className={primaryDarkButtonClassName}>
+                  Listen to Podcast
+                </a>
+              </div>
+            </div>
+          </section>
 
-          <div className="relative z-10 mx-auto w-full max-w-4xl rounded-3xl bg-white p-8 text-center shadow-lg md:p-12">
-            <h2 className="text-3xl font-bold md:text-5xl">
-              Listen to our podcast
-            </h2>
-            <p className="mt-6 text-lg leading-8 text-[#6F6864]">
-              Hear conversations from the community, families and people working
-              to create positive change.
-            </p>
-            <a
-              href="#"
-              className="mt-8 inline-block rounded-full bg-[#436169] px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#344C52] focus:outline-none focus:ring-2 focus:ring-[#436169] focus:ring-offset-2 active:scale-[0.98]"
-            >
-              Listen to Podcast
-            </a>
-          </div>
-        </section>
-
-        <section
-          id="recognition"
-          className="scroll-reveal scroll-mt-28 px-6 pt-[60px] pb-[60px] md:px-12 md:pt-28 md:pb-20 lg:px-24"
-        >
-          <div className="mx-auto max-w-6xl">
-            <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-wide text-[#436169]">
-                Recognition
-              </p>
-              <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-                Achievements & Recognition
-              </h2>
-              <p className="mt-5 text-lg leading-8 text-[#6F6864]">
-                Mums United has been recognised for its work supporting
-                families, young people and communities across Sheffield.
-              </p>
+          {/* Recognition */}
+          <section
+            id="recognition"
+            aria-labelledby="recognition-heading"
+            className="scroll-reveal scroll-mt-28 mt-[60px] flex w-full flex-col lg:mt-20"
+          >
+            <div className="flex flex-col items-center px-0 pb-10 text-center md:px-8 lg:px-[60px]">
+              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+                <span className={sectionTagClassName}>Recognition</span>
+                <h2
+                  id="recognition-heading"
+                  className={sectionHeadingClassName}
+                >
+                  Achievements &amp; Recognition
+                </h2>
+                <p className="max-w-[910px] text-base font-normal leading-[22px] md:px-8 lg:px-[150px]">
+                  Mums United has been recognised for its work supporting
+                  families, young people and communities across Sheffield.
+                </p>
+              </div>
             </div>
 
-            <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {recognitionItems.map((item) => (
                 <article
                   key={item.title}
-                  className="flex h-full flex-col rounded-3xl border border-[#DDD4CE] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                  className="card-interactive flex flex-col gap-10 rounded-xl bg-[#efeadf] px-6 py-[34px]"
                 >
                   {item.date ? (
-                    <p className="text-sm font-semibold uppercase tracking-wide text-[#436169]">
+                    <p className="text-[12px] font-semibold leading-3 text-[#17171c]">
                       {item.date}
                     </p>
                   ) : null}
-                  <h3 className="mt-4 text-xl font-bold">{item.title}</h3>
-                  <p className="mt-3 flex-1 leading-7 text-[#6F6864]">
-                    {item.description}
-                  </p>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-6 inline-block text-sm font-semibold text-[#436169] transition-all duration-300 hover:scale-[1.02] hover:text-[#344C52] focus:outline-none focus:ring-2 focus:ring-[#436169] focus:ring-offset-2 active:scale-[0.98]"
-                    >
-                      View recognition
-                    </a>
-                  ) : null}
+                  <div className="flex flex-col gap-[18px]">
+                    <h3 className="text-2xl font-semibold leading-[26px] tracking-[-0.02em]">
+                      {item.title}
+                    </h3>
+                    <p className="text-base font-normal leading-[22px]">
+                      {item.description}
+                    </p>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-interactive w-fit text-base font-semibold leading-[22px] text-[#17171c] underline-offset-4 hover:underline focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2"
+                      >
+                        View recognition
+                      </a>
+                    ) : null}
+                  </div>
                 </article>
               ))}
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section
-          id="community-stories"
-          className="scroll-reveal scroll-mt-28 px-6 pb-[60px] md:px-12 md:pb-20 lg:px-24"
-        >
-          <div className="mx-auto max-w-6xl">
-            <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-wide text-[#436169]">
-                Community Stories
-              </p>
-              <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-                Voices from the community.
-              </h2>
+          {/* Community Stories */}
+          <section
+            id="community-stories"
+            aria-labelledby="community-stories-heading"
+            className="scroll-reveal scroll-mt-28 mt-[60px] flex w-full flex-col lg:mt-20"
+          >
+            <div className="flex flex-col items-center px-0 pb-10 text-center md:px-8 lg:px-[60px]">
+              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+                <span className={sectionTagClassName}>Community Stories</span>
+                <h2
+                  id="community-stories-heading"
+                  className={sectionHeadingClassName}
+                >
+                  Voices from the Community
+                </h2>
+              </div>
             </div>
 
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {communityStories.map((story) => (
                 <blockquote
                   key={story.quote}
-                  className="flex h-full flex-col rounded-3xl border border-[#DDD4CE] bg-[#F5EFEA] p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                  className="card-interactive flex flex-col gap-10 rounded-xl bg-[#efeadf] px-6 py-[34px]"
                 >
                   <span
-                    aria-hidden="true"
-                    className="block text-5xl leading-none text-[#1F1F1D]"
+                    aria-hidden
+                    className="text-[52px] font-semibold leading-[52px] tracking-[-0.04em] text-[#17171c]"
                   >
                     &ldquo;
                   </span>
-                  <p className="-mt-1 flex-1 text-xl font-medium leading-8 text-[#1F1F1D]">
-                    {story.quote}
-                  </p>
-                  <footer className="mt-6 shrink-0 text-sm font-medium text-[#6F6864]">
-                    {story.attribution}
-                  </footer>
+                  <div className="flex flex-col gap-[18px]">
+                    <p className="text-2xl font-semibold leading-[26px] tracking-[-0.02em]">
+                      {story.quote}
+                    </p>
+                    <footer className="text-base font-normal leading-[22px] text-[#17171c]">
+                      {story.attribution}
+                    </footer>
+                  </div>
                 </blockquote>
               ))}
             </div>
-          </div>
-        </section>
+          </section>
 
-        <ImageCtaSection
-          heading="Want to speak to Mums United?"
-          body="Whether you are looking for support, would like to discuss community initiatives, or want to learn more about our work, we'd love to hear from you."
-          buttons={[
-            { label: "Contact Us", href: "/contact", variant: "primary" },
-            { label: "Donate", href: "/donate", variant: "secondary" },
-          ]}
-        />
+          {/* Bottom CTA */}
+          <section
+            aria-labelledby="media-cta-heading"
+            className="scroll-reveal relative mt-[60px] flex min-h-[400px] items-center justify-center overflow-hidden rounded-xl md:h-[500px] lg:mt-20"
+          >
+            <div className="absolute inset-0 rounded-xl bg-black" aria-hidden />
+            <Image
+              src="/media/media-cta-figma.jpg"
+              alt="Hands stacked together in a gesture of community support"
+              fill
+              className="object-cover object-center opacity-60"
+              sizes="100vw"
+            />
+            <div className="home-cta-content-padding relative z-10 flex w-full flex-col items-center text-center text-white md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
+              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+                <h2
+                  id="media-cta-heading"
+                  className={sectionHeadingClassName}
+                >
+                  Want to speak to Mums United?
+                </h2>
+                <p className="max-w-[910px] text-base font-semibold leading-[22px] md:px-8 lg:px-[150px]">
+                  Whether you are looking for practical help, community support
+                  or a safe place to talk, Mums United is here to listen.
+                </p>
+                <div className="flex flex-row flex-nowrap items-center justify-center gap-4">
+                  <a
+                    href="/contact"
+                    className="btn-interactive image-cta-btn inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                  >
+                    Contact Us
+                  </a>
+                  <a
+                    href="/donate"
+                    className="btn-interactive image-cta-btn inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                  >
+                    Donate
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
       </main>
     </>
   );

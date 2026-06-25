@@ -84,6 +84,22 @@ body {
   }
 }
 
+.image-cta-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+@media (max-width: 320px) {
+  .image-cta-buttons {
+    flex-wrap: wrap;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .scroll-reveal {
     opacity: 1 !important;
@@ -104,6 +120,14 @@ body {
 
   .btn-interactive:hover {
     transform: translateY(-1px);
+  }
+
+  .image-cta-btn {
+    transition:
+      transform 225ms var(--motion-ease),
+      background-color 225ms ease,
+      color 225ms ease,
+      border-color 225ms ease;
   }
 
   @media (min-width: 1060px) {
@@ -129,6 +153,10 @@ body {
     .image-interactive:hover img {
       transform: scale(1.03);
     }
+
+    .image-cta-btn:hover {
+      transform: scale(1.02);
+    }
   }
 }
 
@@ -140,5 +168,68 @@ body {
 
   .image-interactive:hover img {
     transform: none;
+  }
+
+  .image-cta-btn:hover {
+    transform: none;
+  }
+}
+
+/* Site header — desktop compact scroll state (default uses component Tailwind) */
+.site-header {
+  --site-header-transition: 250ms var(--motion-ease);
+  transition:
+    box-shadow var(--site-header-transition),
+    border-color var(--site-header-transition),
+    background-color var(--site-header-transition),
+    padding-inline var(--site-header-transition);
+}
+
+.site-header__inner {
+  transition: height var(--site-header-transition);
+}
+
+.site-header__logo {
+  transition:
+    height var(--site-header-transition),
+    width var(--site-header-transition);
+}
+
+.site-header__donate {
+  transition: padding var(--site-header-transition);
+}
+
+@media (min-width: 1060px) {
+  .site-header--compact .site-header__inner {
+    height: 84px;
+  }
+
+  .site-header--compact .site-header__logo {
+    height: 53px;
+    width: 115px;
+  }
+
+  .site-header.site-header--compact {
+    padding-inline: 1.5rem;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.05);
+  }
+
+  .site-header--compact .site-header__donate {
+    padding-block: 0.625rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-header.site-header--compact {
+    padding-inline: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .site-header__inner,
+  .site-header__logo,
+  .site-header__donate {
+    transition: none;
   }
 }
