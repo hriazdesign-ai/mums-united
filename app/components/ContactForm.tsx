@@ -3,9 +3,12 @@
 import { useState, type FormEvent } from "react";
 
 const inputClassName =
-  "w-full rounded-2xl border border-[#DDD4CE] bg-white px-4 py-3 text-[#1F1F1D] transition-colors duration-300 placeholder:text-[#6F6864] focus:border-[#436169] focus:outline-none focus:ring-2 focus:ring-[#436169] focus:ring-offset-2";
+  "w-full rounded-lg border border-[#c4c4c4] bg-white px-4 text-sm font-normal leading-5 text-[#17171c] transition-colors placeholder:text-sm placeholder:text-[#17171c]/60 focus:border-[#17171c] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
 
-const labelClassName = "text-sm font-semibold text-[#1F1F1D]";
+const labelClassName = "text-sm font-medium leading-5 text-[#17171c]";
+
+const submitButtonClassName =
+  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-2.5 text-sm font-semibold leading-5 text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -33,10 +36,10 @@ export function ContactForm() {
     <form
       id="contact-form"
       onSubmit={handleSubmit}
-      className="space-y-5"
+      className="flex flex-col gap-6"
       noValidate
     >
-      <div>
+      <div className="flex flex-col gap-2">
         <label htmlFor="contact-name" className={labelClassName}>
           Full Name
         </label>
@@ -46,12 +49,12 @@ export function ContactForm() {
           type="text"
           required
           autoComplete="name"
-          className={`${inputClassName} mt-2`}
+          className={`${inputClassName} h-12`}
           placeholder="Your full name"
         />
       </div>
 
-      <div>
+      <div className="flex flex-col gap-2">
         <label htmlFor="contact-email" className={labelClassName}>
           Email Address
         </label>
@@ -61,12 +64,12 @@ export function ContactForm() {
           type="email"
           required
           autoComplete="email"
-          className={`${inputClassName} mt-2`}
+          className={`${inputClassName} h-12`}
           placeholder="you@example.com"
         />
       </div>
 
-      <div>
+      <div className="flex flex-col gap-2">
         <label htmlFor="contact-phone" className={labelClassName}>
           Phone Number
         </label>
@@ -75,12 +78,12 @@ export function ContactForm() {
           name="phone"
           type="tel"
           autoComplete="tel"
-          className={`${inputClassName} mt-2`}
+          className={`${inputClassName} h-12`}
           placeholder="Your phone number"
         />
       </div>
 
-      <div>
+      <div className="flex flex-col gap-2">
         <label htmlFor="contact-message" className={labelClassName}>
           Your Message
         </label>
@@ -88,26 +91,22 @@ export function ContactForm() {
           id="contact-message"
           name="message"
           required
-          rows={6}
-          className={`${inputClassName} mt-2 min-h-[160px] resize-y`}
-          placeholder="Tell us how we can help..."
+          className={`${inputClassName} min-h-[120px] resize-y py-3`}
+          placeholder="Tell us how we can help"
         />
       </div>
 
-      <button
-        type="submit"
-        className="w-full rounded-full bg-[#436169] px-6 py-4 text-center text-lg font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#344C52] focus:outline-none focus:ring-2 focus:ring-[#436169] focus:ring-offset-2 active:scale-[0.98] sm:w-auto"
-      >
+      <button type="submit" className={submitButtonClassName}>
         Send Message
       </button>
 
       {submitted ? (
-        <p className="text-sm leading-6 text-[#6F6864]" role="status">
+        <p className="text-sm font-normal leading-5 text-[#17171c]" role="status">
           Your email app should open with your message ready to send. If it
           does not, please email us at{" "}
           <a
             href="mailto:mumsunitedsheffield@gmail.com"
-            className="font-semibold text-[#436169] underline-offset-2 hover:underline focus:outline-none focus:ring-2 focus:ring-[#436169] focus:ring-offset-2"
+            className="font-semibold underline-offset-2 hover:underline focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2"
           >
             mumsunitedsheffield@gmail.com
           </a>
