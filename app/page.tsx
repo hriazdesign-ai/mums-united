@@ -12,16 +12,16 @@ const heroHeadingClassName =
   "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[68px] lg:leading-[84px]";
 
 const primaryDarkButtonClassName =
-  "inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
+  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
 
 const outlineDarkButtonClassName =
-  "inline-flex w-fit shrink-0 items-center justify-center rounded-full border border-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#17171c]/5 focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
+  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full border border-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#17171c]/5 focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
 
 const tealButtonClassName =
-  "inline-flex w-fit shrink-0 items-center justify-center self-start rounded-full bg-[#446169] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#344C52] focus:outline-none focus:ring-2 focus:ring-[#446169] focus:ring-offset-2";
+  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center self-start rounded-full bg-[#446169] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#344C52] focus:outline-none focus:ring-2 focus:ring-[#446169] focus:ring-offset-2";
 
 const whiteOutlineButtonClassName =
-  "inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-5 py-3.5 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
+  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-5 py-3.5 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
 
 const impactStats = [
   [
@@ -75,7 +75,7 @@ export default function Home() {
       <SiteHeader />
 
       <main className="bg-white pb-[60px] text-[#17171c] md:pb-20">
-        <div className="section-stack mx-auto w-full max-w-[1330px] px-6 lg:px-[60px]">
+        <div className="mx-auto flex w-full max-w-[1330px] flex-col gap-[60px] px-6 md:gap-20 lg:px-[60px]">
           {/* Hero */}
           <section className="flex w-full flex-col">
             <div className="flex flex-col items-center px-0 py-16 text-center md:px-8 md:py-20 lg:px-[60px] lg:py-[80px]">
@@ -108,7 +108,7 @@ export default function Home() {
             </div>
 
             <div className="flex w-full flex-col lg:flex-row lg:gap-4">
-              <div className="relative aspect-[814/698] w-full overflow-hidden rounded-xl lg:flex-1 lg:aspect-auto lg:h-[698px]">
+              <div className="image-interactive relative aspect-[814/698] w-full overflow-hidden rounded-xl lg:flex-1 lg:aspect-auto lg:h-[698px]">
                 <Image
                   src="/hero-left.jpg"
                   alt="Community members holding an Enough is Enough banner at a peaceful protest"
@@ -118,7 +118,7 @@ export default function Home() {
                   sizes="(min-width: 1024px) 62vw, 100vw"
                 />
               </div>
-              <div className="relative hidden aspect-[500/698] w-full overflow-hidden rounded-xl lg:block lg:h-[698px] lg:w-[500px] lg:shrink-0">
+              <div className="image-interactive relative hidden aspect-[500/698] w-full overflow-hidden rounded-xl lg:block lg:h-[698px] lg:w-[500px] lg:shrink-0">
                 <Image
                   src="/hero-right.jpg"
                   alt="Mums United volunteer carrying a box of community aid"
@@ -134,7 +134,7 @@ export default function Home() {
           {/* Impact */}
           <section
             aria-labelledby="impact-heading"
-            className="flex w-full flex-col"
+            className="scroll-reveal flex w-full flex-col"
           >
             <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
@@ -149,7 +149,7 @@ export default function Home() {
               {impactStats.map(([number, title, text]) => (
                 <article
                   key={title}
-                  className="flex flex-col gap-20 rounded-xl bg-[#446169] px-6 py-10 lg:px-6 lg:py-10"
+                  className="card-interactive flex flex-col gap-20 rounded-xl bg-[#446169] px-6 py-10 lg:px-6 lg:py-10"
                 >
                   <p className="text-[56px] font-light leading-none tracking-[-0.04em] text-white md:text-[64px] lg:text-[76px]">
                     {number}
@@ -170,9 +170,9 @@ export default function Home() {
           {/* Featured Programmes */}
           <section
             aria-labelledby="featured-programmes-heading"
-            className="flex w-full flex-col items-center rounded-xl bg-[rgba(237,234,225,0.7)] px-6 py-[60px] md:px-8 md:py-20 lg:px-[60px]"
+            className="scroll-reveal flex w-full flex-col items-center rounded-xl bg-[rgba(237,234,225,0.7)] px-6 max-md:py-[60px] md:px-8 md:pb-20 lg:px-[60px]"
           >
-            <div className="flex w-full flex-col items-center px-0 pb-[60px] text-center lg:px-[60px]">
+            <div className="flex w-full flex-col items-center px-0 pb-[60px] text-center md:pt-20 lg:px-[60px]">
               <div className="flex w-full max-w-[1090px] flex-col items-center gap-8">
                 <p className={sectionTagClassName}>Featured Programmes</p>
                 <h2
@@ -190,7 +190,7 @@ export default function Home() {
 
             <div className="flex w-full max-w-[1210px] flex-col items-center gap-[60px]">
               <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
-                <article className="overflow-hidden rounded-xl bg-white">
+                <article className="card-interactive overflow-hidden rounded-xl bg-white">
                   <div className="flex flex-col items-start px-[32px] pb-[42px] pt-[42px]">
                     <div className="flex w-full flex-col gap-[24px]">
                       <p className="text-base font-normal leading-4">
@@ -214,7 +214,7 @@ export default function Home() {
                       Learn More
                     </Link>
                   </div>
-                  <div className="relative h-[225px] w-full">
+                  <div className="image-interactive relative h-[225px] w-full">
                     <Image
                       src="/project-serenity-figma.jpg"
                       alt="Young person wearing red boxing gloves during Project Serenity"
@@ -238,7 +238,7 @@ export default function Home() {
                   ].map(([title, text]) => (
                     <article
                       key={title}
-                      className="flex flex-1 flex-col rounded-xl bg-white"
+                      className="card-interactive flex flex-1 flex-col rounded-xl bg-white"
                     >
                       <div className="flex h-full flex-col items-start gap-[40px] p-[32px]">
                         <div className="flex flex-col gap-[12px]">
@@ -271,7 +271,7 @@ export default function Home() {
           {/* Media & Recognition */}
           <section
             aria-labelledby="featured-in-heading"
-            className="flex w-full flex-col"
+            className="scroll-reveal flex w-full flex-col"
           >
             <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
@@ -293,7 +293,7 @@ export default function Home() {
                 {mediaCards.map(([icon, title, text]) => (
                   <article
                     key={title}
-                    className="flex h-full flex-col gap-10 rounded-xl bg-[rgba(163,182,180,0.3)] px-6 py-12"
+                    className="card-interactive flex h-full flex-col gap-10 rounded-xl bg-[rgba(163,182,180,0.3)] px-6 py-12"
                   >
                     <div className="relative size-12 shrink-0">
                       <Image
@@ -331,7 +331,7 @@ export default function Home() {
           {/* Donate CTA */}
           <section
             aria-labelledby="donate-cta-heading"
-            className="relative flex h-[400px] items-center justify-center overflow-hidden rounded-xl md:h-[500px]"
+            className="scroll-reveal relative flex min-h-[400px] items-center justify-center overflow-hidden rounded-xl md:h-[500px]"
           >
             <div className="absolute inset-0 rounded-xl bg-black" aria-hidden />
             <Image
@@ -341,7 +341,7 @@ export default function Home() {
               className="object-cover object-center opacity-60"
               sizes="100vw"
             />
-            <div className="relative z-10 flex w-full flex-col items-center p-[60px] text-center text-white md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
+            <div className="home-cta-content-padding relative z-10 flex w-full flex-col items-center text-center text-white md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
                 <p className="text-base font-semibold leading-4">
                   SUPPORT MUMS UNITED
@@ -360,13 +360,13 @@ export default function Home() {
                 <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-7">
                   <Link
                     href="/donate"
-                    className="inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-5 py-3.5 text-base font-semibold leading-[22px] tracking-[-0.04em] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                    className="btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-5 py-3.5 text-base font-semibold leading-[22px] tracking-[-0.04em] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                   >
                     Donate Now
                   </Link>
                   <Link
                     href="/impact"
-                    className="inline-flex w-fit shrink-0 items-center justify-center rounded-full border border-white px-5 py-3.5 text-base font-semibold leading-[22px] tracking-[-0.04em] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                    className="btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full border border-white px-5 py-3.5 text-base font-semibold leading-[22px] tracking-[-0.04em] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                   >
                     Learn About Our Impact
                   </Link>
