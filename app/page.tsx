@@ -74,8 +74,8 @@ export default function Home() {
     <>
       <SiteHeader />
 
-      <main className="bg-white pb-20 text-[#17171c]">
-        <div className="mx-auto flex w-full max-w-[1330px] flex-col gap-20 px-6 lg:px-[60px]">
+      <main className="bg-white pb-[60px] text-[#17171c] md:pb-20">
+        <div className="section-stack mx-auto w-full max-w-[1330px] px-6 lg:px-[60px]">
           {/* Hero */}
           <section className="flex w-full flex-col">
             <div className="flex flex-col items-center px-0 py-16 text-center md:px-8 md:py-20 lg:px-[60px] lg:py-[80px]">
@@ -96,7 +96,7 @@ export default function Home() {
                   practical support, we help families build brighter futures.
                 </p>
 
-                <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-7">
+                <div className="flex flex-row flex-wrap items-center justify-center gap-4 sm:gap-7">
                   <Link href="/donate" className={primaryDarkButtonClassName}>
                     Donate
                   </Link>
@@ -107,7 +107,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex w-full flex-col gap-4 lg:flex-row lg:gap-4">
+            <div className="flex w-full flex-col lg:flex-row lg:gap-4">
               <div className="relative aspect-[814/698] w-full overflow-hidden rounded-xl lg:flex-1 lg:aspect-auto lg:h-[698px]">
                 <Image
                   src="/hero-left.jpg"
@@ -118,7 +118,7 @@ export default function Home() {
                   sizes="(min-width: 1024px) 62vw, 100vw"
                 />
               </div>
-              <div className="relative aspect-[500/698] w-full overflow-hidden rounded-xl lg:h-[698px] lg:w-[500px] lg:shrink-0">
+              <div className="relative hidden aspect-[500/698] w-full overflow-hidden rounded-xl lg:block lg:h-[698px] lg:w-[500px] lg:shrink-0">
                 <Image
                   src="/hero-right.jpg"
                   alt="Mums United volunteer carrying a box of community aid"
@@ -170,9 +170,9 @@ export default function Home() {
           {/* Featured Programmes */}
           <section
             aria-labelledby="featured-programmes-heading"
-            className="flex w-full flex-col items-center rounded-xl bg-[rgba(237,234,225,0.7)] px-6 pb-20 md:px-8 lg:px-[60px]"
+            className="flex w-full flex-col items-center rounded-xl bg-[rgba(237,234,225,0.7)] px-6 py-[60px] md:px-8 md:py-20 lg:px-[60px]"
           >
-            <div className="flex w-full flex-col items-center px-0 pb-[60px] pt-20 text-center lg:px-[60px]">
+            <div className="flex w-full flex-col items-center px-0 pb-[60px] text-center lg:px-[60px]">
               <div className="flex w-full max-w-[1090px] flex-col items-center gap-8">
                 <p className={sectionTagClassName}>Featured Programmes</p>
                 <h2
@@ -341,7 +341,7 @@ export default function Home() {
               className="object-cover object-center opacity-60"
               sizes="100vw"
             />
-            <div className="relative z-10 flex w-full flex-col items-center px-6 py-16 text-center text-white md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
+            <div className="relative z-10 flex w-full flex-col items-center p-[60px] text-center text-white md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
                 <p className="text-base font-semibold leading-4">
                   SUPPORT MUMS UNITED

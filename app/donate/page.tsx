@@ -57,7 +57,7 @@ export default function DonatePage() {
       <SiteHeader currentPath="/donate" />
 
       <main className="min-h-screen bg-[#FBF6F3] text-[#1F1F1D]">
-        <section className="relative pb-20">
+        <section className="relative pb-[60px] md:pb-20">
           <div className="relative z-0 h-[280px] w-full overflow-hidden md:h-[460px] lg:h-[520px]">
             <Image
               src="/donation-feature.jpg"
@@ -128,7 +128,7 @@ export default function DonatePage() {
 
         <section
           aria-labelledby="why-donate-heading"
-          className="scroll-reveal bg-white px-6 py-20 md:px-12 lg:px-24"
+          className="scroll-reveal bg-white px-6 section-padding-y md:px-12 lg:px-24"
         >
           <div className="mx-auto max-w-6xl">
             <div className="max-w-2xl">
@@ -157,7 +157,7 @@ export default function DonatePage() {
         <section
           id="donation-impact"
           aria-labelledby="donation-impact-heading"
-          className="scroll-reveal px-6 py-20 md:px-12 lg:px-24"
+          className="scroll-reveal px-6 section-padding-y md:px-12 lg:px-24"
         >
           <div className="mx-auto max-w-6xl">
             <div className="max-w-2xl">
@@ -204,7 +204,7 @@ export default function DonatePage() {
 
         <section
           aria-labelledby="trust-heading"
-          className="scroll-reveal bg-white px-6 py-20 md:px-12 lg:px-24"
+          className="scroll-reveal bg-white px-6 section-padding-y md:px-12 lg:px-24"
         >
           <div className="mx-auto max-w-6xl">
             <div className="max-w-2xl">

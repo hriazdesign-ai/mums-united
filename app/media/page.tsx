@@ -494,7 +494,7 @@ export default function MediaPage() {
       <SiteHeader currentPath="/media" />
 
       <main className="min-h-screen bg-[#FBF6F3] text-[#1F1F1D]">
-        <section className="scroll-reveal px-6 pt-20 pb-16 md:px-12 lg:px-24">
+        <section className="scroll-reveal px-6 pt-[60px] pb-16 md:px-12 md:pt-20 lg:px-24">
           <div className="mx-auto max-w-6xl">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-wide text-[#436169]">
@@ -540,7 +540,7 @@ export default function MediaPage() {
 
         <section
           id="featured-media"
-          className="scroll-reveal scroll-mt-28 px-6 pt-16 pb-20 md:px-12 lg:px-24"
+          className="scroll-reveal scroll-mt-28 px-6 pt-[60px] pb-[60px] md:px-12 md:pb-20 md:pt-16 lg:px-24"
         >
           <div className="mx-auto max-w-6xl">
             <div className="max-w-2xl">
@@ -562,7 +562,7 @@ export default function MediaPage() {
 
         <section
           id="media-archive"
-          className="scroll-reveal scroll-mt-28 border-y border-[#DDD4CE] bg-white px-6 py-20 md:px-12 lg:px-24"
+          className="scroll-reveal scroll-mt-28 border-y border-[#DDD4CE] bg-white px-6 section-padding-y md:px-12 lg:px-24"
         >
           <div className="mx-auto max-w-6xl">
             <div className="max-w-2xl">
@@ -640,7 +640,7 @@ export default function MediaPage() {
 
         <section
           id="podcast"
-          className="scroll-reveal scroll-mt-28 relative flex min-h-[400px] items-center overflow-hidden px-6 py-20 md:min-h-[550px] md:px-12 lg:px-24"
+          className="scroll-reveal scroll-mt-28 relative flex min-h-[400px] items-center overflow-hidden px-6 py-[60px] md:min-h-[550px] md:px-12 md:py-20 lg:px-24"
         >
           <Image
             src="/podcast-1.jpg"
@@ -670,7 +670,7 @@ export default function MediaPage() {
 
         <section
           id="recognition"
-          className="scroll-reveal scroll-mt-28 px-6 pt-28 pb-20 md:px-12 lg:px-24"
+          className="scroll-reveal scroll-mt-28 px-6 pt-[60px] pb-[60px] md:px-12 md:pt-28 md:pb-20 lg:px-24"
         >
           <div className="mx-auto max-w-6xl">
             <div className="max-w-2xl">
@@ -719,7 +719,7 @@ export default function MediaPage() {
 
         <section
           id="community-stories"
-          className="scroll-reveal scroll-mt-28 px-6 pb-20 md:px-12 lg:px-24"
+          className="scroll-reveal scroll-mt-28 px-6 pb-[60px] md:px-12 md:pb-20 lg:px-24"
         >
           <div className="mx-auto max-w-6xl">
             <div className="max-w-2xl">

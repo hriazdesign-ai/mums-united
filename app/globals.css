@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --section-gap: 60px;
+  --section-gap-desktop: 80px;
 }
 
 @theme inline {
@@ -57,5 +59,28 @@ body {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
+  }
+}
+
+/* Vertical rhythm: 60px mobile, 80px tablet/desktop */
+.section-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+}
+
+@media (min-width: 768px) {
+  .section-stack {
+    gap: var(--section-gap-desktop);
+  }
+}
+
+.section-padding-y {
+  padding-block: var(--section-gap);
+}
+
+@media (min-width: 768px) {
+  .section-padding-y {
+    padding-block: var(--section-gap-desktop);
   }
 }

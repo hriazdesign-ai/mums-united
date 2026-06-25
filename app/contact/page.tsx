@@ -102,7 +102,7 @@ export default function ContactPage() {
       <SiteHeader currentPath="/contact" />
 
       <main className="min-h-screen bg-[#FBF6F3] text-[#1F1F1D]">
-        <section className="scroll-reveal px-6 pt-20 pb-14 md:px-12 md:pb-16 lg:px-24">
+        <section className="scroll-reveal px-6 pt-[60px] pb-14 md:px-12 md:pb-16 md:pt-20 lg:px-24">
           <div className="mx-auto max-w-6xl">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-wide text-[#436169]">
@@ -137,7 +137,7 @@ export default function ContactPage() {
         <section
           id="contact"
           aria-labelledby="contact-section-heading"
-          className="scroll-reveal bg-white px-6 py-20 md:px-12 lg:px-24"
+          className="scroll-reveal bg-white px-6 section-padding-y md:px-12 lg:px-24"
         >
           <div className="mx-auto max-w-6xl">
             <div className="max-w-2xl">
@@ -265,7 +265,7 @@ export default function ContactPage() {
 
         <section
           aria-labelledby="find-us-heading"
-          className="scroll-reveal px-6 pt-32 pb-20 md:px-12 lg:px-24"
+          className="scroll-reveal px-6 pt-[60px] pb-[60px] md:px-12 md:pt-32 md:pb-20 lg:px-24"
         >
           <div className="mx-auto max-w-6xl">
             <div className="max-w-2xl">
@@ -295,7 +295,7 @@ export default function ContactPage() {
 
         <section
           aria-labelledby="support-options-heading"
-          className="scroll-reveal border-y border-[#DDD4CE] bg-white px-6 py-20 md:px-12 lg:px-24"
+          className="scroll-reveal border-y border-[#DDD4CE] bg-white px-6 section-padding-y md:px-12 lg:px-24"
         >
           <div className="mx-auto max-w-6xl">
             <div className="max-w-2xl">

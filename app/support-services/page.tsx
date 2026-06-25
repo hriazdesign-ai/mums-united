@@ -226,7 +226,7 @@ export default function SupportServicesPage() {
       <SiteHeader currentPath="/support-services" />
 
       <main className="min-h-screen bg-[#FBF6F3] text-[#1F1F1D]">
-        <section className="scroll-reveal px-6 pt-20 pb-14 md:px-12 md:pb-16 lg:px-24">
+        <section className="scroll-reveal px-6 pt-[60px] pb-14 md:px-12 md:pb-16 md:pt-20 lg:px-24">
           <div className="mx-auto max-w-6xl">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-wide text-[#436169]">
@@ -263,7 +263,7 @@ export default function SupportServicesPage() {
 
         <section
           aria-labelledby="support-services-heading"
-          className="scroll-reveal bg-white px-6 py-20 md:px-12 lg:px-24"
+          className="scroll-reveal bg-white px-6 section-padding-y md:px-12 lg:px-24"
         >
           <div className="mx-auto max-w-6xl">
             <div className="max-w-2xl">
@@ -292,7 +292,7 @@ export default function SupportServicesPage() {
 
         <section
           aria-labelledby="how-support-works-heading"
-          className="scroll-reveal px-6 py-20 md:px-12 lg:px-24"
+          className="scroll-reveal px-6 section-padding-y md:px-12 lg:px-24"
         >
           <div className="mx-auto max-w-6xl">
             <div className="max-w-2xl">
@@ -328,7 +328,7 @@ export default function SupportServicesPage() {
 
         <section
           aria-labelledby="trust-support-heading"
-          className="scroll-reveal px-6 pb-20 md:px-12 lg:px-24"
+          className="scroll-reveal px-6 pb-[60px] md:px-12 md:pb-20 lg:px-24"
         >
           <div className="mx-auto max-w-6xl">
             <div className="max-w-2xl">

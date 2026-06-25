@@ -39,7 +39,7 @@ export function ImageCtaSection({
   return (
     <section
       id={id}
-      className={`${className} relative flex min-h-[400px] items-center justify-center overflow-hidden px-6 py-20 text-white md:min-h-[550px] md:px-12 lg:px-24`}
+      className={`${className} relative flex min-h-[400px] items-center justify-center overflow-hidden px-6 py-[60px] text-white md:min-h-[550px] md:px-12 md:py-20 lg:px-24`}
     >
       <Image
         src={imageSrc}

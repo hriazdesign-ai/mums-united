@@ -660,7 +660,7 @@ export default function ProgrammesPage() {
       <SiteHeader currentPath="/programmes" />
 
       <main className="min-h-screen bg-[#FBF6F3] text-[#1F1F1D]">
-        <section className="px-6 pb-14 pt-20 md:px-12 md:pb-16 lg:px-24">
+        <section className="px-6 pb-14 pt-[60px] md:px-12 md:pb-16 md:pt-20 lg:px-24">
           <div className="mx-auto max-w-6xl">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-wide text-[#436169]">
@@ -687,7 +687,7 @@ export default function ProgrammesPage() {
 
         <section
           id="programme-list-heading"
-          className="bg-white px-6 py-20 md:px-12 lg:px-24"
+          className="bg-white px-6 section-padding-y md:px-12 lg:px-24"
         >
           <div className="mx-auto max-w-6xl">
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -742,7 +742,7 @@ export default function ProgrammesPage() {
           </div>
         </section>
 
-        <section className="relative flex min-h-[400px] items-center justify-center overflow-hidden px-6 py-20 text-white md:min-h-[550px] md:px-12 lg:px-24">
+        <section className="relative flex min-h-[400px] items-center justify-center overflow-hidden px-6 py-[60px] text-white md:min-h-[550px] md:px-12 md:py-20 lg:px-24">
           <Image
             src="/Donations-2.jpg"
             alt=""
