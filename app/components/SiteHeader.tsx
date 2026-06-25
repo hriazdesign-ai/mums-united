@@ -19,19 +19,15 @@ type SiteHeaderProps = {
 
 export function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
   return (
-    <header className="sticky top-0 z-50 border-b border-[#DDD4CE] bg-white/95 px-6 py-4 text-[#1F1F1D] backdrop-blur md:px-12 lg:px-24">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-4">
-        <Link
-          href="/"
-          aria-label="Mums United home"
-          className="block"
-        >
+    <header className="sticky top-0 z-50 border-b border-[rgba(0,0,0,0.05)] bg-[rgba(255,255,255,0.82)] px-6 shadow-[0_1px_8px_rgba(0,0,0,0.03)] backdrop-blur-[14px] [-webkit-backdrop-filter:blur(14px)] md:px-12 lg:px-[85px]">
+      <div className="mx-auto flex h-[116px] max-w-[1280px] flex-wrap items-center justify-between gap-x-6 gap-y-4">
+        <Link href="/" aria-label="Mums United home" className="block shrink-0">
           <Image
             src={logoSrc}
             alt="Mums United"
-            width={150}
-            height={52}
-            className="h-auto w-[150px]"
+            width={135}
+            height={62}
+            className="h-[62px] w-[135px] object-contain"
             priority
           />
         </Link>
@@ -40,14 +36,14 @@ export function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
           aria-label="Primary navigation"
           className="order-last w-full overflow-x-auto lg:order-none lg:w-auto lg:overflow-visible"
         >
-          <ul className="flex min-w-max items-center gap-5 text-sm font-semibold text-[#6F6864] lg:min-w-0">
+          <ul className="flex min-w-max items-center gap-5 text-base font-semibold leading-4 text-[#17171c] lg:min-w-0">
             {navigationLinks.map(([label, href]) => (
               <li key={label}>
                 <Link
                   href={href}
                   aria-current={href === currentPath ? "page" : undefined}
-                  className={`block rounded-full py-2 transition-colors duration-300 hover:text-[#436169] focus:outline-none focus:ring-2 focus:ring-[#436169] focus:ring-offset-2 ${
-                    href === currentPath ? "text-[#436169]" : ""
+                  className={`block whitespace-nowrap rounded-full py-2 transition-colors hover:text-[#446169] focus:outline-none focus:ring-2 focus:ring-[#446169] focus:ring-offset-2 ${
+                    href === currentPath ? "text-[#446169]" : ""
                   }`}
                 >
                   {label}
@@ -59,7 +55,7 @@ export function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
 
         <Link
           href="/donate"
-          className="rounded-full bg-[#436169] px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#344C52] focus:outline-none focus:ring-2 focus:ring-[#436169] focus:ring-offset-2 active:scale-[0.98]"
+          className="shrink-0 rounded-full bg-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2"
         >
           Donate
         </Link>

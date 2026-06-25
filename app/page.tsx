@@ -2,339 +2,379 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "./components/SiteHeader";
 
-export default function Home() {
-  const overlayOpacity = 0.5;
+const sectionTagClassName =
+  "inline-flex rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-medium leading-4 text-[#17171c]";
 
+const sectionHeadingClassName =
+  "text-[28px] font-semibold leading-[34px] tracking-[-0.02em] md:text-[38px] md:leading-[44px] lg:text-[44px] lg:leading-[52px]";
+
+const heroHeadingClassName =
+  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[68px] lg:leading-[84px]";
+
+const primaryDarkButtonClassName =
+  "inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
+
+const outlineDarkButtonClassName =
+  "inline-flex w-fit shrink-0 items-center justify-center rounded-full border border-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#17171c]/5 focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
+
+const tealButtonClassName =
+  "inline-flex w-fit shrink-0 items-center justify-center self-start rounded-full bg-[#446169] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#344C52] focus:outline-none focus:ring-2 focus:ring-[#446169] focus:ring-offset-2";
+
+const whiteOutlineButtonClassName =
+  "inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-5 py-3.5 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
+
+const impactStats = [
+  [
+    "250+",
+    "Families supported",
+    "Practical help, guidance and safe spaces for parents and households.",
+  ],
+  [
+    "600+",
+    "Young people engaged",
+    "Mentoring, workshops and activities that encourage positive choices.",
+  ],
+  [
+    "80+",
+    "Community events",
+    "Meals, gatherings and outreach that bring local people together.",
+  ],
+  [
+    "35+",
+    "Programmes delivered",
+    "Education, prevention and support shaped around community needs.",
+  ],
+] as const;
+
+const mediaCards = [
+  [
+    "/radio-icon.png",
+    "Radio Interviews",
+    "Conversations highlighting family support, youth development and community impact.",
+  ],
+  [
+    "/tv-1.png",
+    "TV & Media Coverage",
+    "Features showcasing programmes, events and community achievements.",
+  ],
+  [
+    "/trophy-icon.png",
+    "Community Recognition",
+    "Awards, nominations and recognition for supporting local families.",
+  ],
+  [
+    "/podcast-1.png",
+    "Podcast & Stories",
+    "Real conversations, experiences and voices from the community.",
+  ],
+] as const;
+
+export default function Home() {
   return (
     <>
       <SiteHeader />
 
-      <main className="min-h-screen bg-[#FBF6F3] text-[#1F1F1D]">
-      <section className="relative overflow-hidden px-6 py-20 md:px-12 lg:min-h-[650px] lg:px-24 lg:py-0">
-        <div className="mx-auto grid max-w-6xl gap-12 lg:min-h-[650px] lg:grid-cols-2 lg:items-center">
-          <div>
-            <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-[#436169]">
-              Sheffield charity supporting mothers, young people and families
-            </p>
+      <main className="bg-white pb-20 text-[#17171c]">
+        <div className="mx-auto flex w-full max-w-[1330px] flex-col gap-20 px-6 lg:px-[60px]">
+          {/* Hero */}
+          <section className="flex w-full flex-col">
+            <div className="flex flex-col items-center px-0 py-16 text-center md:px-8 md:py-20 lg:px-[60px] lg:py-[80px]">
+              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+                <p className={sectionTagClassName}>
+                  Sheffield Charity Supporting Mothers, Young People and
+                  Families
+                </p>
 
-            <h1 className="text-4xl font-bold tracking-tight md:text-6xl">
-              Helping families feel safer, supported and heard.
-            </h1>
+                <h1 className={heroHeadingClassName}>
+                  Helping families feel safer, supported and heard
+                </h1>
 
-            <p className="mt-6 text-lg leading-8 text-[#6F6864]">
-              Mums United supports vulnerable young people, mothers and local
-              communities affected by youth violence, exploitation and hardship.
-              Through mentoring, workshops, safe spaces and practical support,
-              we help families build brighter futures.
-            </p>
+                <p className="max-w-[910px] text-base font-normal leading-[22px] md:px-8 lg:px-[150px]">
+                  Mums United supports vulnerable young people, mothers and
+                  local communities affected by youth violence, exploitation and
+                  hardship. Through mentoring, workshops, safe spaces and
+                  practical support, we help families build brighter futures.
+                </p>
 
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <a
-                href="/donate"
-                className="rounded-full bg-[#436169] px-6 py-3 text-center font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#344C52] active:scale-[0.98]"
-              >
-                Donate now
-              </a>
-
-              <a
-                href="/contact"
-                className="rounded-full border border-[#DDD4CE] px-6 py-3 text-center font-semibold transition-all duration-300 hover:scale-[1.02] hover:bg-white active:scale-[0.98]"
-              >
-                Get support
-              </a>
+                <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-7">
+                  <Link href="/donate" className={primaryDarkButtonClassName}>
+                    Donate
+                  </Link>
+                  <Link href="/contact" className={outlineDarkButtonClassName}>
+                    Get Supported
+                  </Link>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="relative -mx-6 aspect-[4/3] overflow-hidden md:-mx-12 lg:hidden">
-            <Image
-              src="/hero-test2.jpg"
-              alt="Mums United supporting families and communities"
-              fill
-              className="object-cover object-center"
-              priority
-              sizes="100vw"
-            />
-          </div>
-        </div>
-
-        <div className="absolute inset-y-0 right-0 hidden w-[48vw] lg:block">
-          <Image
-            src="/hero-test2.jpg"
-            alt="Mums United supporting families and communities"
-            fill
-            className="object-cover object-center"
-            priority
-            sizes="48vw"
-          />
-        </div>
-      </section>
-
-      <section className="scroll-reveal border-y border-[#DDD4CE] bg-white px-6 py-16 md:px-12 lg:px-24">
-        <div className="mx-auto max-w-6xl">
-          <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-wide text-[#436169]">
-              Our Impact
-            </p>
-            <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-              Creating safer, stronger communities together.
-            </h2>
-          </div>
-
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              [
-                "250+",
-                "Families supported",
-                "Practical help, guidance and safe spaces for parents and households.",
-              ],
-              [
-                "600+",
-                "Young people engaged",
-                "Mentoring, workshops and activities that encourage positive choices.",
-              ],
-              [
-                "80+",
-                "Community events",
-                "Meals, gatherings and outreach that bring local people together.",
-              ],
-              [
-                "35+",
-                "Programmes delivered",
-                "Education, prevention and support shaped around community needs.",
-              ],
-            ].map(([number, title, text]) => (
-              <div key={title} className="rounded-3xl bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                <p className="text-4xl font-bold tracking-tight text-[#436169] md:text-5xl">
-                  {number}
-                </p>
-                <h3 className="mt-4 text-xl font-bold">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-[#6F6864]">{text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Inverted section variant for visual rhythm */}
-      <section
-        aria-labelledby="featured-programmes-heading"
-        className="scroll-reveal bg-[#446169] px-6 py-20 md:px-12 lg:px-24"
-      >
-        <div className="mx-auto max-w-6xl">
-          <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-wide text-[#E2B39F]">
-              Featured Programmes
-            </p>
-            <h2
-              id="featured-programmes-heading"
-              className="mt-3 text-3xl font-bold text-white md:text-4xl"
-            >
-              Practical support for every stage of family life.
-            </h2>
-            <p className="mt-4 text-[#F6F1EE]">
-              Our programmes create safe, trusted spaces where families and
-              young people can find guidance, connection and encouragement.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-            <article className="group overflow-hidden rounded-3xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-              <div className="p-8">
-                <p className="text-sm font-semibold uppercase tracking-wide text-[#436169]">
-                  Featured Current Programme
-                </p>
-                <h3 className="mt-4 text-3xl font-bold">Project Serenity</h3>
-                <p className="mt-4 text-[#6F6864]">
-                  Free after-school boxing sessions and positive activities
-                  supporting young people with confidence, discipline and
-                  wellbeing.
-                </p>
-                <Link
-                  href="/programmes#current-programme"
-                  className="mt-6 inline-block rounded-full bg-[#436169] px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#344C52] active:scale-[0.98]"
-                >
-                  Learn More
-                </Link>
-              </div>
-              <div className="relative h-[220px] w-full md:h-[260px]">
+            <div className="flex w-full flex-col gap-4 lg:flex-row lg:gap-4">
+              <div className="relative aspect-[814/698] w-full overflow-hidden rounded-xl lg:flex-1 lg:aspect-auto lg:h-[698px]">
                 <Image
-                  src="/project-serenity-3.jpg"
-                  alt="Young people taking part in a positive community programme"
+                  src="/hero-left.jpg"
+                  alt="Community members holding an Enough is Enough banner at a peaceful protest"
                   fill
-                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                  sizes="(min-width: 1024px) 55vw, 100vw"
+                  className="object-cover object-center"
+                  priority
+                  sizes="(min-width: 1024px) 62vw, 100vw"
                 />
               </div>
-            </article>
+              <div className="relative aspect-[500/698] w-full overflow-hidden rounded-xl lg:h-[698px] lg:w-[500px] lg:shrink-0">
+                <Image
+                  src="/hero-right.jpg"
+                  alt="Mums United volunteer carrying a box of community aid"
+                  fill
+                  className="object-cover object-center"
+                  priority
+                  sizes="(min-width: 1024px) 500px, 100vw"
+                />
+              </div>
+            </div>
+          </section>
 
-            <div className="grid gap-6">
-              {[
-                [
-                  "MUSYC Holiday Club",
-                  "Safe holiday activities that help young people learn, connect and enjoy positive experiences.",
-                ],
-                [
-                  "Community Outreach Events",
-                  "Local outreach that helps families find support, connection and trusted community spaces.",
-                ],
-              ].map(([title, text]) => (
+          {/* Impact */}
+          <section
+            aria-labelledby="impact-heading"
+            className="flex w-full flex-col"
+          >
+            <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
+              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+                <p className={sectionTagClassName}>Our Impact</p>
+                <h2 id="impact-heading" className={sectionHeadingClassName}>
+                  Creating safer, stronger communities together.
+                </h2>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {impactStats.map(([number, title, text]) => (
                 <article
                   key={title}
-                  className="rounded-3xl border border-[#DDD4CE] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                  className="flex flex-col gap-20 rounded-xl bg-[#446169] px-6 py-10 lg:px-6 lg:py-10"
                 >
-                  <h3 className="text-2xl font-bold">{title}</h3>
-                  <p className="mt-3 text-[#6F6864]">{text}</p>
-                  <Link
-                    href="/programmes"
-                    aria-label={`Learn more about ${title}`}
-                    className="mt-5 inline-block rounded-full bg-[#436169] px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#344C52] active:scale-[0.98]"
-                  >
-                    Learn More
-                  </Link>
+                  <p className="text-[56px] font-light leading-none tracking-[-0.04em] text-white md:text-[64px] lg:text-[76px]">
+                    {number}
+                  </p>
+                  <div className="flex flex-col gap-[18px] text-white">
+                    <h3 className="text-xl font-semibold leading-[26px] tracking-[-0.02em] lg:text-2xl lg:leading-[28px]">
+                      {title}
+                    </h3>
+                    <p className="text-base font-normal leading-[24px]">
+                      {text}
+                    </p>
+                  </div>
                 </article>
               ))}
             </div>
-          </div>
+          </section>
 
-          <div className="mt-10 text-center">
-            <Link
-              href="/programmes"
-              className="inline-block rounded-full bg-white px-6 py-3 font-semibold text-[#446169] transition-all duration-300 hover:scale-[1.02] hover:bg-[#FBF6F3] active:scale-[0.98]"
-            >
-              View All Programmes
-            </Link>
-          </div>
-        </div>
-      </section>
+          {/* Featured Programmes */}
+          <section
+            aria-labelledby="featured-programmes-heading"
+            className="flex w-full flex-col items-center rounded-xl bg-[rgba(237,234,225,0.7)] px-6 pb-20 md:px-8 lg:px-[60px]"
+          >
+            <div className="flex w-full flex-col items-center px-0 pb-[60px] pt-20 text-center lg:px-[60px]">
+              <div className="flex w-full max-w-[1090px] flex-col items-center gap-8">
+                <p className={sectionTagClassName}>Featured Programmes</p>
+                <h2
+                  id="featured-programmes-heading"
+                  className={sectionHeadingClassName}
+                >
+                  Practical support for every stage of family life
+                </h2>
+                <p className="mx-auto w-full max-w-[790px] text-base font-normal leading-[22px]">
+                  Our programmes create safe, trusted spaces where families and
+                  young people can find guidance, connection and encouragement.
+                </p>
+              </div>
+            </div>
 
-      <section
-        aria-labelledby="featured-in-heading"
-        className="scroll-reveal px-6 py-20 md:px-12 lg:px-24"
-      >
-        <div className="mx-auto max-w-6xl">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-wide text-[#436169]">
-              Trusted Across Sheffield
-            </p>
-            <h2
-              id="featured-in-heading"
-              className="mt-3 text-3xl font-bold md:text-4xl"
-            >
-              Recognised for supporting families, young people and communities.
-            </h2>
-            <p className="mt-4 text-[#6F6864]">
-              Mums United has been featured across local media, community
-              initiatives and public events, helping raise awareness, share
-              stories and champion positive change.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              [
-                "/radio-icon.png",
-                "Radio Interviews",
-                "Conversations highlighting family support, youth development and community impact.",
-              ],
-              [
-                "/tv-1.png",
-                "TV & Media Coverage",
-                "Features showcasing programmes, events and community achievements.",
-              ],
-              [
-                "/trophy-icon.png",
-                "Community Recognition",
-                "Awards, nominations and recognition for supporting local families.",
-              ],
-              [
-                "/podcast-1.png",
-                "Podcast & Stories",
-                "Real conversations, experiences and voices from the community.",
-              ],
-            ].map(([icon, title, text]) => (
-              <article
-                key={title}
-                className="flex h-full flex-col rounded-3xl border border-[#DDD4CE] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-              >
-                {icon.startsWith("/") ? (
-                  <div className="flex size-12 items-center justify-center">
+            <div className="flex w-full max-w-[1210px] flex-col items-center gap-[60px]">
+              <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
+                <article className="overflow-hidden rounded-xl bg-white">
+                  <div className="flex flex-col items-start px-[32px] pb-[42px] pt-[42px]">
+                    <div className="flex w-full flex-col gap-[24px]">
+                      <p className="text-base font-normal leading-4">
+                        Featured current programme
+                      </p>
+                      <div className="flex flex-col gap-[12px]">
+                        <h3 className="text-2xl font-semibold leading-8 tracking-[-0.02em] lg:text-[32px] lg:leading-[32px]">
+                          Project Serenity
+                        </h3>
+                        <p className="text-base font-normal leading-[22px]">
+                          Free after-school boxing sessions and positive
+                          activities supporting young people with confidence,
+                          discipline and wellbeing.
+                        </p>
+                      </div>
+                    </div>
+                    <Link
+                      href="/programmes#current-programme"
+                      className={`${tealButtonClassName} mt-[40px]`}
+                    >
+                      Learn More
+                    </Link>
+                  </div>
+                  <div className="relative h-[225px] w-full">
                     <Image
-                      src={icon}
-                      alt=""
-                      width={48}
-                      height={48}
-                      className="size-10 object-contain"
+                      src="/project-serenity-figma.jpg"
+                      alt="Young person wearing red boxing gloves during Project Serenity"
+                      fill
+                      className="object-cover object-center"
+                      sizes="(min-width: 1024px) 50vw, 100vw"
                     />
                   </div>
-                ) : (
-                  <div className="flex size-12 items-center justify-center rounded-full bg-[#E2B39F]/35 text-sm font-bold text-[#436169]">
-                    {icon}
-                  </div>
-                )}
-                <h3 className="mt-5 text-xl font-bold">{title}</h3>
-                <p className="mt-3 flex-1 text-sm leading-6 text-[#6F6864]">
-                  {text}
+                </article>
+
+                <div className="flex flex-col gap-4">
+                  {[
+                    [
+                      "MUSYC Holiday Club",
+                      "Safe holiday activities that help young people learn, connect and enjoy positive experiences.",
+                    ],
+                    [
+                      "Community Outreach Events",
+                      "Local outreach that helps families find support, connection and trusted community spaces.",
+                    ],
+                  ].map(([title, text]) => (
+                    <article
+                      key={title}
+                      className="flex flex-1 flex-col rounded-xl bg-white"
+                    >
+                      <div className="flex h-full flex-col items-start gap-[40px] p-[32px]">
+                        <div className="flex flex-col gap-[12px]">
+                          <h3 className="text-xl font-semibold leading-8 tracking-[-0.02em] lg:text-2xl lg:leading-[32px]">
+                            {title}
+                          </h3>
+                          <p className="text-base font-normal leading-[22px]">
+                            {text}
+                          </p>
+                        </div>
+                        <Link
+                          href="/programmes"
+                          aria-label={`Learn more about ${title}`}
+                          className={tealButtonClassName}
+                        >
+                          Learn More
+                        </Link>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+
+              <Link href="/programmes" className={whiteOutlineButtonClassName}>
+                View All Programmes
+              </Link>
+            </div>
+          </section>
+
+          {/* Media & Recognition */}
+          <section
+            aria-labelledby="featured-in-heading"
+            className="flex w-full flex-col"
+          >
+            <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
+              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+                <p className={sectionTagClassName}>Trusted Across Sheffield</p>
+                <h2 id="featured-in-heading" className={sectionHeadingClassName}>
+                  Recognised for supporting families, young people and
+                  communities.
+                </h2>
+                <p className="mx-auto w-full max-w-[910px] text-base font-normal leading-[22px] tracking-[-0.02em]">
+                  Mums United has been featured across local media, community
+                  initiatives and public events, helping raise awareness, share
+                  stories and champion positive change.
                 </p>
-              </article>
-            ))}
-          </div>
+              </div>
+            </div>
 
-          <div className="mt-10 text-center">
-            <Link
-              href="/media"
-              className="inline-block rounded-full bg-[#436169] px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#344C52] active:scale-[0.98]"
-            >
-              View Media & Stories
-            </Link>
-            <p className="mt-4 text-sm text-[#6F6864]">
-              Explore media appearances, podcast episodes and community stories.
-            </p>
-          </div>
-        </div>
-      </section>
+            <div className="flex flex-col items-center gap-12">
+              <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {mediaCards.map(([icon, title, text]) => (
+                  <article
+                    key={title}
+                    className="flex h-full flex-col gap-10 rounded-xl bg-[rgba(163,182,180,0.3)] px-6 py-12"
+                  >
+                    <div className="relative size-12 shrink-0">
+                      <Image
+                        src={icon}
+                        alt=""
+                        width={48}
+                        height={48}
+                        className="size-12 object-contain mix-blend-multiply"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-5">
+                      <h3 className="text-xl font-semibold leading-[26px] tracking-[-0.02em] lg:text-2xl lg:leading-[28px]">
+                        {title}
+                      </h3>
+                      <p className="text-base font-normal leading-[24px]">
+                        {text}
+                      </p>
+                    </div>
+                  </article>
+                ))}
+              </div>
 
-      <section className="scroll-reveal relative flex min-h-[400px] items-center justify-center overflow-hidden px-6 py-20 text-white md:min-h-[550px] md:px-12 lg:px-24">
-        <Image
-          src="/Donations-2.jpg"
-          alt="Community support"
-          fill
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundColor: `rgba(0, 0, 0, ${overlayOpacity})`,
-          }}
-        />
-        <div className="relative z-10 mx-auto max-w-[700px] text-center">
-          <p className="text-sm font-semibold uppercase tracking-wide text-[#E2B39F]">
-            SUPPORT MUMS UNITED
-          </p>
-          <h2 className="mt-4 text-3xl font-bold md:text-5xl">
-            Help a family know they are not facing this alone.
-          </h2>
-          <p className="mt-6 text-lg leading-8 text-white">
-            Your donation helps Mums United continue supporting mothers, young
-            people and families across Sheffield through practical help, trusted
-            relationships and community support.
-          </p>
-          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-            <Link
-              href="/donate"
-              className="rounded-full bg-[#436169] px-6 py-3 text-center font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#344C52] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black active:scale-[0.98]"
-            >
-              Donate Now
-            </Link>
-            <Link
-              href="/impact"
-              className="rounded-full border border-white px-6 py-3 text-center font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black active:scale-[0.98]"
-            >
-              Learn About Our Impact
-            </Link>
-          </div>
+              <div className="flex flex-col items-center gap-4">
+                <Link href="/media" className={primaryDarkButtonClassName}>
+                  View Media & Stories
+                </Link>
+                <p className="max-w-[1330px] text-center text-base font-normal leading-[22px] tracking-[-0.02em]">
+                  Explore media appearances, podcast episodes and community
+                  stories.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Donate CTA */}
+          <section
+            aria-labelledby="donate-cta-heading"
+            className="relative flex h-[400px] items-center justify-center overflow-hidden rounded-xl md:h-[500px]"
+          >
+            <div className="absolute inset-0 rounded-xl bg-black" aria-hidden />
+            <Image
+              src="/donations-cta-figma.jpg"
+              alt="Hands stacked together in a gesture of community support"
+              fill
+              className="object-cover object-center opacity-60"
+              sizes="100vw"
+            />
+            <div className="relative z-10 flex w-full flex-col items-center px-6 py-16 text-center text-white md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
+              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+                <p className="text-base font-semibold leading-4">
+                  SUPPORT MUMS UNITED
+                </p>
+                <h2
+                  id="donate-cta-heading"
+                  className={sectionHeadingClassName}
+                >
+                  Help a family know they are not facing this alone.
+                </h2>
+                <p className="max-w-[910px] text-base font-semibold leading-[24px] md:px-8 lg:px-[150px]">
+                  Your donation helps Mums United continue supporting mothers,
+                  young people and families across Sheffield through practical
+                  help, trusted relationships and community support.
+                </p>
+                <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-7">
+                  <Link
+                    href="/donate"
+                    className="inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-5 py-3.5 text-base font-semibold leading-[22px] tracking-[-0.04em] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                  >
+                    Donate Now
+                  </Link>
+                  <Link
+                    href="/impact"
+                    className="inline-flex w-fit shrink-0 items-center justify-center rounded-full border border-white px-5 py-3.5 text-base font-semibold leading-[22px] tracking-[-0.04em] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                  >
+                    Learn About Our Impact
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
       </main>
     </>
   );
