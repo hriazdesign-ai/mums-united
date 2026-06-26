@@ -7,11 +7,11 @@
 export const typography = {
   /** Home hero h1 */
   heroHeading:
-    "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[68px] lg:leading-[84px]",
+    "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[70px] lg:leading-[78px] lg:tracking-[-0.02em]",
 
   /** Inner-page hero h1 (About, Donate, Contact, etc.) */
   pageHeading:
-    "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[76px] lg:leading-[80px]",
+    "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[70px] lg:leading-[78px] lg:tracking-[-0.02em]",
 
   /** Home section h2 scale */
   sectionHeading:
@@ -41,7 +41,7 @@ export const typography = {
 
   /** Section / block eyebrow pill label */
   eyebrow:
-    "inline-flex w-fit rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-medium leading-4 text-[#17171c]",
+    "inline-flex w-fit rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-semibold leading-4 text-[#17171c]",
 
   /** Large impact / donation statistic numerals */
   statisticNumber:
@@ -70,10 +70,38 @@ export const typography = {
   ctaEyebrow: "text-base font-semibold leading-4",
 } as const;
 
+/** Internal card content spacing rhythm */
+export const cardSpacing = {
+  imageToTags: "24px",
+  tagsToHeading: "60px",
+  headingToBody: "16px",
+  bodyToButton: "32px",
+  padding: "32px",
+} as const;
+
+/** Tailwind utilities mapped to cardSpacing tokens */
+export const cardSpacingClasses = {
+  imageToTags: "pt-6",
+  tagsToHeading: "mt-[60px]",
+  headingToBody: "gap-4",
+  bodyToButton: "mt-8",
+  paddingBottom: "pb-8",
+  contentX: "px-6",
+  contentWithImage: "flex flex-col px-6 pt-6 pb-8",
+  content: "flex flex-col px-6 pt-6 pb-8",
+  headingBody: "flex flex-col gap-4",
+} as const;
+
 /** Vertical rhythm between major sections */
 export const spacing = {
   /** Single source for section stacks — 60px mobile, 80px desktop */
+  section: "gap-[60px] md:gap-20",
+
+  /** @deprecated Use spacing.section */
   sectionStack: "gap-[60px] md:gap-20",
+
+  /** Default internal card content padding wrapper */
+  card: cardSpacingClasses.content,
 
   /** Space below centred section intros before content */
   sectionIntroBottom: "pb-[60px]",
@@ -123,6 +151,29 @@ export const buttons = {
 
   imageCtaSecondary:
     "btn-interactive inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base",
+
+  /** Contact help cards and similar compact white buttons */
+  whiteCompact:
+    "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-5 py-3 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2",
+
+  /** Donation impact card CTA */
+  impactDonate:
+    "btn-interactive inline-flex w-fit shrink-0 items-center justify-center self-start rounded-full bg-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2",
+
+  /** Contact form submit */
+  formSubmit:
+    "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-2.5 text-sm font-semibold leading-5 text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2",
+} as const;
+
+/** Form field patterns */
+export const forms = {
+  form: "flex flex-col gap-6",
+  field: "flex flex-col gap-2",
+  input:
+    "w-full rounded-lg border border-[#c4c4c4] bg-white px-4 text-sm font-normal leading-5 text-[#17171c] transition-colors placeholder:text-sm placeholder:text-[#17171c]/60 focus:border-[#17171c] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2",
+  inputHeight: "h-12",
+  textarea: "min-h-[120px] resize-y py-3",
+  statusMessage: "text-sm font-normal leading-5 text-[#17171c]",
 } as const;
 
 /** Eyebrow / section tag labels (alias of typography.eyebrow for discoverability) */

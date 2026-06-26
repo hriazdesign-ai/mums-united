@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { typography } from "@/lib/design-system";
+import { cardSpacingClasses, typography } from "@/lib/design-system";
 import { SiteHeader } from "./components/SiteHeader";
 
 const primaryDarkButtonClassName =
@@ -143,18 +143,14 @@ export default function Home() {
               {impactStats.map(([number, title, text]) => (
                 <article
                   key={title}
-                  className="card-interactive flex flex-col gap-20 rounded-xl bg-[#446169] px-6 py-10 lg:px-6 lg:py-10"
+                  className={`${cardSpacingClasses.content} card-interactive flex flex-col rounded-xl bg-[#446169]`}
                 >
-                  <p
-                    className={`${typography.statisticNumber} text-white`}
-                  >
+                  <p className={`${typography.statisticNumber} text-white`}>
                     {number}
                   </p>
-                  <div className="flex flex-col gap-[18px] text-white">
+                  <div className={`${cardSpacingClasses.headingBody} ${cardSpacingClasses.tagsToHeading} text-white`}>
                     <h3 className={typography.cardHeading}>{title}</h3>
-                    <p className={`${typography.body} leading-[24px]`}>
-                      {text}
-                    </p>
+                    <p className={`${typography.body} leading-[24px]`}>{text}</p>
                   </div>
                 </article>
               ))}
@@ -187,25 +183,21 @@ export default function Home() {
             <div className="flex w-full max-w-[1210px] flex-col items-center gap-[60px]">
               <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
                 <article className="card-interactive overflow-hidden rounded-xl bg-white">
-                  <div className="flex flex-col items-start px-[32px] pb-[42px] pt-[42px]">
-                    <div className="flex w-full flex-col gap-[24px]">
-                      <p className={typography.blockLabel}>
-                        Featured current programme
+                  <div className="flex flex-col items-start p-8">
+                    <p className={typography.blockLabel}>Featured current programme</p>
+                    <div className={`${cardSpacingClasses.headingBody} ${cardSpacingClasses.tagsToHeading}`}>
+                      <h3 className={typography.cardHeadingFeatured}>
+                        Project Serenity
+                      </h3>
+                      <p className={typography.body}>
+                        Free after-school boxing sessions and positive
+                        activities supporting young people with confidence,
+                        discipline and wellbeing.
                       </p>
-                      <div className="flex flex-col gap-[12px]">
-                        <h3 className={typography.cardHeadingFeatured}>
-                          Project Serenity
-                        </h3>
-                        <p className={typography.body}>
-                          Free after-school boxing sessions and positive
-                          activities supporting young people with confidence,
-                          discipline and wellbeing.
-                        </p>
-                      </div>
                     </div>
                     <Link
                       href="/programmes#current-programme"
-                      className={`${tealButtonClassName} mt-[40px]`}
+                      className={`${tealButtonClassName} ${cardSpacingClasses.bodyToButton}`}
                     >
                       Learn More
                     </Link>
@@ -236,8 +228,8 @@ export default function Home() {
                       key={title}
                       className="card-interactive flex flex-1 flex-col rounded-xl bg-white"
                     >
-                      <div className="flex h-full flex-col items-start gap-[40px] p-[32px]">
-                        <div className="flex flex-col gap-[12px]">
+                      <div className="flex h-full flex-col items-start p-8">
+                        <div className={cardSpacingClasses.headingBody}>
                           <h3 className={typography.cardHeadingProgramme}>
                             {title}
                           </h3>
@@ -246,7 +238,7 @@ export default function Home() {
                         <Link
                           href="/programmes"
                           aria-label={`Learn more about ${title}`}
-                          className={tealButtonClassName}
+                          className={`${tealButtonClassName} ${cardSpacingClasses.bodyToButton}`}
                         >
                           Learn More
                         </Link>
@@ -289,7 +281,7 @@ export default function Home() {
                 {mediaCards.map(([icon, title, text]) => (
                   <article
                     key={title}
-                    className="card-interactive flex h-full flex-col gap-10 rounded-xl bg-[rgba(163,182,180,0.3)] px-6 py-12"
+                    className={`${cardSpacingClasses.content} card-interactive flex h-full flex-col rounded-xl bg-[rgba(163,182,180,0.3)]`}
                   >
                     <div className="relative size-12 shrink-0">
                       <Image
@@ -300,11 +292,9 @@ export default function Home() {
                         className="size-12 object-contain mix-blend-multiply"
                       />
                     </div>
-                    <div className="flex flex-col gap-5">
+                    <div className={`${cardSpacingClasses.headingBody} ${cardSpacingClasses.tagsToHeading}`}>
                       <h3 className={typography.cardHeading}>{title}</h3>
-                      <p className={`${typography.body} leading-[24px]`}>
-                        {text}
-                      </p>
+                      <p className={`${typography.body} leading-[24px]`}>{text}</p>
                     </div>
                   </article>
                 ))}

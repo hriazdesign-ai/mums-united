@@ -1,3 +1,4 @@
+import { cardSpacingClasses } from "@/lib/design-system";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,13 +11,13 @@ export const metadata: Metadata = {
 };
 
 const sectionTagClassName =
-  "inline-flex rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-normal leading-4 text-[#17171c]";
+  "inline-flex rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-semibold leading-4 text-[#17171c]";
 
 const blockEyebrowClassName =
   "text-[12px] font-normal leading-4 text-[#17171c]";
 
 const aboutHeroHeadingClassName =
-  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[76px] lg:leading-[80px]";
+  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[70px] lg:leading-[78px] lg:tracking-[-0.02em]";
 
 const sectionHeadingClassName =
   "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] md:text-[40px] md:leading-[48px] lg:text-[48px] lg:leading-[53px]";
@@ -211,14 +212,16 @@ export default function AboutPage() {
               {values.map(([title, description]) => (
                 <article
                   key={title}
-                  className="card-interactive flex flex-col gap-20 rounded-xl bg-[#efeadf] px-6 py-10"
+                  className={`${cardSpacingClasses.content} card-interactive flex flex-col rounded-xl bg-[#efeadf]`}
                 >
-                  <h3 className="text-xl font-semibold leading-[22px] tracking-[-0.02em] lg:text-2xl">
-                    {title}
-                  </h3>
-                  <p className="text-base font-normal leading-[22px]">
-                    {description}
-                  </p>
+                  <div className={cardSpacingClasses.headingBody}>
+                    <h3 className="text-xl font-semibold leading-[22px] tracking-[-0.02em] lg:text-2xl">
+                      {title}
+                    </h3>
+                    <p className="text-base font-normal leading-[22px]">
+                      {description}
+                    </p>
+                  </div>
                 </article>
               ))}
             </div>
@@ -245,12 +248,12 @@ export default function AboutPage() {
               {impactStats.map(([number, title, text]) => (
                 <article
                   key={title}
-                  className="card-interactive flex flex-col gap-20 rounded-xl bg-[#446169] px-6 py-10"
+                  className={`${cardSpacingClasses.content} card-interactive flex flex-col rounded-xl bg-[#446169]`}
                 >
                   <p className="text-[56px] font-light leading-none tracking-[-0.04em] text-white md:text-[64px] lg:text-[76px]">
                     {number}
                   </p>
-                  <div className="flex flex-col gap-[18px] text-white">
+                  <div className={`${cardSpacingClasses.headingBody} ${cardSpacingClasses.tagsToHeading} text-white`}>
                     <h3 className="text-xl font-semibold leading-[22px] tracking-[-0.02em] lg:text-2xl">
                       {title}
                     </h3>
@@ -288,14 +291,16 @@ export default function AboutPage() {
               {recognitionItems.map(([title, description]) => (
                 <article
                   key={title}
-                  className="card-interactive flex flex-col gap-20 rounded-xl bg-[rgba(163,182,180,0.3)] px-6 py-10"
+                  className={`${cardSpacingClasses.content} card-interactive flex flex-col rounded-xl bg-[rgba(163,182,180,0.3)]`}
                 >
-                  <h3 className="text-xl font-semibold leading-[26px] tracking-[-0.02em] lg:text-2xl">
-                    {title}
-                  </h3>
-                  <p className="text-base font-normal leading-[22px]">
-                    {description}
-                  </p>
+                  <div className={cardSpacingClasses.headingBody}>
+                    <h3 className="text-xl font-semibold leading-[26px] tracking-[-0.02em] lg:text-2xl">
+                      {title}
+                    </h3>
+                    <p className="text-base font-normal leading-[22px]">
+                      {description}
+                    </p>
+                  </div>
                 </article>
               ))}
             </div>

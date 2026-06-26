@@ -1,5 +1,6 @@
 "use client";
 
+import { cardSpacingClasses } from "@/lib/design-system";
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -512,13 +513,13 @@ const programmes: Programme[] = [
 const filters: Array<"All" | ProgrammeStatus> = ["All", "Current", "Completed"];
 
 const sectionTagClassName =
-  "inline-flex rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-normal leading-4 text-[#17171c]";
+  "inline-flex rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-semibold leading-4 text-[#17171c]";
 
 const blockEyebrowClassName =
   "text-[12px] font-normal leading-4 text-[#17171c]";
 
 const heroHeadingClassName =
-  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[76px] lg:leading-[80px]";
+  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[70px] lg:leading-[78px] lg:tracking-[-0.02em]";
 
 const sectionHeadingClassName =
   "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] md:text-[40px] md:leading-[48px] lg:text-[48px] lg:leading-[53px]";
@@ -572,12 +573,12 @@ function ProgrammeCard({ programme }: { programme: Programme }) {
           </div>
         )}
       </div>
-      <div className="flex flex-col gap-10 px-6 pb-[34px] pt-6">
+      <div className={cardSpacingClasses.contentWithImage}>
         <ProgrammeBadges
           status={programme.status}
           category={programme.category}
         />
-        <div className="flex flex-col gap-[18px]">
+        <div className={`${cardSpacingClasses.headingBody} ${cardSpacingClasses.tagsToHeading}`}>
           <h3 className="text-2xl font-semibold leading-[26px] tracking-[-0.02em]">
             {programme.title}
           </h3>

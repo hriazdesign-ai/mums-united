@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import {
   buttons,
+  cardSpacing,
+  cardSpacingClasses,
   cards,
   containers,
   spacing,
@@ -204,23 +206,25 @@ export default function DesignSystemPage() {
         <Section title="Cards" description="Common card surfaces used on live pages.">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <article
-              className={`${cards.interactive} flex flex-col gap-4 rounded-xl bg-[#efeadf] px-6 py-[34px]`}
+              className={`${cards.interactive} ${cardSpacingClasses.content} flex flex-col rounded-xl bg-[#efeadf]`}
             >
               <p className={`${typography.bodySmall} text-[#17171c]/50`}>
                 Beige card
               </p>
-              <h3 className={typography.cardHeading}>Trust & reassurance</h3>
-              <p className={typography.body}>
-                Welcoming environments where families can access help and find
-                positive connection.
-              </p>
+              <div className={`${cardSpacingClasses.headingBody} ${cardSpacingClasses.tagsToHeading}`}>
+                <h3 className={typography.cardHeading}>Trust & reassurance</h3>
+                <p className={typography.body}>
+                  Welcoming environments where families can access help and find
+                  positive connection.
+                </p>
+              </div>
             </article>
 
             <article
-              className={`${cards.interactive} flex flex-col gap-20 rounded-xl bg-[#446169] px-6 py-10`}
+              className={`${cards.interactive} ${cardSpacingClasses.content} flex flex-col rounded-xl bg-[#446169]`}
             >
               <p className={`${typography.statisticNumber} text-white`}>600+</p>
-              <div className="flex flex-col gap-[18px] text-white">
+              <div className={`${cardSpacingClasses.headingBody} ${cardSpacingClasses.tagsToHeading} text-white`}>
                 <h3 className={typography.cardHeading}>Young people engaged</h3>
                 <p className={`${typography.body} leading-[24px]`}>
                   Mentoring, workshops and activities that encourage positive
@@ -262,6 +266,37 @@ export default function DesignSystemPage() {
             <span className={typography.eyebrow}>Contact Us</span>
             <span className={typography.eyebrow}>Our Impact</span>
             <span className={typography.eyebrow}>Featured Programmes</span>
+          </div>
+        </Section>
+
+        {/* Card spacing */}
+        <Section
+          title="Card spacing"
+          description="Internal card content rhythm — cardSpacing tokens mapped to cardSpacingClasses."
+        >
+          <div className="flex flex-col gap-4 rounded-xl border border-[#c4c4c4] p-6 md:p-8">
+            <ul className={`${typography.bodySmall} flex flex-col gap-2 text-[#17171c]/70`}>
+              <li>
+                Image → Tags: <code className="font-mono">{cardSpacing.imageToTags}</code> (
+                {cardSpacingClasses.imageToTags})
+              </li>
+              <li>
+                Tags → Heading: <code className="font-mono">{cardSpacing.tagsToHeading}</code> (
+                {cardSpacingClasses.tagsToHeading})
+              </li>
+              <li>
+                Heading → Body: <code className="font-mono">{cardSpacing.headingToBody}</code> (
+                {cardSpacingClasses.headingToBody})
+              </li>
+              <li>
+                Body → Button: <code className="font-mono">{cardSpacing.bodyToButton}</code> (
+                {cardSpacingClasses.bodyToButton})
+              </li>
+              <li>
+                Bottom padding: <code className="font-mono">{cardSpacing.padding}</code> (
+                {cardSpacingClasses.paddingBottom})
+              </li>
+            </ul>
           </div>
         </Section>
 

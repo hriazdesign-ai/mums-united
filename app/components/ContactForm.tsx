@@ -1,14 +1,14 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-
-const inputClassName =
-  "w-full rounded-lg border border-[#c4c4c4] bg-white px-4 text-sm font-normal leading-5 text-[#17171c] transition-colors placeholder:text-sm placeholder:text-[#17171c]/60 focus:border-[#17171c] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
-
-const labelClassName = "text-sm font-medium leading-5 text-[#17171c]";
-
-const submitButtonClassName =
-  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-2.5 text-sm font-semibold leading-5 text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
+import { forms } from "@/lib/design-system";
+import {
+  FormField,
+  FormInput,
+  FormStatusMessage,
+  FormSubmitButton,
+  FormTextarea,
+} from "./FormField";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -36,72 +36,54 @@ export function ContactForm() {
     <form
       id="contact-form"
       onSubmit={handleSubmit}
-      className="flex flex-col gap-6"
+      className={forms.form}
       noValidate
     >
-      <div className="flex flex-col gap-2">
-        <label htmlFor="contact-name" className={labelClassName}>
-          Full Name
-        </label>
-        <input
+      <FormField label="Full Name" htmlFor="contact-name">
+        <FormInput
           id="contact-name"
           name="name"
           type="text"
           required
           autoComplete="name"
-          className={`${inputClassName} h-12`}
           placeholder="Your full name"
         />
-      </div>
+      </FormField>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="contact-email" className={labelClassName}>
-          Email Address
-        </label>
-        <input
+      <FormField label="Email Address" htmlFor="contact-email">
+        <FormInput
           id="contact-email"
           name="email"
           type="email"
           required
           autoComplete="email"
-          className={`${inputClassName} h-12`}
           placeholder="you@example.com"
         />
-      </div>
+      </FormField>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="contact-phone" className={labelClassName}>
-          Phone Number
-        </label>
-        <input
+      <FormField label="Phone Number" htmlFor="contact-phone">
+        <FormInput
           id="contact-phone"
           name="phone"
           type="tel"
           autoComplete="tel"
-          className={`${inputClassName} h-12`}
           placeholder="Your phone number"
         />
-      </div>
+      </FormField>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="contact-message" className={labelClassName}>
-          Your Message
-        </label>
-        <textarea
+      <FormField label="Your Message" htmlFor="contact-message">
+        <FormTextarea
           id="contact-message"
           name="message"
           required
-          className={`${inputClassName} min-h-[120px] resize-y py-3`}
           placeholder="Tell us how we can help"
         />
-      </div>
+      </FormField>
 
-      <button type="submit" className={submitButtonClassName}>
-        Send Message
-      </button>
+      <FormSubmitButton>Send Message</FormSubmitButton>
 
       {submitted ? (
-        <p className="text-sm font-normal leading-5 text-[#17171c]" role="status">
+        <FormStatusMessage>
           Your email app should open with your message ready to send. If it
           does not, please email us at{" "}
           <a
@@ -111,7 +93,7 @@ export function ContactForm() {
             mumsunitedsheffield@gmail.com
           </a>
           .
-        </p>
+        </FormStatusMessage>
       ) : null}
     </form>
   );

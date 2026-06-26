@@ -1,5 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
+import { buttons } from "@/lib/design-system";
+import { CtaContent } from "./CtaContent";
 
 export type ImageCtaButton = {
   label: string;
@@ -9,79 +12,81 @@ export type ImageCtaButton = {
 
 type ImageCtaSectionProps = {
   heading: string;
-  body: string;
-  buttons: ImageCtaButton[];
+  headingId?: string;
+  body?: string;
+  buttons?: ImageCtaButton[];
+  actions?: ReactNode;
   eyebrow?: string;
-  imageSrc?: string;
-  imageAlt?: string;
-  overlayOpacity?: number;
+  imageSrc: string;
+  imageAlt: string;
+  imageOpacity?: number;
+  variant?: "home" | "page";
   className?: string;
   id?: string;
+  scrollReveal?: boolean;
 };
-
-const primaryButtonClassName =
-  "image-cta-btn inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#436169] px-4 py-3 text-sm font-semibold text-white hover:bg-[#344C52] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-6 md:py-3 md:text-base";
-
-const secondaryButtonClassName =
-  "image-cta-btn inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-white px-4 py-3 text-sm font-semibold text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-6 md:py-3 md:text-base";
 
 export function ImageCtaSection({
   heading,
+  headingId,
   body,
-  buttons,
+  buttons: ctaButtons,
+  actions,
   eyebrow,
-  imageSrc = "/Donations-2.jpg",
-  imageAlt = "Community support",
-  overlayOpacity = 0.5,
-  className = "scroll-reveal",
+  imageSrc,
+  imageAlt,
+  imageOpacity = 0.6,
+  variant = "page",
+  className = "",
   id,
+  scrollReveal = true,
 }: ImageCtaSectionProps) {
+  const sectionClassName = [
+    scrollReveal ? "scroll-reveal" : "",
+    "relative flex min-h-[400px] items-center justify-center overflow-hidden rounded-xl md:h-[500px]",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <section
-      id={id}
-      className={`${className} relative flex min-h-[400px] items-center justify-center overflow-hidden text-white md:min-h-[550px] md:px-12 md:py-20 lg:px-24`}
-    >
+    <section id={id} className={sectionClassName}>
+      <div className="absolute inset-0 rounded-xl bg-black" aria-hidden />
       <Image
         src={imageSrc}
         alt={imageAlt}
         fill
         className="object-cover object-center"
+        style={{ opacity: imageOpacity }}
         sizes="100vw"
       />
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundColor: `rgba(0, 0, 0, ${overlayOpacity})`,
-        }}
+      <CtaContent
+        heading={heading}
+        headingId={headingId}
+        body={body}
+        eyebrow={eyebrow}
+        variant={variant}
+        actions={
+          actions ??
+          (ctaButtons ? (
+            <>
+              {ctaButtons.map((button) => (
+                <Link
+                  key={button.href + button.label}
+                  href={button.href}
+                  className={
+                    button.variant === "primary"
+                      ? buttons.imageCtaPrimary
+                      : buttons.imageCtaSecondary
+                  }
+                >
+                  {button.label}
+                </Link>
+              ))}
+            </>
+          ) : undefined)
+        }
       />
-      <div className="home-cta-content-padding relative z-10 mx-auto w-full max-w-[700px] text-center">
-        {eyebrow ? (
-          <p className="text-sm font-semibold uppercase tracking-wide text-[#E2B39F]">
-            {eyebrow}
-          </p>
-        ) : null}
-        <h2
-          className={`text-3xl font-bold md:text-5xl${eyebrow ? " mt-4" : ""}`}
-        >
-          {heading}
-        </h2>
-        <p className="mt-6 text-lg leading-8 text-white">{body}</p>
-        <div className="mt-8 flex flex-row flex-nowrap items-center justify-center gap-4">
-          {buttons.map((button) => (
-            <Link
-              key={button.href + button.label}
-              href={button.href}
-              className={
-                button.variant === "primary"
-                  ? primaryButtonClassName
-                  : secondaryButtonClassName
-              }
-            >
-              {button.label}
-            </Link>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }

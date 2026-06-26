@@ -1,3 +1,4 @@
+import { cardSpacingClasses } from "@/lib/design-system";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Image from "next/image";
@@ -16,10 +17,10 @@ const mapEmbedSrc =
   "https://maps.google.com/maps?q=Sharrow+Community+Forum,+South+View+Road,+Sheffield,+S7+1DB&hl=en&z=15&output=embed";
 
 const sectionTagClassName =
-  "inline-flex w-fit rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-normal leading-4 text-[#17171c]";
+  "inline-flex w-fit rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-semibold leading-4 text-[#17171c]";
 
 const heroHeadingClassName =
-  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[76px] lg:leading-[80px]";
+  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[70px] lg:leading-[78px] lg:tracking-[-0.02em]";
 
 const sectionHeadingClassName =
   "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] md:text-[40px] md:leading-[48px] lg:text-[48px] lg:leading-[53px]";
@@ -308,15 +309,15 @@ export default function ContactPage() {
               {supportOptions.map(({ title, description, cta, href, Icon }) => (
                 <article
                   key={title}
-                  className="card-interactive flex h-full flex-col gap-10 rounded-xl bg-[#edeae1] px-6 py-10"
+                  className={`${cardSpacingClasses.content} card-interactive flex h-full flex-col rounded-xl bg-[#edeae1]`}
                 >
                   <Icon
                     className={helpCardIconClassName}
                     strokeWidth={1.5}
                     aria-hidden
                   />
-                  <div className="flex min-h-0 flex-1 flex-col gap-8">
-                    <div className="flex flex-col gap-4">
+                  <div className={`${cardSpacingClasses.tagsToHeading} flex min-h-0 flex-1 flex-col`}>
+                    <div className={cardSpacingClasses.headingBody}>
                       <h3 className="text-2xl font-semibold leading-[22px] tracking-[-0.02em]">
                         {title}
                       </h3>
@@ -324,7 +325,7 @@ export default function ContactPage() {
                         {description}
                       </p>
                     </div>
-                    <Link href={href} className={`${helpCardButtonClassName} mt-auto`}>
+                    <Link href={href} className={`${helpCardButtonClassName} ${cardSpacingClasses.bodyToButton} mt-auto`}>
                       {cta}
                     </Link>
                   </div>

@@ -1,3 +1,4 @@
+import { cardSpacingClasses } from "@/lib/design-system";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,10 +12,10 @@ export const metadata: Metadata = {
 };
 
 const sectionTagClassName =
-  "inline-flex w-fit rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-normal leading-4 text-[#17171c]";
+  "inline-flex w-fit rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-semibold leading-4 text-[#17171c]";
 
 const heroHeadingClassName =
-  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[76px] lg:leading-[80px]";
+  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[70px] lg:leading-[78px] lg:tracking-[-0.02em]";
 
 const sectionHeadingClassName =
   "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] md:text-[40px] md:leading-[48px] lg:text-[48px] lg:leading-[53px]";
@@ -111,9 +112,11 @@ function InfoCard({
   body: string;
 }) {
   return (
-    <article className="card-interactive flex h-full flex-col rounded-xl bg-[#efeadf] px-6 py-[34px]">
-      <h3 className={cardTitleClassName}>{title}</h3>
-      <p className="mt-20 text-base font-normal leading-[22px]">{body}</p>
+    <article className={`${cardSpacingClasses.content} card-interactive flex h-full flex-col rounded-xl bg-[#efeadf]`}>
+      <div className={cardSpacingClasses.headingBody}>
+        <h3 className={cardTitleClassName}>{title}</h3>
+        <p className="text-base font-normal leading-[22px]">{body}</p>
+      </div>
     </article>
   );
 }
@@ -126,14 +129,14 @@ function ImpactCard({
   body: string;
 }) {
   return (
-    <article className="card-interactive flex h-full flex-col rounded-xl bg-[#4c7a65] px-6 py-[34px]">
+    <article className={`${cardSpacingClasses.content} card-interactive flex h-full flex-col rounded-xl bg-[#4c7a65]`}>
       <p className={impactAmountClassName}>{amount}</p>
-      <div className="mt-20 flex flex-col gap-[18px]">
+      <div className={`${cardSpacingClasses.tagsToHeading} flex flex-col`}>
         <p className="text-base font-normal leading-[22px] text-white">{body}</p>
         <Link
           href="#final-donation"
           aria-label={`Donate ${amount}`}
-          className={impactDonateButtonClassName}
+          className={`${impactDonateButtonClassName} ${cardSpacingClasses.bodyToButton}`}
         >
           Donate {amount}
         </Link>

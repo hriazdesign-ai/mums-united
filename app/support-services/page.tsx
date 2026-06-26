@@ -1,3 +1,4 @@
+import { cardSpacingClasses } from "@/lib/design-system";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,13 +11,13 @@ export const metadata: Metadata = {
 };
 
 const sectionTagClassName =
-  "inline-flex rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-normal leading-4 text-[#17171c]";
+  "inline-flex rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-semibold leading-4 text-[#17171c]";
 
 const blockEyebrowClassName =
   "text-[12px] font-normal leading-4 text-[#17171c]";
 
 const heroHeadingClassName =
-  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[76px] lg:leading-[80px]";
+  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[70px] lg:leading-[78px] lg:tracking-[-0.02em]";
 
 const sectionHeadingClassName =
   "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] md:text-[40px] md:leading-[48px] lg:text-[48px] lg:leading-[53px]";
@@ -226,12 +227,12 @@ export default function SupportServicesPage() {
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                     />
                   </div>
-                  <div className="flex flex-col gap-20 bg-[#efeadf] px-6 py-[34px]">
+                  <div className={`${cardSpacingClasses.contentWithImage} bg-[#efeadf]`}>
                     <ServiceBadges
                       status={service.status}
                       category={service.category}
                     />
-                    <div className="flex flex-col gap-[18px]">
+                    <div className={`${cardSpacingClasses.headingBody} ${cardSpacingClasses.tagsToHeading}`}>
                       <h3 className="text-xl font-semibold leading-[22px] tracking-[-0.02em] lg:text-2xl">
                         {service.title}
                       </h3>
@@ -266,7 +267,7 @@ export default function SupportServicesPage() {
               {supportSteps.map(([title, text], index) => (
                 <article
                   key={title}
-                  className="card-interactive flex flex-col gap-20 rounded-xl bg-[rgba(163,182,180,0.3)] px-6 py-[34px]"
+                  className={`${cardSpacingClasses.content} card-interactive flex flex-col rounded-xl bg-[rgba(163,182,180,0.3)]`}
                 >
                   <div
                     className="flex size-[50px] shrink-0 items-center justify-center rounded-full bg-white"
@@ -276,7 +277,7 @@ export default function SupportServicesPage() {
                       {index + 1}
                     </span>
                   </div>
-                  <div className="flex flex-col gap-[18px]">
+                  <div className={`${cardSpacingClasses.headingBody} ${cardSpacingClasses.tagsToHeading}`}>
                     <h3 className="text-xl font-semibold leading-[26px] tracking-[-0.02em] lg:text-2xl">
                       {title}
                     </h3>
@@ -314,12 +315,14 @@ export default function SupportServicesPage() {
               {trustItems.map(([title, text]) => (
                 <article
                   key={title}
-                  className="card-interactive flex flex-col gap-20 rounded-xl bg-[#efeadf] px-6 py-[34px]"
+                  className={`${cardSpacingClasses.content} card-interactive flex flex-col rounded-xl bg-[#efeadf]`}
                 >
-                  <h3 className="text-xl font-semibold leading-[22px] tracking-[-0.02em] lg:text-2xl">
-                    {title}
-                  </h3>
-                  <p className="text-base font-normal leading-[22px]">{text}</p>
+                  <div className={cardSpacingClasses.headingBody}>
+                    <h3 className="text-xl font-semibold leading-[22px] tracking-[-0.02em] lg:text-2xl">
+                      {title}
+                    </h3>
+                    <p className="text-base font-normal leading-[22px]">{text}</p>
+                  </div>
                 </article>
               ))}
             </div>

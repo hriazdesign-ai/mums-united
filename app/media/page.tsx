@@ -1,5 +1,6 @@
 "use client";
 
+import { cardSpacingClasses } from "@/lib/design-system";
 import Image from "next/image";
 import { useState } from "react";
 import { SiteHeader } from "../components/SiteHeader";
@@ -349,10 +350,10 @@ const communityStories = [
 const archivePageSize = 5;
 
 const sectionTagClassName =
-  "inline-flex w-fit items-center rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-normal leading-4 text-[#17171c]";
+  "inline-flex w-fit items-center rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-semibold leading-4 text-[#17171c]";
 
 const heroHeadingClassName =
-  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[76px] lg:leading-[80px]";
+  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[70px] lg:leading-[78px] lg:tracking-[-0.02em]";
 
 const sectionHeadingClassName =
   "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] md:text-[40px] md:leading-[48px] lg:text-[48px] lg:leading-[53px]";
@@ -431,29 +432,29 @@ function FeaturedMediaCard({ item }: { item: MediaItem }) {
         )}
       </div>
 
-      <div className="flex flex-col gap-10 px-6 pb-6 pt-6">
+      <div className={cardSpacingClasses.contentWithImage}>
         <div className="flex flex-wrap items-center gap-3">
           <span className={statusBadgeClassName}>{item.type}</span>
           <span className="text-[12px] font-semibold leading-3 text-[#17171c]">
             {formatDate(item.date)}
           </span>
         </div>
-        <div className="flex flex-1 flex-col gap-[18px]">
+        <div className={`${cardSpacingClasses.headingBody} ${cardSpacingClasses.tagsToHeading}`}>
           <h3 className="text-2xl font-semibold leading-[26px] tracking-[-0.02em]">
             {item.title}
           </h3>
           <p className="text-base font-normal leading-[22px]">
             {item.description}
           </p>
-          <a
-            href={item.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${primaryDarkButtonClassName} mt-2`}
-          >
-            View Coverage
-          </a>
         </div>
+        <a
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${primaryDarkButtonClassName} ${cardSpacingClasses.bodyToButton}`}
+        >
+          View Coverage
+        </a>
       </div>
     </article>
   );
@@ -462,15 +463,15 @@ function FeaturedMediaCard({ item }: { item: MediaItem }) {
 function ArchiveMediaItem({ item }: { item: MediaItem }) {
   return (
     <article className="card-interactive overflow-hidden rounded-xl bg-white">
-      <div className="flex flex-col gap-10 px-6 py-[34px] lg:flex-row lg:items-start lg:justify-between lg:gap-[70px]">
-        <div className="flex min-w-0 flex-1 flex-col gap-10">
+      <div className={`${cardSpacingClasses.content} lg:flex-row lg:items-start lg:justify-between lg:gap-[70px]`}>
+        <div className="flex min-w-0 flex-1 flex-col">
           <div className="flex flex-wrap items-center gap-3">
             <span className={statusBadgeClassName}>{item.type}</span>
             <span className="text-[12px] font-semibold leading-3 text-[#17171c]">
               {formatDate(item.date)}
             </span>
           </div>
-          <div className="flex flex-col gap-[18px]">
+          <div className={`${cardSpacingClasses.headingBody} ${cardSpacingClasses.tagsToHeading}`}>
             <h3 className="text-2xl font-semibold leading-[26px] tracking-[-0.02em]">
               {item.title}
             </h3>
@@ -739,26 +740,28 @@ export default function MediaPage() {
               {recognitionItems.map((item) => (
                 <article
                   key={item.title}
-                  className="card-interactive flex flex-col gap-10 rounded-xl bg-[#efeadf] px-6 py-[34px]"
+                  className={`${cardSpacingClasses.content} card-interactive flex flex-col rounded-xl bg-[#efeadf]`}
                 >
                   {item.date ? (
                     <p className="text-[12px] font-semibold leading-3 text-[#17171c]">
                       {item.date}
                     </p>
                   ) : null}
-                  <div className="flex flex-col gap-[18px]">
-                    <h3 className="text-2xl font-semibold leading-[26px] tracking-[-0.02em]">
-                      {item.title}
-                    </h3>
-                    <p className="text-base font-normal leading-[22px]">
-                      {item.description}
-                    </p>
+                  <div className={item.date ? cardSpacingClasses.tagsToHeading : undefined}>
+                    <div className={cardSpacingClasses.headingBody}>
+                      <h3 className="text-2xl font-semibold leading-[26px] tracking-[-0.02em]">
+                        {item.title}
+                      </h3>
+                      <p className="text-base font-normal leading-[22px]">
+                        {item.description}
+                      </p>
+                    </div>
                     {item.href ? (
                       <a
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn-interactive w-fit text-base font-semibold leading-[22px] text-[#17171c] underline-offset-4 hover:underline focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2"
+                        className={`btn-interactive w-fit text-base font-semibold leading-[22px] text-[#17171c] underline-offset-4 hover:underline focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2 ${cardSpacingClasses.bodyToButton}`}
                       >
                         View recognition
                       </a>
@@ -791,7 +794,7 @@ export default function MediaPage() {
               {communityStories.map((story) => (
                 <blockquote
                   key={story.quote}
-                  className="card-interactive flex flex-col gap-10 rounded-xl bg-[#efeadf] px-6 py-[34px]"
+                  className={`${cardSpacingClasses.content} card-interactive flex flex-col rounded-xl bg-[#efeadf]`}
                 >
                   <span
                     aria-hidden
@@ -799,7 +802,7 @@ export default function MediaPage() {
                   >
                     &ldquo;
                   </span>
-                  <div className="flex flex-col gap-[18px]">
+                  <div className={`${cardSpacingClasses.headingBody} ${cardSpacingClasses.tagsToHeading}`}>
                     <p className="text-2xl font-semibold leading-[26px] tracking-[-0.02em]">
                       {story.quote}
                     </p>
