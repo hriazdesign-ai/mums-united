@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
 import { typography } from "@/lib/design-system";
+import type { ReactNode } from "react";
 
 type ContactInfoPanelProps = {
   tag: string;
@@ -24,7 +24,7 @@ export function ContactInfoPanel({
         <p className={typography.eyebrow}>{tag}</p>
         <h2
           id={headingId}
-          className="text-xl font-semibold leading-[22px] tracking-[-0.02em]"
+          className={typography.cardHeading}
         >
           {heading}
         </h2>

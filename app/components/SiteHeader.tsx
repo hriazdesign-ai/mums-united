@@ -1,5 +1,6 @@
 "use client";
 
+import { buttons } from "@/lib/design-system";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
@@ -213,7 +214,7 @@ export function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
           <div className="flex shrink-0 items-center gap-3 sm:gap-4">
             <Link
               href="/donate"
-              className="site-header__donate btn-interactive shrink-0 rounded-full bg-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2"
+              className={`site-header__donate ${buttons.primaryDark} shrink-0`}
             >
               Donate
             </Link>

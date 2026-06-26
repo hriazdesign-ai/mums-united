@@ -1,4 +1,4 @@
-import { cardSpacingClasses } from "@/lib/design-system";
+import { buttons, cardSpacingClasses, typography } from "@/lib/design-system";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,29 +11,12 @@ export const metadata: Metadata = {
     "Support Mums United's work with mothers, young people and families in Sheffield.",
 };
 
-const sectionTagClassName =
-  "inline-flex w-fit rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-semibold leading-4 text-[#17171c]";
+const cardTitleClassName = `min-h-[52px] ${typography.cardHeading}`;
 
-const heroHeadingClassName =
-  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[70px] lg:leading-[78px] lg:tracking-[-0.02em]";
-
-const sectionHeadingClassName =
-  "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] md:text-[40px] md:leading-[48px] lg:text-[48px] lg:leading-[53px]";
-
-const cardTitleClassName =
-  "min-h-[52px] text-xl font-semibold leading-[26px] tracking-[-0.02em] lg:text-2xl";
-
-const primaryDarkButtonClassName =
-  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
-
-const outlineDarkButtonClassName =
-  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full border border-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#17171c]/5 focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
-
-const impactAmountClassName =
-  "text-[56px] font-light leading-none tracking-[-0.04em] text-white md:text-[64px] lg:text-[76px]";
+const impactAmountClassName = typography.statisticNumber;
 
 const impactDonateButtonClassName =
-  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-5 py-3 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#4c7a65]";
+  `${buttons.whiteCompact} focus:ring-white focus:ring-offset-[#4c7a65]`;
 
 const donationReasons = [
   [
@@ -90,8 +73,8 @@ function SectionIntro({
   return (
     <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
       <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-        <p className={sectionTagClassName}>{tag}</p>
-        <h2 id={headingId} className={sectionHeadingClassName}>
+        <p className={typography.eyebrow}>{tag}</p>
+        <h2 id={headingId} className={typography.sectionHeadingPage}>
           {heading}
         </h2>
         {description ? (
@@ -171,8 +154,8 @@ export default function DonatePage() {
             <div className="rounded-3xl bg-white px-6 py-16 text-center shadow-[0_4px_4px_rgba(0,0,0,0.12)] md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
               <div className="mx-auto flex w-full max-w-[830px] flex-col items-center gap-8">
                 <div className="flex w-full flex-col items-center gap-5">
-                  <p className={sectionTagClassName}>Donate to Mums United</p>
-                  <h1 className={heroHeadingClassName}>
+                  <p className={typography.eyebrow}>Donate to Mums United</p>
+                  <h1 className={typography.pageHeading}>
                     Help families feel safer, supported and heard.
                   </h1>
                 </div>
@@ -184,13 +167,13 @@ export default function DonatePage() {
                 <div className="flex flex-row flex-wrap items-center justify-center gap-4 sm:gap-7">
                   <Link
                     href="#donation-options"
-                    className={primaryDarkButtonClassName}
+                    className={buttons.primaryDark}
                   >
                     Donate Now
                   </Link>
                   <Link
                     href="#donation-impact"
-                    className={outlineDarkButtonClassName}
+                    className={buttons.outlineDark}
                   >
                     Learn About Our Impact
                   </Link>
@@ -299,10 +282,10 @@ export default function DonatePage() {
             />
             <div className="home-cta-content-padding relative z-10 flex w-full flex-col items-center text-center text-white md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <h2 id="donate-cta-heading" className={sectionHeadingClassName}>
+                <h2 id="donate-cta-heading" className={typography.sectionHeadingPage}>
                   Help a family know they are not facing this alone.
                 </h2>
-                <p className="max-w-[910px] text-base font-semibold leading-[22px] md:px-8 lg:px-[150px]">
+                <p className={`max-w-[910px] ${typography.bodySemibold} md:px-8 lg:px-[150px]`}>
                   Your donation helps Mums United continue supporting mothers,
                   young people and families across Sheffield through practical
                   help, trusted relationships and community support.
@@ -310,13 +293,13 @@ export default function DonatePage() {
                 <div className="image-cta-buttons">
                   <Link
                     href="#donation-options"
-                    className="btn-interactive inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                    className={buttons.imageCtaPrimary}
                   >
                     Donate Now
                   </Link>
                   <Link
                     href="#donation-impact"
-                    className="btn-interactive inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                    className={buttons.imageCtaSecondary}
                   >
                     Learn About Our Impact
                   </Link>

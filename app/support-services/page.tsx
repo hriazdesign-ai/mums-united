@@ -1,4 +1,4 @@
-import { cardSpacingClasses } from "@/lib/design-system";
+import { buttons, cardSpacingClasses, typography } from "@/lib/design-system";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,26 +10,11 @@ export const metadata: Metadata = {
     "Practical support, safe spaces and trusted help for mothers, young people and families across Sheffield.",
 };
 
-const sectionTagClassName =
-  "inline-flex rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-semibold leading-4 text-[#17171c]";
-
 const blockEyebrowClassName =
   "text-[12px] font-normal leading-4 text-[#17171c]";
 
-const heroHeadingClassName =
-  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[70px] lg:leading-[78px] lg:tracking-[-0.02em]";
-
-const sectionHeadingClassName =
-  "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] md:text-[40px] md:leading-[48px] lg:text-[48px] lg:leading-[53px]";
-
 const blockHeadingClassName =
   "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] lg:text-[48px] lg:leading-[53px]";
-
-const primaryDarkButtonClassName =
-  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
-
-const outlineDarkButtonClassName =
-  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full border border-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#17171c]/5 focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
 
 const statusBadgeClassName =
   "inline-flex shrink-0 items-center justify-center rounded-full bg-[#17171c] px-[10px] py-2 text-[12px] font-semibold leading-3 text-white";
@@ -130,10 +115,10 @@ export default function SupportServicesPage() {
           <section className="flex w-full flex-col">
             <div className="flex flex-col items-center px-0 py-16 text-center md:px-8 md:py-20 lg:px-[60px] lg:py-[80px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <p className={sectionTagClassName}>Support Services</p>
+                <p className={typography.eyebrow}>Support Services</p>
 
-                <h1 className={heroHeadingClassName}>
-                  Practical support for families, young people and communities.
+                <h1 className={typography.pageHeading}>
+                Support when you need it.
                 </h1>
 
                 <p className="max-w-[910px] text-base font-normal leading-[22px] md:px-8 lg:px-[150px]">
@@ -142,10 +127,10 @@ export default function SupportServicesPage() {
                 </p>
 
                 <div className="flex flex-row flex-wrap items-center justify-center gap-4 sm:gap-7">
-                  <Link href="/contact" className={primaryDarkButtonClassName}>
+                  <Link href="/contact" className={buttons.primaryDark}>
                     Get Support
                   </Link>
-                  <Link href="/donate" className={outlineDarkButtonClassName}>
+                  <Link href="/donate" className={buttons.outlineDark}>
                     Donate
                   </Link>
                 </div>
@@ -196,10 +181,10 @@ export default function SupportServicesPage() {
           >
             <div className="flex flex-col items-center px-0 pb-[60px] pt-0 text-center md:px-8 lg:px-[60px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <p className={sectionTagClassName}>Our Services</p>
+                <p className={typography.eyebrow}>Our Services</p>
                 <h2
                   id="support-services-heading"
-                  className={sectionHeadingClassName}
+                  className={typography.sectionHeadingPage}
                 >
                   Support shaped around community needs.
                 </h2>
@@ -233,7 +218,7 @@ export default function SupportServicesPage() {
                       category={service.category}
                     />
                     <div className={`${cardSpacingClasses.headingBody} ${cardSpacingClasses.tagsToHeading}`}>
-                      <h3 className="text-xl font-semibold leading-[22px] tracking-[-0.02em] lg:text-2xl">
+                      <h3 className={typography.cardHeading}>
                         {service.title}
                       </h3>
                       <p className="text-base font-normal leading-[22px]">
@@ -253,10 +238,10 @@ export default function SupportServicesPage() {
           >
             <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <p className={sectionTagClassName}>How Support Works</p>
+                <p className={typography.eyebrow}>How Support Works</p>
                 <h2
                   id="how-support-works-heading"
-                  className={sectionHeadingClassName}
+                  className={typography.sectionHeadingPage}
                 >
                   A simple path to the help you need.
                 </h2>
@@ -278,7 +263,7 @@ export default function SupportServicesPage() {
                     </span>
                   </div>
                   <div className={`${cardSpacingClasses.headingBody} ${cardSpacingClasses.tagsToHeading}`}>
-                    <h3 className="text-xl font-semibold leading-[26px] tracking-[-0.02em] lg:text-2xl">
+                    <h3 className={typography.cardHeading}>
                       {title}
                     </h3>
                     <p className="text-base font-normal leading-[22px]">
@@ -297,10 +282,10 @@ export default function SupportServicesPage() {
           >
             <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <p className={sectionTagClassName}>Trust & Reassurance</p>
+                <p className={typography.eyebrow}>Trust & Reassurance</p>
                 <h2
                   id="trust-support-heading"
-                  className={sectionHeadingClassName}
+                  className={typography.sectionHeadingPage}
                 >
                   Support you can feel confident in.
                 </h2>
@@ -318,7 +303,7 @@ export default function SupportServicesPage() {
                   className={`${cardSpacingClasses.content} card-interactive flex flex-col rounded-xl bg-[#efeadf]`}
                 >
                   <div className={cardSpacingClasses.headingBody}>
-                    <h3 className="text-xl font-semibold leading-[22px] tracking-[-0.02em] lg:text-2xl">
+                    <h3 className={typography.cardHeading}>
                       {title}
                     </h3>
                     <p className="text-base font-normal leading-[22px]">{text}</p>
@@ -345,24 +330,24 @@ export default function SupportServicesPage() {
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
                 <h2
                   id="support-cta-heading"
-                  className={sectionHeadingClassName}
+                  className={typography.sectionHeadingPage}
                 >
                   Need support or want to speak to us?
                 </h2>
-                <p className="max-w-[910px] text-base font-semibold leading-[22px] md:px-8 lg:px-[150px]">
+                <p className={`max-w-[910px] ${typography.bodySemibold} md:px-8 lg:px-[150px]`}>
                   Whether you are looking for practical help, community support
                   or a safe place to talk, Mums United is here to listen.
                 </p>
                 <div className="flex flex-row flex-nowrap items-center justify-center gap-4">
                   <Link
                     href="/contact"
-                    className="btn-interactive inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                    className={buttons.imageCtaPrimary}
                   >
                     Contact Us
                   </Link>
                   <Link
                     href="/donate"
-                    className="btn-interactive inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                    className={buttons.imageCtaSecondary}
                   >
                     Donate
                   </Link>

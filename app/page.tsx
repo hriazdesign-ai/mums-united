@@ -1,19 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { cardSpacingClasses, typography } from "@/lib/design-system";
+import { buttons, cardSpacingClasses, typography } from "@/lib/design-system";
 import { SiteHeader } from "./components/SiteHeader";
-
-const primaryDarkButtonClassName =
-  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
-
-const outlineDarkButtonClassName =
-  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full border border-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#17171c]/5 focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
-
-const tealButtonClassName =
-  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center self-start rounded-full bg-[#446169] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#344C52] focus:outline-none focus:ring-2 focus:ring-[#446169] focus:ring-offset-2";
-
-const whiteOutlineButtonClassName =
-  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-5 py-3.5 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
 
 const impactStats = [
   [
@@ -91,10 +79,10 @@ export default function Home() {
                 </p>
 
                 <div className="flex flex-row flex-wrap items-center justify-center gap-4 sm:gap-7">
-                  <Link href="/donate" className={primaryDarkButtonClassName}>
+                  <Link href="/donate" className={buttons.primaryDark}>
                     Donate
                   </Link>
-                  <Link href="/contact" className={outlineDarkButtonClassName}>
+                  <Link href="/contact" className={buttons.outlineDark}>
                     Get Supported
                   </Link>
                 </div>
@@ -197,7 +185,7 @@ export default function Home() {
                     </div>
                     <Link
                       href="/programmes#current-programme"
-                      className={`${tealButtonClassName} ${cardSpacingClasses.bodyToButton}`}
+                      className={`${buttons.teal} ${cardSpacingClasses.bodyToButton}`}
                     >
                       Learn More
                     </Link>
@@ -238,7 +226,7 @@ export default function Home() {
                         <Link
                           href="/programmes"
                           aria-label={`Learn more about ${title}`}
-                          className={`${tealButtonClassName} ${cardSpacingClasses.bodyToButton}`}
+                          className={`${buttons.teal} ${cardSpacingClasses.bodyToButton}`}
                         >
                           Learn More
                         </Link>
@@ -248,7 +236,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <Link href="/programmes" className={whiteOutlineButtonClassName}>
+              <Link href="/programmes" className={buttons.whiteSolid}>
                 View All Programmes
               </Link>
             </div>
@@ -301,7 +289,7 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col items-center gap-4">
-                <Link href="/media" className={primaryDarkButtonClassName}>
+                <Link href="/media" className={buttons.primaryDark}>
                   View Media & Stories
                 </Link>
                 <p
@@ -348,13 +336,13 @@ export default function Home() {
                 <div className="flex flex-row flex-nowrap items-center justify-center gap-4">
                   <Link
                     href="/donate"
-                    className="btn-interactive inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                    className={buttons.imageCtaPrimary}
                   >
                     Donate Now
                   </Link>
                   <Link
                     href="/impact"
-                    className="btn-interactive inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                    className={buttons.imageCtaSecondary}
                   >
                     Learn About Our Impact
                   </Link>

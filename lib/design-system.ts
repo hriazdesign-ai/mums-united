@@ -7,15 +7,15 @@
 export const typography = {
   /** Home hero h1 */
   heroHeading:
-    "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[70px] lg:leading-[78px] lg:tracking-[-0.02em]",
+    "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[64px] lg:leading-[78px] lg:tracking-[-1px]",
 
   /** Inner-page hero h1 (About, Donate, Contact, etc.) */
   pageHeading:
-    "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[70px] lg:leading-[78px] lg:tracking-[-0.02em]",
+    "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[64px] lg:leading-[78px] lg:tracking-[-1px]",
 
   /** Home section h2 scale */
   sectionHeading:
-    "text-[28px] font-semibold leading-[34px] tracking-[-0.02em] md:text-[38px] md:leading-[44px] lg:text-[44px] lg:leading-[52px]",
+    "text-[38px] font-semibold leading-[42px] tracking-[-1px]",
 
   /** Inner-page section h2 scale */
   sectionHeadingPage:
@@ -23,7 +23,7 @@ export const typography = {
 
   /** Standard card / stat title */
   cardHeading:
-    "text-xl font-semibold leading-[26px] tracking-[-0.02em] lg:text-2xl lg:leading-[28px]",
+    "text-[20px] font-semibold leading-[26px] tracking-[-0.02em]",
 
   /** Homepage featured programme card title */
   cardHeadingFeatured:
@@ -48,11 +48,11 @@ export const typography = {
     "text-[56px] font-light leading-none tracking-[-0.04em] md:text-[64px] lg:text-[76px]",
 
   /** Primary button label */
-  buttonText: "text-base font-semibold leading-[22px]",
+  buttonText: "text-sm font-semibold leading-[22px]",
 
-  /** Image CTA button label (responsive) */
+  /** Image CTA button label */
   buttonTextCta:
-    "text-sm font-semibold leading-[22px] tracking-[-0.04em] md:text-base",
+    "text-sm font-semibold leading-[22px] tracking-[-0.04em]",
 
   /** Form field labels */
   formLabel: "text-sm font-medium leading-5 text-[#17171c]",
@@ -135,34 +135,34 @@ export const containers = {
 /** Shared button patterns */
 export const buttons = {
   primaryDark:
-    "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2",
+    `btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-3.5 ${typography.buttonText} text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2`,
 
   outlineDark:
-    "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full border border-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#17171c]/5 focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2",
+    `btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full border border-[#17171c] px-5 py-3.5 ${typography.buttonText} text-[#17171c] transition-colors hover:bg-[#17171c]/5 focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2`,
 
   teal:
-    "btn-interactive inline-flex w-fit shrink-0 items-center justify-center self-start rounded-full bg-[#446169] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#344C52] focus:outline-none focus:ring-2 focus:ring-[#446169] focus:ring-offset-2",
+    `btn-interactive inline-flex w-fit shrink-0 items-center justify-center self-start rounded-full bg-[#446169] px-5 py-3.5 ${typography.buttonText} text-white transition-colors hover:bg-[#344C52] focus:outline-none focus:ring-2 focus:ring-[#446169] focus:ring-offset-2`,
 
   whiteSolid:
-    "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-5 py-3.5 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2",
+    `btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-5 py-3.5 ${typography.buttonText} text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2`,
 
   imageCtaPrimary:
-    "btn-interactive inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base",
+    `btn-interactive inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-white px-4 py-3 ${typography.buttonTextCta} text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5`,
 
   imageCtaSecondary:
-    "btn-interactive inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base",
+    `btn-interactive inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-white px-4 py-3 ${typography.buttonTextCta} text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5`,
 
   /** Contact help cards and similar compact white buttons */
   whiteCompact:
-    "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-5 py-3 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2",
+    `btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-5 py-3 ${typography.buttonText} text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2`,
 
   /** Donation impact card CTA */
   impactDonate:
-    "btn-interactive inline-flex w-fit shrink-0 items-center justify-center self-start rounded-full bg-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2",
+    `btn-interactive inline-flex w-fit shrink-0 items-center justify-center self-start rounded-full bg-[#17171c] px-5 py-3.5 ${typography.buttonText} text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2`,
 
   /** Contact form submit */
   formSubmit:
-    "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-2.5 text-sm font-semibold leading-5 text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2",
+    `btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-2.5 ${typography.buttonText} text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2`,
 } as const;
 
 /** Form field patterns */

@@ -1,6 +1,6 @@
 "use client";
 
-import { cardSpacingClasses } from "@/lib/design-system";
+import { buttons, cardSpacingClasses, typography } from "@/lib/design-system";
 import Image from "next/image";
 import { useState } from "react";
 import { SiteHeader } from "../components/SiteHeader";
@@ -349,23 +349,12 @@ const communityStories = [
 
 const archivePageSize = 5;
 
-const sectionTagClassName =
-  "inline-flex w-fit items-center rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-semibold leading-4 text-[#17171c]";
-
-const heroHeadingClassName =
-  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[70px] lg:leading-[78px] lg:tracking-[-0.02em]";
-
-const sectionHeadingClassName =
-  "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] md:text-[40px] md:leading-[48px] lg:text-[48px] lg:leading-[53px]";
-
 const statusBadgeClassName =
   "inline-flex shrink-0 items-center justify-center rounded-full bg-[#17171c] px-[10px] py-2 text-[12px] font-semibold leading-3 text-white";
 
-const primaryDarkButtonClassName =
-  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-3 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
+const primaryDarkButtonClassName = `${buttons.primaryDark} py-3`;
 
-const outlineDarkButtonClassName =
-  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full border border-[#17171c] bg-white px-5 py-3 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#17171c]/5 focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
+const outlineDarkButtonClassName = `${buttons.outlineDark} bg-white py-3`;
 
 const exploreLinks = [
   ["Featured Media", "#featured-media"],
@@ -536,10 +525,10 @@ export default function MediaPage() {
           >
             <div className="flex flex-col items-center px-0 py-16 text-center md:px-8 md:py-20 lg:px-[60px] lg:py-[80px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <span className={sectionTagClassName}>Media &amp; Stories</span>
+                <span className={typography.eyebrow}>Media &amp; Stories</span>
 
-                <h1 className={heroHeadingClassName}>
-                  Coverage, conversations and community voices from Mums United.
+                <h1 className={typography.pageHeading}>
+                Stories from our community.
                 </h1>
 
                 <p className="max-w-[910px] text-base font-normal leading-[22px] md:px-8 lg:px-[150px]">
@@ -567,10 +556,10 @@ export default function MediaPage() {
 
             <div className="scroll-reveal flex flex-col items-center px-0 pb-10 text-center md:px-8 lg:px-[60px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <span className={sectionTagClassName}>Featured Media</span>
+                <span className={typography.eyebrow}>Featured Media</span>
                 <h2
                   id="featured-media-heading"
-                  className={sectionHeadingClassName}
+                  className={typography.sectionHeadingPage}
                 >
                   Recent coverage and community moments.
                 </h2>
@@ -589,17 +578,17 @@ export default function MediaPage() {
         <section
           id="media-archive"
           aria-labelledby="media-archive-heading"
-          className="scroll-mt-28 mt-[60px] bg-[#efeadf] lg:mt-20"
+          className="scroll-mt-28 mt-[60px] bg-[#efeadf] pb-[60px] md:pb-[80px] lg:mt-20"
         >
           <div className="mx-auto w-full max-w-[1330px] px-6 pt-[60px] lg:px-[60px] lg:pt-20">
             <div className="scroll-reveal flex flex-col items-center pb-10 text-center">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <span className={sectionTagClassName}>
+                <span className={typography.eyebrow}>
                   Media Timeline / Archive
                 </span>
                 <h2
                   id="media-archive-heading"
-                  className={sectionHeadingClassName}
+                  className={typography.sectionHeadingPage}
                 >
                   Stories, interviews and features.
                 </h2>
@@ -685,7 +674,7 @@ export default function MediaPage() {
           <section
             id="podcast"
             aria-labelledby="podcast-heading"
-            className="scroll-reveal scroll-mt-28 relative mt-[60px] flex min-h-[400px] items-center justify-center overflow-hidden rounded-xl md:h-[500px] lg:mt-20"
+            className="scroll-reveal scroll-mt-28 relative flex min-h-[400px] items-center justify-center overflow-hidden rounded-xl md:h-[500px]"
           >
             <div className="absolute inset-0 rounded-xl bg-black" aria-hidden />
             <Image
@@ -699,7 +688,7 @@ export default function MediaPage() {
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8 bg-white px-6 py-[60px] text-center md:px-12">
                 <h2
                   id="podcast-heading"
-                  className={sectionHeadingClassName}
+                  className={typography.sectionHeadingPage}
                 >
                   Listen to our podcast
                 </h2>
@@ -722,10 +711,10 @@ export default function MediaPage() {
           >
             <div className="flex flex-col items-center px-0 pb-10 text-center md:px-8 lg:px-[60px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <span className={sectionTagClassName}>Recognition</span>
+                <span className={typography.eyebrow}>Recognition</span>
                 <h2
                   id="recognition-heading"
-                  className={sectionHeadingClassName}
+                  className={typography.sectionHeadingPage}
                 >
                   Achievements &amp; Recognition
                 </h2>
@@ -761,7 +750,7 @@ export default function MediaPage() {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`btn-interactive w-fit text-base font-semibold leading-[22px] text-[#17171c] underline-offset-4 hover:underline focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2 ${cardSpacingClasses.bodyToButton}`}
+                        className={`btn-interactive w-fit ${typography.buttonText} text-[#17171c] underline-offset-4 hover:underline focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2 ${cardSpacingClasses.bodyToButton}`}
                       >
                         View recognition
                       </a>
@@ -780,10 +769,10 @@ export default function MediaPage() {
           >
             <div className="flex flex-col items-center px-0 pb-10 text-center md:px-8 lg:px-[60px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <span className={sectionTagClassName}>Community Stories</span>
+                <span className={typography.eyebrow}>Community Stories</span>
                 <h2
                   id="community-stories-heading"
-                  className={sectionHeadingClassName}
+                  className={typography.sectionHeadingPage}
                 >
                   Voices from the Community
                 </h2>
@@ -832,24 +821,24 @@ export default function MediaPage() {
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
                 <h2
                   id="media-cta-heading"
-                  className={sectionHeadingClassName}
+                  className={typography.sectionHeadingPage}
                 >
                   Want to speak to Mums United?
                 </h2>
-                <p className="max-w-[910px] text-base font-semibold leading-[22px] md:px-8 lg:px-[150px]">
+                <p className={`max-w-[910px] ${typography.bodySemibold} md:px-8 lg:px-[150px]`}>
                   Whether you are looking for practical help, community support
                   or a safe place to talk, Mums United is here to listen.
                 </p>
                 <div className="flex flex-row flex-nowrap items-center justify-center gap-4">
                   <a
                     href="/contact"
-                    className="btn-interactive image-cta-btn inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                    className={`${buttons.imageCtaPrimary} image-cta-btn`}
                   >
                     Contact Us
                   </a>
                   <a
                     href="/donate"
-                    className="btn-interactive image-cta-btn inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                    className={`${buttons.imageCtaSecondary} image-cta-btn`}
                   >
                     Donate
                   </a>

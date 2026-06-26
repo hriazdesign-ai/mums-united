@@ -1,6 +1,6 @@
 "use client";
 
-import { cardSpacingClasses } from "@/lib/design-system";
+import { buttons, cardSpacingClasses, typography } from "@/lib/design-system";
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -512,17 +512,8 @@ const programmes: Programme[] = [
 
 const filters: Array<"All" | ProgrammeStatus> = ["All", "Current", "Completed"];
 
-const sectionTagClassName =
-  "inline-flex rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-semibold leading-4 text-[#17171c]";
-
 const blockEyebrowClassName =
   "text-[12px] font-normal leading-4 text-[#17171c]";
-
-const heroHeadingClassName =
-  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[70px] lg:leading-[78px] lg:tracking-[-0.02em]";
-
-const sectionHeadingClassName =
-  "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] md:text-[40px] md:leading-[48px] lg:text-[48px] lg:leading-[53px]";
 
 const blockHeadingClassName =
   "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] lg:text-[48px] lg:leading-[53px]";
@@ -651,11 +642,10 @@ export default function ProgrammesPage() {
           <section className="flex w-full flex-col">
             <div className="flex flex-col items-center px-0 py-16 text-center md:px-8 md:py-20 lg:px-[60px] lg:py-[80px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <p className={sectionTagClassName}>Programmes &amp; Workshops</p>
+                <p className={typography.eyebrow}>Programmes &amp; Workshops</p>
 
-                <h1 className={heroHeadingClassName}>
-                  Supporting families through practical programmes, workshops
-                  and community initiatives.
+                <h1 className={typography.pageHeading}>
+                Programmes that bring people together.
                 </h1>
 
                 <p className="max-w-[910px] text-base font-normal leading-[22px] md:px-8 lg:px-[150px]">
@@ -722,7 +712,7 @@ export default function ProgrammesPage() {
               <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
                 <h2
                   id="programme-archive-heading"
-                  className={`${sectionHeadingClassName} max-w-[720px]`}
+                  className={`${typography.sectionHeadingPage} max-w-[720px]`}
                 >
                   Programmes, workshops and community initiatives.
                 </h2>
@@ -799,11 +789,11 @@ export default function ProgrammesPage() {
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
                 <h2
                   id="programmes-cta-heading"
-                  className={sectionHeadingClassName}
+                  className={typography.sectionHeadingPage}
                 >
                   Want to get involved?
                 </h2>
-                <p className="max-w-[910px] text-base font-semibold leading-[22px] md:px-8 lg:px-[150px]">
+                <p className={`max-w-[910px] ${typography.bodySemibold} md:px-8 lg:px-[150px]`}>
                   Whether you are looking for support, volunteering
                   opportunities or community activities, we would love to hear
                   from you.
@@ -811,13 +801,13 @@ export default function ProgrammesPage() {
                 <div className="flex flex-row flex-nowrap items-center justify-center gap-4">
                   <Link
                     href="/contact"
-                    className="btn-interactive image-cta-btn inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                    className={`${buttons.imageCtaPrimary} image-cta-btn`}
                   >
                     Contact Us
                   </Link>
                   <Link
                     href="/donate"
-                    className="btn-interactive image-cta-btn inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                    className={`${buttons.imageCtaSecondary} image-cta-btn`}
                   >
                     Donate
                   </Link>

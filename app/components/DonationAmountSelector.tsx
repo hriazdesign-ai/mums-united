@@ -1,5 +1,6 @@
 "use client";
 
+import { buttons, typography } from "@/lib/design-system";
 import { useState } from "react";
 
 const donationAmounts = ["£10", "£25", "£50", "£100"] as const;
@@ -38,7 +39,7 @@ export function DonationAmountSelector() {
       </div>
       <a
         href="#donation-options"
-        className="btn-interactive inline-flex w-full items-center justify-center rounded-full border border-white px-5 py-5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#446169]"
+        className={`btn-interactive inline-flex w-full items-center justify-center rounded-full border border-white px-5 py-5 ${typography.buttonText} text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#446169]`}
       >
         Donate Now
       </a>

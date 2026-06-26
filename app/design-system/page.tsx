@@ -237,7 +237,7 @@ export default function DesignSystemPage() {
               <p className={`${typography.bodySmall} text-[#17171c]/50`}>
                 Contact info panel
               </p>
-              <h3 className={`mt-4 text-xl font-semibold leading-[22px] tracking-[-0.02em]`}>
+              <h3 className={`mt-4 ${typography.cardHeading}`}>
                 Contact Information
               </h3>
               <div className="mt-6 flex gap-4">

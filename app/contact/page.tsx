@@ -1,4 +1,4 @@
-import { cardSpacingClasses } from "@/lib/design-system";
+import { buttons, cardSpacingClasses, typography } from "@/lib/design-system";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Image from "next/image";
@@ -15,24 +15,6 @@ export const metadata: Metadata = {
 
 const mapEmbedSrc =
   "https://maps.google.com/maps?q=Sharrow+Community+Forum,+South+View+Road,+Sheffield,+S7+1DB&hl=en&z=15&output=embed";
-
-const sectionTagClassName =
-  "inline-flex w-fit rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-semibold leading-4 text-[#17171c]";
-
-const heroHeadingClassName =
-  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[70px] lg:leading-[78px] lg:tracking-[-0.02em]";
-
-const sectionHeadingClassName =
-  "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] md:text-[40px] md:leading-[48px] lg:text-[48px] lg:leading-[53px]";
-
-const primaryDarkButtonClassName =
-  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
-
-const outlineDarkButtonClassName =
-  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full border border-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#17171c]/5 focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
-
-const helpCardButtonClassName =
-  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-5 py-3 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
 
 const iconStrokeProps = {
   fill: "none",
@@ -93,8 +75,8 @@ function SectionIntro({
   return (
     <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
       <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-        <p className={sectionTagClassName}>{tag}</p>
-        <h2 id={headingId} className={sectionHeadingClassName}>
+        <p className={typography.eyebrow}>{tag}</p>
+        <h2 id={headingId} className={typography.sectionHeadingPage}>
           {heading}
         </h2>
         {description ? (
@@ -152,9 +134,9 @@ export default function ContactPage() {
           <section className="flex w-full flex-col">
             <div className="flex flex-col items-center px-0 pt-16 text-center md:px-8 md:pt-20 lg:px-[60px] lg:pt-[80px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <p className={sectionTagClassName}>Contact Us</p>
+                <p className={typography.eyebrow}>Contact Us</p>
 
-                <h1 className={heroHeadingClassName}>
+                <h1 className={typography.pageHeading}>
                   We&apos;re here to listen and help.
                 </h1>
 
@@ -165,10 +147,10 @@ export default function ContactPage() {
                 </p>
 
                 <div className="flex flex-row flex-wrap items-center justify-center gap-4 sm:gap-7">
-                  <Link href="#contact-form" className={primaryDarkButtonClassName}>
+                  <Link href="#contact-form" className={buttons.primaryDark}>
                     Get Support
                   </Link>
-                  <Link href="/donate" className={outlineDarkButtonClassName}>
+                  <Link href="/donate" className={buttons.outlineDark}>
                     Donate
                   </Link>
                 </div>
@@ -185,10 +167,10 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
               <aside className="rounded-xl bg-[#e3e9e9] p-8">
                 <div className="flex flex-col gap-4">
-                  <p className={sectionTagClassName}>Get In Touch</p>
+                  <p className={typography.eyebrow}>Get In Touch</p>
                   <h2
                     id="contact-section-heading"
-                    className="text-xl font-semibold leading-[22px] tracking-[-0.02em]"
+                    className={typography.cardHeading}
                   >
                     Reach out directly.
                   </h2>
@@ -255,7 +237,7 @@ export default function ContactPage() {
 
               <div className="rounded-xl border border-[#c4c4c4] p-8">
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-xl font-semibold leading-[22px] tracking-[-0.02em]">
+                  <h3 className={typography.cardHeading}>
                     Send a Message
                   </h3>
                   <p className="text-sm font-normal leading-5 tracking-[-0.04em]">
@@ -325,7 +307,7 @@ export default function ContactPage() {
                         {description}
                       </p>
                     </div>
-                    <Link href={href} className={`${helpCardButtonClassName} ${cardSpacingClasses.bodyToButton} mt-auto`}>
+                    <Link href={href} className={`${buttons.whiteCompact} ${cardSpacingClasses.bodyToButton} mt-auto`}>
                       {cta}
                     </Link>
                   </div>
@@ -349,10 +331,10 @@ export default function ContactPage() {
             />
             <div className="home-cta-content-padding relative z-10 flex w-full flex-col items-center text-center text-white md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <h2 id="contact-cta-heading" className={sectionHeadingClassName}>
+                <h2 id="contact-cta-heading" className={typography.sectionHeadingPage}>
                   Together we can build stronger communities.
                 </h2>
-                <p className="max-w-[910px] text-base font-semibold leading-[22px] md:px-8 lg:px-[150px]">
+                <p className={`max-w-[910px] ${typography.bodySemibold} md:px-8 lg:px-[150px]`}>
                   Whether you&apos;re looking for support, volunteering
                   opportunities or ways to partner with us, we&apos;re ready to
                   help.
@@ -360,13 +342,13 @@ export default function ContactPage() {
                 <div className="image-cta-buttons">
                   <Link
                     href="#contact-form"
-                    className="btn-interactive inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                    className={buttons.imageCtaPrimary}
                   >
                     Contact Us
                   </Link>
                   <Link
                     href="/donate"
-                    className="btn-interactive inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                    className={buttons.imageCtaSecondary}
                   >
                     Donate
                   </Link>

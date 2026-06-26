@@ -1,4 +1,4 @@
-import { cardSpacingClasses } from "@/lib/design-system";
+import { buttons, cardSpacingClasses, typography } from "@/lib/design-system";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,26 +10,11 @@ export const metadata: Metadata = {
     "Learn about Mums United, a community-led charity supporting mothers, young people and families across Sheffield.",
 };
 
-const sectionTagClassName =
-  "inline-flex rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-semibold leading-4 text-[#17171c]";
-
 const blockEyebrowClassName =
   "text-[12px] font-normal leading-4 text-[#17171c]";
 
-const aboutHeroHeadingClassName =
-  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[70px] lg:leading-[78px] lg:tracking-[-0.02em]";
-
-const sectionHeadingClassName =
-  "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] md:text-[40px] md:leading-[48px] lg:text-[48px] lg:leading-[53px]";
-
 const blockHeadingClassName =
   "text-[32px] font-semibold leading-[38px] tracking-[-0.02em] lg:text-[48px] lg:leading-[53px]";
-
-const primaryDarkButtonClassName =
-  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
-
-const outlineDarkButtonClassName =
-  "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full border border-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-[#17171c] transition-colors hover:bg-[#17171c]/5 focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
 
 const values = [
   [
@@ -103,10 +88,10 @@ export default function AboutPage() {
           <section className="flex w-full flex-col">
             <div className="flex flex-col items-center px-0 py-16 text-center md:px-8 md:py-20 lg:px-[60px] lg:py-[80px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <p className={sectionTagClassName}>About Mums United</p>
+                <p className={typography.eyebrow}>About Mums United</p>
 
-                <h1 className={aboutHeroHeadingClassName}>
-                  Supporting mothers, young people and families across Sheffield.
+                <h1 className={typography.pageHeading}>
+                Building stronger communities.
                 </h1>
 
                 <p className="max-w-[910px] text-base font-normal leading-[22px] md:px-8 lg:px-[150px]">
@@ -116,10 +101,10 @@ export default function AboutPage() {
                 </p>
 
                 <div className="flex flex-row flex-wrap items-center justify-center gap-4 sm:gap-7">
-                  <Link href="/contact" className={primaryDarkButtonClassName}>
+                  <Link href="/contact" className={buttons.primaryDark}>
                     Get Support
                   </Link>
-                  <Link href="/donate" className={outlineDarkButtonClassName}>
+                  <Link href="/donate" className={buttons.outlineDark}>
                     Donate
                   </Link>
                 </div>
@@ -201,8 +186,8 @@ export default function AboutPage() {
           >
             <div className="flex flex-col items-center px-0 pb-[60px] pt-0 text-center md:px-8 md:pt-20 lg:px-[60px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <p className={sectionTagClassName}>Our Values</p>
-                <h2 id="our-values-heading" className={sectionHeadingClassName}>
+                <p className={typography.eyebrow}>Our Values</p>
+                <h2 id="our-values-heading" className={typography.sectionHeadingPage}>
                   What guides our work every day.
                 </h2>
               </div>
@@ -215,7 +200,7 @@ export default function AboutPage() {
                   className={`${cardSpacingClasses.content} card-interactive flex flex-col rounded-xl bg-[#efeadf]`}
                 >
                   <div className={cardSpacingClasses.headingBody}>
-                    <h3 className="text-xl font-semibold leading-[22px] tracking-[-0.02em] lg:text-2xl">
+                    <h3 className={typography.cardHeading}>
                       {title}
                     </h3>
                     <p className="text-base font-normal leading-[22px]">
@@ -234,10 +219,10 @@ export default function AboutPage() {
           >
             <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <p className={sectionTagClassName}>Our Impact</p>
+                <p className={typography.eyebrow}>Our Impact</p>
                 <h2
                   id="about-impact-heading"
-                  className={sectionHeadingClassName}
+                  className={typography.sectionHeadingPage}
                 >
                   Making a difference across Sheffield.
                 </h2>
@@ -254,7 +239,7 @@ export default function AboutPage() {
                     {number}
                   </p>
                   <div className={`${cardSpacingClasses.headingBody} ${cardSpacingClasses.tagsToHeading} text-white`}>
-                    <h3 className="text-xl font-semibold leading-[22px] tracking-[-0.02em] lg:text-2xl">
+                    <h3 className={typography.cardHeading}>
                       {title}
                     </h3>
                     <p className="text-base font-normal leading-[22px]">
@@ -273,10 +258,10 @@ export default function AboutPage() {
           >
             <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <p className={sectionTagClassName}>Our Values</p>
+                <p className={typography.eyebrow}>Our Values</p>
                 <h2
                   id="about-recognition-heading"
-                  className={sectionHeadingClassName}
+                  className={typography.sectionHeadingPage}
                 >
                   A charity built on community trust.
                 </h2>
@@ -294,7 +279,7 @@ export default function AboutPage() {
                   className={`${cardSpacingClasses.content} card-interactive flex flex-col rounded-xl bg-[rgba(163,182,180,0.3)]`}
                 >
                   <div className={cardSpacingClasses.headingBody}>
-                    <h3 className="text-xl font-semibold leading-[26px] tracking-[-0.02em] lg:text-2xl">
+                    <h3 className={typography.cardHeading}>
                       {title}
                     </h3>
                     <p className="text-base font-normal leading-[22px]">
@@ -323,20 +308,20 @@ export default function AboutPage() {
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
                 <h2
                   id="about-cta-heading"
-                  className={sectionHeadingClassName}
+                  className={typography.sectionHeadingPage}
                 >
                   Want to learn more or get involved?
                 </h2>
                 <div className="flex flex-row flex-nowrap items-center justify-center gap-4">
                   <Link
                     href="/contact"
-                    className="btn-interactive inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-[#17171c] transition-colors hover:bg-[#f5f5f5] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                    className={buttons.imageCtaPrimary}
                   >
                     Contact Us
                   </Link>
                   <Link
                     href="/donate"
-                    className="btn-interactive inline-flex w-auto shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-white px-4 py-3 text-sm font-semibold leading-[22px] tracking-[-0.04em] text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black md:px-5 md:py-3.5 md:text-base"
+                    className={buttons.imageCtaSecondary}
                   >
                     Donate
                   </Link>
