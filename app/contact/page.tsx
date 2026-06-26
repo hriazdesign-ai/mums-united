@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Building2, HeartHandshake, LifeBuoy, type LucideIcon } from "lucide-react";
 import { ContactForm } from "../components/ContactForm";
 import { SiteHeader } from "../components/SiteHeader";
 
@@ -42,7 +43,7 @@ const iconStrokeProps = {
 
 function AddressIcon() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="size-6 text-[#17171c]">
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="size-3.5 text-[#17171c]">
       <path {...iconStrokeProps} d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z" />
       <circle {...iconStrokeProps} cx="12" cy="10" r="2.5" />
     </svg>
@@ -51,7 +52,7 @@ function AddressIcon() {
 
 function PhoneIcon() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="size-6 text-[#17171c]">
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="size-3.5 text-[#17171c]">
       <path
         {...iconStrokeProps}
         d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.86.3 1.7.54 2.5a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.24 1.64.42 2.5.54A2 2 0 0 1 22 16.92Z"
@@ -62,47 +63,16 @@ function PhoneIcon() {
 
 function EmailIcon() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="size-6 text-[#17171c]">
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="size-3.5 text-[#17171c]">
       <rect {...iconStrokeProps} x="3" y="5" width="18" height="14" rx="2" />
       <path {...iconStrokeProps} d="m3 7 9 6 9-6" />
     </svg>
   );
 }
 
-function SupportIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="size-6 text-[#17171c]">
-      <path {...iconStrokeProps} d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
-      <path {...iconStrokeProps} d="m9 12 2 2 4-4" />
-    </svg>
-  );
-}
-
-function VolunteerIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="size-6 text-[#17171c]">
-      <path {...iconStrokeProps} d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-      <circle {...iconStrokeProps} cx="9" cy="7" r="4" />
-      <path {...iconStrokeProps} d="M22 21v-2a4 4 0 0 0-3-3.87" />
-      <path {...iconStrokeProps} d="M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
-  );
-}
-
-function PartnershipIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="size-6 text-[#17171c]">
-      <path
-        {...iconStrokeProps}
-        d="M7 11V7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4M7 11H5a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2m0-4h10m0 0h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2m-5 0v4"
-      />
-    </svg>
-  );
-}
-
 function ContactInfoIcon({ children }: { children: ReactNode }) {
   return (
-    <span className="flex size-[50px] shrink-0 items-center justify-center rounded-full bg-white">
+    <span className="flex size-[30px] shrink-0 items-center justify-center rounded-full bg-white">
       {children}
     </span>
   );
@@ -136,14 +106,22 @@ function SectionIntro({
   );
 }
 
-const supportOptions = [
+const helpCardIconClassName = "size-9 shrink-0 text-[#17171c]";
+
+const supportOptions: {
+  title: string;
+  description: string;
+  cta: string;
+  href: string;
+  Icon: LucideIcon;
+}[] = [
   {
     title: "Need Support?",
     description:
       "Contact our team and we will help connect you to the right service.",
     cta: "Get Support",
     href: "/support-services",
-    icon: <SupportIcon />,
+    Icon: LifeBuoy,
   },
   {
     title: "Volunteer With Us",
@@ -151,16 +129,16 @@ const supportOptions = [
       "Find out how you can support local families and young people.",
     cta: "Volunteer",
     href: "#contact-form",
-    icon: <VolunteerIcon />,
+    Icon: HeartHandshake,
   },
   {
     title: "Partnership Enquiries",
     description: "Work with us to strengthen communities across Sheffield.",
     cta: "Get In Touch",
     href: "#contact-form",
-    icon: <PartnershipIcon />,
+    Icon: Building2,
   },
-] as const;
+];
 
 export default function ContactPage() {
   return (
@@ -197,24 +175,28 @@ export default function ContactPage() {
             </div>
           </section>
 
-          {/* Get In Touch */}
+          {/* Contact Information + Form */}
           <section
             id="contact"
             aria-labelledby="contact-section-heading"
             className="scroll-reveal flex w-full flex-col"
           >
-            <SectionIntro
-              tag="Get In Touch"
-              heading="Send us a message or reach out directly."
-              headingId="contact-section-heading"
-              description="Our team will respond as soon as we can. If you need urgent support, please call us using the number below."
-            />
-
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
               <aside className="rounded-xl bg-[#e3e9e9] p-8">
-                <h3 className="text-xl font-semibold leading-[22px] tracking-[-0.02em]">
-                  Contact Information
-                </h3>
+                <div className="flex flex-col gap-4">
+                  <p className={sectionTagClassName}>Get In Touch</p>
+                  <h2
+                    id="contact-section-heading"
+                    className="text-xl font-semibold leading-[22px] tracking-[-0.02em]"
+                  >
+                    Reach out directly.
+                  </h2>
+                  <p className="text-sm font-normal leading-5 text-[#17171c]">
+                    Whether you need support, want to volunteer or would like to
+                    speak with the team, use the details below or send us a
+                    message.
+                  </p>
+                </div>
                 <ul className="mt-8 flex flex-col gap-8">
                   <li className="flex gap-4">
                     <ContactInfoIcon>
@@ -323,28 +305,27 @@ export default function ContactPage() {
             />
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-              {supportOptions.map((option) => (
+              {supportOptions.map(({ title, description, cta, href, Icon }) => (
                 <article
-                  key={option.title}
-                  className="card-interactive flex h-full flex-col rounded-xl bg-[#edeae1] px-6 py-10"
+                  key={title}
+                  className="card-interactive flex h-full flex-col gap-10 rounded-xl bg-[#edeae1] px-6 py-10"
                 >
-                  <div
-                    className="flex size-12 shrink-0 items-center justify-center opacity-80 mix-blend-multiply"
+                  <Icon
+                    className={helpCardIconClassName}
+                    strokeWidth={1.5}
                     aria-hidden
-                  >
-                    {option.icon}
-                  </div>
-                  <div className="mt-20 flex min-h-0 flex-1 flex-col gap-8">
+                  />
+                  <div className="flex min-h-0 flex-1 flex-col gap-8">
                     <div className="flex flex-col gap-4">
                       <h3 className="text-2xl font-semibold leading-[22px] tracking-[-0.02em]">
-                        {option.title}
+                        {title}
                       </h3>
                       <p className="text-base font-normal leading-[22px]">
-                        {option.description}
+                        {description}
                       </p>
                     </div>
-                    <Link href={option.href} className={`${helpCardButtonClassName} mt-auto`}>
-                      {option.cta}
+                    <Link href={href} className={`${helpCardButtonClassName} mt-auto`}>
+                      {cta}
                     </Link>
                   </div>
                 </article>

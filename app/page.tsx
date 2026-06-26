@@ -1,15 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { typography } from "@/lib/design-system";
 import { SiteHeader } from "./components/SiteHeader";
-
-const sectionTagClassName =
-  "inline-flex rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-medium leading-4 text-[#17171c]";
-
-const sectionHeadingClassName =
-  "text-[28px] font-semibold leading-[34px] tracking-[-0.02em] md:text-[38px] md:leading-[44px] lg:text-[44px] lg:leading-[52px]";
-
-const heroHeadingClassName =
-  "text-[36px] font-semibold leading-[44px] tracking-[-0.04em] md:text-[52px] md:leading-[62px] lg:text-[68px] lg:leading-[84px]";
 
 const primaryDarkButtonClassName =
   "btn-interactive inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-[#17171c] px-5 py-3.5 text-base font-semibold leading-[22px] text-white transition-colors hover:bg-[#2a2a30] focus:outline-none focus:ring-2 focus:ring-[#17171c] focus:ring-offset-2";
@@ -80,16 +72,18 @@ export default function Home() {
           <section className="flex w-full flex-col">
             <div className="flex flex-col items-center px-0 py-16 text-center md:px-8 md:py-20 lg:px-[60px] lg:py-[80px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <p className={sectionTagClassName}>
+                <p className={typography.eyebrow}>
                   Sheffield Charity Supporting Mothers, Young People and
                   Families
                 </p>
 
-                <h1 className={heroHeadingClassName}>
+                <h1 className={typography.heroHeading}>
                   Helping families feel safer, supported and heard
                 </h1>
 
-                <p className="max-w-[910px] text-base font-normal leading-[22px] md:px-8 lg:px-[150px]">
+                <p
+                  className={`max-w-[910px] ${typography.body} md:px-8 lg:px-[150px]`}
+                >
                   Mums United supports vulnerable young people, mothers and
                   local communities affected by youth violence, exploitation and
                   hardship. Through mentoring, workshops, safe spaces and
@@ -138,8 +132,8 @@ export default function Home() {
           >
             <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <p className={sectionTagClassName}>Our Impact</p>
-                <h2 id="impact-heading" className={sectionHeadingClassName}>
+                <p className={typography.eyebrow}>Our Impact</p>
+                <h2 id="impact-heading" className={typography.sectionHeading}>
                   Creating safer, stronger communities together.
                 </h2>
               </div>
@@ -151,14 +145,14 @@ export default function Home() {
                   key={title}
                   className="card-interactive flex flex-col gap-20 rounded-xl bg-[#446169] px-6 py-10 lg:px-6 lg:py-10"
                 >
-                  <p className="text-[56px] font-light leading-none tracking-[-0.04em] text-white md:text-[64px] lg:text-[76px]">
+                  <p
+                    className={`${typography.statisticNumber} text-white`}
+                  >
                     {number}
                   </p>
                   <div className="flex flex-col gap-[18px] text-white">
-                    <h3 className="text-xl font-semibold leading-[26px] tracking-[-0.02em] lg:text-2xl lg:leading-[28px]">
-                      {title}
-                    </h3>
-                    <p className="text-base font-normal leading-[24px]">
+                    <h3 className={typography.cardHeading}>{title}</h3>
+                    <p className={`${typography.body} leading-[24px]`}>
                       {text}
                     </p>
                   </div>
@@ -174,14 +168,16 @@ export default function Home() {
           >
             <div className="flex w-full flex-col items-center px-0 pb-[60px] text-center md:pt-20 lg:px-[60px]">
               <div className="flex w-full max-w-[1090px] flex-col items-center gap-8">
-                <p className={sectionTagClassName}>Featured Programmes</p>
+                <p className={typography.eyebrow}>Featured Programmes</p>
                 <h2
                   id="featured-programmes-heading"
-                  className={sectionHeadingClassName}
+                  className={typography.sectionHeading}
                 >
                   Practical support for every stage of family life
                 </h2>
-                <p className="mx-auto w-full max-w-[790px] text-base font-normal leading-[22px]">
+                <p
+                  className={`mx-auto w-full max-w-[790px] ${typography.body}`}
+                >
                   Our programmes create safe, trusted spaces where families and
                   young people can find guidance, connection and encouragement.
                 </p>
@@ -193,14 +189,14 @@ export default function Home() {
                 <article className="card-interactive overflow-hidden rounded-xl bg-white">
                   <div className="flex flex-col items-start px-[32px] pb-[42px] pt-[42px]">
                     <div className="flex w-full flex-col gap-[24px]">
-                      <p className="text-base font-normal leading-4">
+                      <p className={typography.blockLabel}>
                         Featured current programme
                       </p>
                       <div className="flex flex-col gap-[12px]">
-                        <h3 className="text-2xl font-semibold leading-8 tracking-[-0.02em] lg:text-[32px] lg:leading-[32px]">
+                        <h3 className={typography.cardHeadingFeatured}>
                           Project Serenity
                         </h3>
-                        <p className="text-base font-normal leading-[22px]">
+                        <p className={typography.body}>
                           Free after-school boxing sessions and positive
                           activities supporting young people with confidence,
                           discipline and wellbeing.
@@ -242,12 +238,10 @@ export default function Home() {
                     >
                       <div className="flex h-full flex-col items-start gap-[40px] p-[32px]">
                         <div className="flex flex-col gap-[12px]">
-                          <h3 className="text-xl font-semibold leading-8 tracking-[-0.02em] lg:text-2xl lg:leading-[32px]">
+                          <h3 className={typography.cardHeadingProgramme}>
                             {title}
                           </h3>
-                          <p className="text-base font-normal leading-[22px]">
-                            {text}
-                          </p>
+                          <p className={typography.body}>{text}</p>
                         </div>
                         <Link
                           href="/programmes"
@@ -275,12 +269,14 @@ export default function Home() {
           >
             <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <p className={sectionTagClassName}>Trusted Across Sheffield</p>
-                <h2 id="featured-in-heading" className={sectionHeadingClassName}>
+                <p className={typography.eyebrow}>Trusted Across Sheffield</p>
+                <h2 id="featured-in-heading" className={typography.sectionHeading}>
                   Recognised for supporting families, young people and
                   communities.
                 </h2>
-                <p className="mx-auto w-full max-w-[910px] text-base font-normal leading-[22px] tracking-[-0.02em]">
+                <p
+                  className={`mx-auto w-full max-w-[910px] ${typography.body} tracking-[-0.02em]`}
+                >
                   Mums United has been featured across local media, community
                   initiatives and public events, helping raise awareness, share
                   stories and champion positive change.
@@ -305,10 +301,8 @@ export default function Home() {
                       />
                     </div>
                     <div className="flex flex-col gap-5">
-                      <h3 className="text-xl font-semibold leading-[26px] tracking-[-0.02em] lg:text-2xl lg:leading-[28px]">
-                        {title}
-                      </h3>
-                      <p className="text-base font-normal leading-[24px]">
+                      <h3 className={typography.cardHeading}>{title}</h3>
+                      <p className={`${typography.body} leading-[24px]`}>
                         {text}
                       </p>
                     </div>
@@ -320,7 +314,9 @@ export default function Home() {
                 <Link href="/media" className={primaryDarkButtonClassName}>
                   View Media & Stories
                 </Link>
-                <p className="max-w-[1330px] text-center text-base font-normal leading-[22px] tracking-[-0.02em]">
+                <p
+                  className={`max-w-[1330px] text-center ${typography.body} tracking-[-0.02em]`}
+                >
                   Explore media appearances, podcast episodes and community
                   stories.
                 </p>
@@ -343,16 +339,18 @@ export default function Home() {
             />
             <div className="home-cta-content-padding relative z-10 flex w-full flex-col items-center text-center text-white md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
               <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
-                <p className="text-base font-semibold leading-4">
+                <p className={`${typography.ctaEyebrow} text-white`}>
                   SUPPORT MUMS UNITED
                 </p>
                 <h2
                   id="donate-cta-heading"
-                  className={sectionHeadingClassName}
+                  className={typography.sectionHeading}
                 >
                   Help a family know they are not facing this alone.
                 </h2>
-                <p className="max-w-[910px] text-base font-semibold leading-[24px] md:px-8 lg:px-[150px]">
+                <p
+                  className={`max-w-[910px] ${typography.bodySemibold} md:px-8 lg:px-[150px]`}
+                >
                   Your donation helps Mums United continue supporting mothers,
                   young people and families across Sheffield through practical
                   help, trusted relationships and community support.
