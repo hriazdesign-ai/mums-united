@@ -485,7 +485,7 @@ function ArchiveMediaItem({ item }: { item: MediaItem }) {
           href={item.href}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${primaryDarkButtonClassName} shrink-0 self-start px-5 py-2.5`}
+          className={`${primaryDarkButtonClassName} mt-6 shrink-0 self-start px-5 py-2.5 md:mt-0`}
         >
           {getArchiveActionLabel(item.type)}
         </a>
