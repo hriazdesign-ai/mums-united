@@ -1,15 +1,18 @@
 import { buttons, cardSpacingClasses, typography } from "@/lib/design-system";
-import type { Metadata } from "next";
+import { DONATE_ANCHOR, DONATE_SECTION_ID } from "@/lib/donate";
+import { containers, imageCrops, scrollAnchor, spacing } from "@/lib/layout";
+import { createPageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { DonationAmountSelector } from "../components/DonationAmountSelector";
 import { SiteHeader } from "../components/SiteHeader";
 
-export const metadata: Metadata = {
-  title: "Donate | Mums United",
+export const metadata = createPageMetadata({
+  title: "Donate",
   description:
     "Support Mums United's work with mothers, young people and families in Sheffield.",
-};
+  path: "/donate",
+});
 
 const cardTitleClassName = `min-h-[52px] ${typography.cardHeading}`;
 
@@ -71,8 +74,8 @@ function SectionIntro({
   description?: string;
 }) {
   return (
-    <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
-      <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+    <div className={`flex flex-col items-center px-0 text-center md:px-8 lg:px-[60px] ${spacing.sectionIntroBottom}`}>
+      <div className={containers.contentCentered}>
         <p className={typography.eyebrow}>{tag}</p>
         <h2 id={headingId} className={typography.sectionHeadingPage}>
           {heading}
@@ -117,7 +120,7 @@ function ImpactCard({
       <div className={`${cardSpacingClasses.tagsToHeading} flex flex-col`}>
         <p className="text-base font-normal leading-[22px] text-white">{body}</p>
         <Link
-          href="#final-donation"
+          href={DONATE_ANCHOR}
           aria-label={`Donate ${amount}`}
           className={`${impactDonateButtonClassName} ${cardSpacingClasses.bodyToButton}`}
         >
@@ -133,25 +136,25 @@ export default function DonatePage() {
     <>
       <SiteHeader currentPath="/donate" />
 
-      <main className="bg-white pb-[60px] text-[#17171c] md:pb-20">
+      <main className={`bg-white text-[#17171c] ${spacing.mainBottom}`}>
         <div className="relative h-[280px] w-full overflow-hidden md:h-[460px] lg:h-[520px]">
           <Image
             src="/donation-feature.jpg"
             alt="Mums United supporting families and communities"
             fill
-            className="object-cover object-center"
+            className={imageCrops.standard}
             priority
             sizes="100vw"
           />
         </div>
 
-        <div className="mx-auto flex w-full max-w-[1330px] flex-col gap-[60px] px-6 md:gap-20 lg:px-[60px]">
+        <div className={containers.pageStack}>
           {/* Hero card + quick donation */}
           <section
             aria-labelledby="hero-donation-card-heading"
-            className="relative z-10 -mt-20 flex flex-col gap-[60px] md:-mt-28 md:gap-20 lg:-mt-32"
+            className={`relative z-10 -mt-20 flex flex-col md:-mt-28 lg:-mt-32 ${spacing.section}`}
           >
-            <div className="rounded-3xl bg-white px-6 py-16 text-center shadow-[0_4px_4px_rgba(0,0,0,0.12)] md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
+            <div className={`rounded-3xl bg-white px-6 text-center shadow-[0_4px_4px_rgba(0,0,0,0.12)] md:px-12 lg:px-[60px] ${spacing.heroPadding}`}>
               <div className="mx-auto flex w-full max-w-[830px] flex-col items-center gap-8">
                 <div className="flex w-full flex-col items-center gap-5">
                   <p className={typography.eyebrow}>Donate to Mums United</p>
@@ -166,7 +169,7 @@ export default function DonatePage() {
                 </p>
                 <div className="flex flex-row flex-wrap items-center justify-center gap-4 sm:gap-7">
                   <Link
-                    href="#donation-options"
+                    href={DONATE_ANCHOR}
                     className={buttons.primaryDark}
                   >
                     Donate Now
@@ -181,7 +184,10 @@ export default function DonatePage() {
               </div>
             </div>
 
-            <aside className="rounded-xl bg-[#446169] p-8 lg:p-10">
+            <aside
+              id={DONATE_SECTION_ID}
+              className={`${scrollAnchor} rounded-xl bg-[#446169] p-8 lg:p-10`}
+            >
               <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-[60px]">
                 <div className="flex flex-1 flex-col items-center gap-[18px] text-center text-white">
                   <span className="inline-flex w-fit rounded bg-[rgba(163,182,180,0.3)] px-3 py-2 text-[12px] font-normal leading-4 text-white">
@@ -237,10 +243,7 @@ export default function DonatePage() {
               description="These examples are placeholders until live donation data and programme costs are confirmed."
             />
 
-            <div
-              id="donation-options"
-              className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
-            >
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {impactExamples.map(([amount, text]) => (
                 <ImpactCard key={amount} amount={amount} body={text} />
               ))}
@@ -277,11 +280,11 @@ export default function DonatePage() {
               src="/donations-cta-figma.jpg"
               alt="Hands stacked together in a gesture of community support"
               fill
-              className="object-cover object-center opacity-60"
+              className={`${imageCrops.emotionalCta} opacity-60`}
               sizes="100vw"
             />
             <div className="home-cta-content-padding relative z-10 flex w-full flex-col items-center text-center text-white md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+              <div className={containers.contentCentered}>
                 <h2 id="donate-cta-heading" className={typography.sectionHeadingPage}>
                   Help a family know they are not facing this alone.
                 </h2>
@@ -292,7 +295,7 @@ export default function DonatePage() {
                 </p>
                 <div className="image-cta-buttons">
                   <Link
-                    href="#donation-options"
+                    href={DONATE_ANCHOR}
                     className={buttons.imageCtaPrimary}
                   >
                     Donate Now

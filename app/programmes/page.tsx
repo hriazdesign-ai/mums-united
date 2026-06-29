@@ -1,6 +1,8 @@
 "use client";
 
 import { buttons, cardSpacingClasses, typography } from "@/lib/design-system";
+import { DONATE_HREF } from "@/lib/donate";
+import { containers, imageCrops, sectionMarginTop, spacing } from "@/lib/layout";
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -547,7 +549,7 @@ function ProgrammeCard({ programme }: { programme: Programme }) {
   return (
     <article
       id={programme.id}
-      className="card-interactive flex flex-col overflow-hidden rounded-xl bg-white"
+      className="card-interactive flex h-full min-w-0 flex-col overflow-hidden rounded-xl bg-white"
     >
       <div className="image-interactive relative h-[222px] w-full overflow-hidden">
         {programme.image ? (
@@ -564,13 +566,13 @@ function ProgrammeCard({ programme }: { programme: Programme }) {
           </div>
         )}
       </div>
-      <div className={cardSpacingClasses.contentWithImage}>
+      <div className={`${cardSpacingClasses.contentWithImage} min-w-0`}>
         <ProgrammeBadges
           status={programme.status}
           category={programme.category}
         />
-        <div className={`${cardSpacingClasses.headingBody} ${cardSpacingClasses.tagsToHeading}`}>
-          <h3 className="text-2xl font-semibold leading-[26px] tracking-[-0.02em]">
+        <div className={`${cardSpacingClasses.headingBody} ${cardSpacingClasses.tagsToHeading} min-w-0`}>
+          <h3 className="break-words text-2xl font-semibold leading-[26px] tracking-[-0.02em]">
             {programme.title}
           </h3>
           <p className="text-base font-normal leading-[22px]">
@@ -636,12 +638,12 @@ export default function ProgrammesPage() {
     <>
       <SiteHeader currentPath="/programmes" />
 
-      <main className="bg-white pb-[60px] text-[#17171c] md:pb-20">
-        <div className="mx-auto flex w-full max-w-[1330px] flex-col px-6 lg:px-[60px]">
+      <main className={`bg-white text-[#17171c] ${spacing.mainBottom}`}>
+        <div className={`${containers.page} flex flex-col`}>
           {/* Hero + Featured Programme */}
           <section className="flex w-full flex-col">
-            <div className="flex flex-col items-center px-0 py-16 text-center md:px-8 md:py-20 lg:px-[60px] lg:py-[80px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+            <div className={`flex flex-col items-center px-0 text-center md:px-8 lg:px-[60px] ${spacing.heroPadding}`}>
+              <div className={containers.contentCentered}>
                 <p className={typography.eyebrow}>Programmes &amp; Workshops</p>
 
                 <h1 className={typography.pageHeading}>
@@ -703,7 +705,7 @@ export default function ProgrammesPage() {
           {/* Programme Archive */}
           <section
             aria-labelledby="programme-archive-heading"
-            className="mt-[60px] flex w-full flex-col gap-10 lg:mt-20"
+            className={`flex w-full flex-col gap-10 ${sectionMarginTop}`}
           >
             <div className="scroll-reveal flex flex-col gap-8">
               <span className="inline-flex w-fit items-center self-start rounded bg-[rgba(163,182,180,0.3)] px-3 py-1 text-xs font-normal leading-4 text-[#17171c]">
@@ -775,18 +777,18 @@ export default function ProgrammesPage() {
           {/* Bottom CTA */}
           <section
             aria-labelledby="programmes-cta-heading"
-            className="scroll-reveal relative mt-[60px] flex min-h-[400px] items-center justify-center overflow-hidden rounded-xl md:h-[500px] lg:mt-20"
+            className={`scroll-reveal relative flex min-h-[400px] items-center justify-center overflow-hidden rounded-xl md:h-[500px] ${sectionMarginTop}`}
           >
             <div className="absolute inset-0 rounded-xl bg-black" aria-hidden />
             <Image
               src="/programmes-cta-figma.jpg"
               alt="Hands stacked together in a gesture of community support"
               fill
-              className="object-cover object-center opacity-60"
+              className={`${imageCrops.emotionalCta} opacity-60`}
               sizes="100vw"
             />
             <div className="home-cta-content-padding relative z-10 flex w-full flex-col items-center text-center text-white md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+              <div className={containers.contentCentered}>
                 <h2
                   id="programmes-cta-heading"
                   className={typography.sectionHeadingPage}
@@ -806,7 +808,7 @@ export default function ProgrammesPage() {
                     Contact Us
                   </Link>
                   <Link
-                    href="/donate"
+                    href={DONATE_HREF}
                     className={`${buttons.imageCtaSecondary} image-cta-btn`}
                   >
                     Donate

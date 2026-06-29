@@ -5,6 +5,7 @@ import {
   cardSpacingClasses,
   typography,
 } from "@/lib/design-system";
+import { DONATE_ANCHOR } from "@/lib/donate";
 import { Card } from "./Card";
 
 type ContentCardProps = {
@@ -46,7 +47,7 @@ type ImpactCardProps = {
 export function ImpactCard({
   amount,
   body,
-  donateHref = "#final-donation",
+  donateHref = DONATE_ANCHOR,
   donateLabel,
   className = "",
 }: ImpactCardProps) {

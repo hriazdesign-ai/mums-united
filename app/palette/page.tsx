@@ -1,3 +1,12 @@
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata({
+  title: "Colour Palette Preview",
+  description: "Internal colour palette reference for Mums United design tokens.",
+  path: "/palette",
+  noIndex: true,
+});
+
 const colors = [
   {
     name: "Primary",

@@ -1,6 +1,15 @@
 "use client";
 
 import { buttons, cardSpacingClasses, typography } from "@/lib/design-system";
+import { DONATE_HREF } from "@/lib/donate";
+import {
+  containers,
+  imageCrops,
+  scrollAnchor,
+  sectionMarginTop,
+  sectionPaddingBottom,
+  spacing,
+} from "@/lib/layout";
 import Image from "next/image";
 import { useState } from "react";
 import { SiteHeader } from "../components/SiteHeader";
@@ -515,16 +524,16 @@ export default function MediaPage() {
     <>
       <SiteHeader currentPath="/media" />
 
-      <main className="bg-white pb-[60px] text-[#17171c] md:pb-20">
-        <div className="mx-auto w-full max-w-[1330px] px-6 lg:px-[60px]">
+      <main className={`bg-white text-[#17171c] ${spacing.mainBottom}`}>
+        <div className={containers.page}>
           {/* Hero + Featured Media */}
           <section
             id="featured-media"
             aria-labelledby="featured-media-heading"
             className="flex w-full flex-col"
           >
-            <div className="flex flex-col items-center px-0 py-16 text-center md:px-8 md:py-20 lg:px-[60px] lg:py-[80px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+            <div className={`flex flex-col items-center px-0 text-center md:px-8 lg:px-[60px] ${spacing.heroPadding}`}>
+              <div className={containers.contentCentered}>
                 <span className={typography.eyebrow}>Media &amp; Stories</span>
 
                 <h1 className={typography.pageHeading}>
@@ -554,8 +563,8 @@ export default function MediaPage() {
               </div>
             </div>
 
-            <div className="scroll-reveal flex flex-col items-center px-0 pb-10 text-center md:px-8 lg:px-[60px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+            <div className={`scroll-reveal flex flex-col items-center px-0 pb-10 text-center md:px-8 lg:px-[60px]`}>
+              <div className={containers.contentCentered}>
                 <span className={typography.eyebrow}>Featured Media</span>
                 <h2
                   id="featured-media-heading"
@@ -578,11 +587,11 @@ export default function MediaPage() {
         <section
           id="media-archive"
           aria-labelledby="media-archive-heading"
-          className="scroll-mt-28 mt-[60px] bg-[#efeadf] pb-[60px] md:pb-[80px] lg:mt-20"
+          className={`${scrollAnchor} ${sectionMarginTop} bg-[#efeadf] ${sectionPaddingBottom}`}
         >
-          <div className="mx-auto w-full max-w-[1330px] px-6 pt-[60px] lg:px-[60px] lg:pt-20">
+          <div className={`${containers.page} pt-[60px] lg:pt-20`}>
             <div className="scroll-reveal flex flex-col items-center pb-10 text-center">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+              <div className={containers.contentCentered}>
                 <span className={typography.eyebrow}>
                   Media Timeline / Archive
                 </span>
@@ -654,9 +663,14 @@ export default function MediaPage() {
             </div>
 
             {hasMoreArchiveItems ? (
-              <div className="mt-10 flex justify-center">
+              <div
+                className="mt-10 flex justify-center"
+                aria-live="polite"
+                aria-atomic="true"
+              >
                 <button
                   type="button"
+                  aria-label={`Load more media items, showing ${visibleArchiveMedia.length} of ${filteredArchiveMedia.length}`}
                   onClick={() =>
                     setVisibleArchiveCount((count) => count + archivePageSize)
                   }
@@ -669,34 +683,37 @@ export default function MediaPage() {
           </div>
         </section>
 
-        <div className="mx-auto w-full max-w-[1330px] px-6 lg:px-[60px]">
+        <div className={containers.page}>
           {/* Podcast */}
           <section
             id="podcast"
             aria-labelledby="podcast-heading"
-            className="scroll-reveal scroll-mt-28 relative flex min-h-[400px] items-center justify-center overflow-hidden rounded-xl md:h-[500px]"
+            className={`scroll-reveal ${scrollAnchor} relative flex min-h-[400px] items-center justify-center overflow-hidden rounded-xl md:h-[500px]`}
           >
             <div className="absolute inset-0 rounded-xl bg-black" aria-hidden />
             <Image
               src="/media/media-podcast-figma.jpg"
-              alt=""
+              alt="Community members recording a podcast discussion"
               fill
-              className="object-cover object-center opacity-60"
+              className={`${imageCrops.standard} opacity-60`}
               sizes="100vw"
             />
             <div className="home-cta-content-padding relative z-10 flex w-full justify-center md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8 bg-white px-6 py-[60px] text-center md:px-12">
+              <div className={`${containers.contentCentered} bg-white px-6 py-[60px] text-center md:px-12`}>
                 <h2
                   id="podcast-heading"
                   className={typography.sectionHeadingPage}
                 >
                   Listen to our podcast
                 </h2>
-                <p className="max-w-[910px] text-base font-normal leading-[22px] md:px-8 lg:px-[150px]">
+                <p className={`${containers.prose} text-base font-normal leading-[22px] md:px-8 lg:px-[150px]`}>
                   Hear conversations from the community, families and people
                   working to create positive change.
                 </p>
-                <a href="#" className={primaryDarkButtonClassName}>
+                <a
+                  href="#media-archive"
+                  className={primaryDarkButtonClassName}
+                >
                   Listen to Podcast
                 </a>
               </div>
@@ -707,10 +724,10 @@ export default function MediaPage() {
           <section
             id="recognition"
             aria-labelledby="recognition-heading"
-            className="scroll-reveal scroll-mt-28 mt-[60px] flex w-full flex-col lg:mt-20"
+            className={`scroll-reveal ${scrollAnchor} flex w-full flex-col ${sectionMarginTop}`}
           >
-            <div className="flex flex-col items-center px-0 pb-10 text-center md:px-8 lg:px-[60px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+            <div className={`flex flex-col items-center px-0 pb-10 text-center md:px-8 lg:px-[60px]`}>
+              <div className={containers.contentCentered}>
                 <span className={typography.eyebrow}>Recognition</span>
                 <h2
                   id="recognition-heading"
@@ -765,10 +782,10 @@ export default function MediaPage() {
           <section
             id="community-stories"
             aria-labelledby="community-stories-heading"
-            className="scroll-reveal scroll-mt-28 mt-[60px] flex w-full flex-col lg:mt-20"
+            className={`scroll-reveal flex w-full flex-col ${scrollAnchor} ${sectionMarginTop}`}
           >
-            <div className="flex flex-col items-center px-0 pb-10 text-center md:px-8 lg:px-[60px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+            <div className={`flex flex-col items-center px-0 pb-10 text-center md:px-8 lg:px-[60px]`}>
+              <div className={containers.contentCentered}>
                 <span className={typography.eyebrow}>Community Stories</span>
                 <h2
                   id="community-stories-heading"
@@ -807,18 +824,18 @@ export default function MediaPage() {
           {/* Bottom CTA */}
           <section
             aria-labelledby="media-cta-heading"
-            className="scroll-reveal relative mt-[60px] flex min-h-[400px] items-center justify-center overflow-hidden rounded-xl md:h-[500px] lg:mt-20"
+            className={`scroll-reveal relative flex min-h-[400px] items-center justify-center overflow-hidden rounded-xl md:h-[500px] ${sectionMarginTop}`}
           >
             <div className="absolute inset-0 rounded-xl bg-black" aria-hidden />
             <Image
               src="/media/media-cta-figma.jpg"
               alt="Hands stacked together in a gesture of community support"
               fill
-              className="object-cover object-center opacity-60"
+              className={`${imageCrops.emotionalCta} opacity-60`}
               sizes="100vw"
             />
             <div className="home-cta-content-padding relative z-10 flex w-full flex-col items-center text-center text-white md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+              <div className={containers.contentCentered}>
                 <h2
                   id="media-cta-heading"
                   className={typography.sectionHeadingPage}
@@ -837,7 +854,7 @@ export default function MediaPage() {
                     Contact Us
                   </a>
                   <a
-                    href="/donate"
+                    href={DONATE_HREF}
                     className={`${buttons.imageCtaSecondary} image-cta-btn`}
                   >
                     Donate

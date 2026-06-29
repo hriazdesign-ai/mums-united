@@ -1,5 +1,7 @@
 import { buttons, cardSpacingClasses, typography } from "@/lib/design-system";
-import type { Metadata } from "next";
+import { DONATE_HREF } from "@/lib/donate";
+import { containers, imageCrops, spacing } from "@/lib/layout";
+import { createPageMetadata } from "@/lib/seo";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,11 +9,12 @@ import { Building2, HeartHandshake, LifeBuoy, type LucideIcon } from "lucide-rea
 import { ContactForm } from "../components/ContactForm";
 import { SiteHeader } from "../components/SiteHeader";
 
-export const metadata: Metadata = {
-  title: "Contact Us | Mums United",
+export const metadata = createPageMetadata({
+  title: "Contact Us",
   description:
     "Get in touch with Mums United for support, volunteering, partnerships or general enquiries in Sheffield.",
-};
+  path: "/contact",
+});
 
 const mapEmbedSrc =
   "https://maps.google.com/maps?q=Sharrow+Community+Forum,+South+View+Road,+Sheffield,+S7+1DB&hl=en&z=15&output=embed";
@@ -73,8 +76,8 @@ function SectionIntro({
   description?: string;
 }) {
   return (
-    <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
-      <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+    <div className={`flex flex-col items-center px-0 text-center md:px-8 lg:px-[60px] ${spacing.sectionIntroBottom}`}>
+      <div className={containers.contentCentered}>
         <p className={typography.eyebrow}>{tag}</p>
         <h2 id={headingId} className={typography.sectionHeadingPage}>
           {heading}
@@ -128,12 +131,12 @@ export default function ContactPage() {
     <>
       <SiteHeader currentPath="/contact" />
 
-      <main className="bg-white pb-[60px] text-[#17171c] md:pb-20">
-        <div className="mx-auto flex w-full max-w-[1330px] flex-col gap-[60px] px-6 md:gap-20 lg:px-[60px]">
+      <main className={`bg-white text-[#17171c] ${spacing.mainBottom}`}>
+        <div className={containers.pageStack}>
           {/* Hero */}
           <section className="flex w-full flex-col">
-            <div className="flex flex-col items-center px-0 pt-16 text-center md:px-8 md:pt-20 lg:px-[60px] lg:pt-[80px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+            <div className={`flex flex-col items-center px-0 text-center md:px-8 lg:px-[60px] ${spacing.heroPaddingTop}`}>
+              <div className={containers.contentCentered}>
                 <p className={typography.eyebrow}>Contact Us</p>
 
                 <h1 className={typography.pageHeading}>
@@ -150,7 +153,7 @@ export default function ContactPage() {
                   <Link href="#contact-form" className={buttons.primaryDark}>
                     Get Support
                   </Link>
-                  <Link href="/donate" className={buttons.outlineDark}>
+                  <Link href={DONATE_HREF} className={buttons.outlineDark}>
                     Donate
                   </Link>
                 </div>
@@ -326,11 +329,11 @@ export default function ContactPage() {
               src="/Donations-2.jpg"
               alt="Hands stacked together in a gesture of community support"
               fill
-              className="object-cover object-center opacity-60"
+              className={`${imageCrops.emotionalCta} opacity-60`}
               sizes="100vw"
             />
             <div className="home-cta-content-padding relative z-10 flex w-full flex-col items-center text-center text-white md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+              <div className={containers.contentCentered}>
                 <h2 id="contact-cta-heading" className={typography.sectionHeadingPage}>
                   Together we can build stronger communities.
                 </h2>
@@ -347,7 +350,7 @@ export default function ContactPage() {
                     Contact Us
                   </Link>
                   <Link
-                    href="/donate"
+                    href={DONATE_HREF}
                     className={buttons.imageCtaSecondary}
                   >
                     Donate

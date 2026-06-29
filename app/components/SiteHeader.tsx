@@ -1,6 +1,7 @@
 "use client";
 
 import { buttons } from "@/lib/design-system";
+import { DONATE_HREF } from "@/lib/donate";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
@@ -20,7 +21,7 @@ const navigationLinks = [
   ["Support Services", "/support-services"],
   ["Programmes", "/programmes"],
   ["Media", "/media"],
-  ["Donate", "/donate"],
+  ["Donate", DONATE_HREF],
   ["Contact", "/contact"],
 ] as const;
 
@@ -41,7 +42,8 @@ function NavLink({
   onNavigate?: () => void;
   className?: string;
 }) {
-  const isActive = href === currentPath;
+  const pathname = href.split("#")[0];
+  const isActive = pathname === currentPath;
 
   return (
     <Link
@@ -82,6 +84,14 @@ function MenuIcon({ open }: { open: boolean }) {
 export function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isCompact, setIsCompact] = useState(false);
+  const [previousPath, setPreviousPath] = useState(currentPath);
+
+  if (currentPath !== previousPath) {
+    setPreviousPath(currentPath);
+    if (menuOpen) {
+      setMenuOpen(false);
+    }
+  }
 
   const closeMenu = useCallback(() => {
     setMenuOpen(false);
@@ -112,10 +122,6 @@ export function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [menuOpen, closeMenu]);
-
-  useEffect(() => {
-    closeMenu();
-  }, [currentPath, closeMenu]);
 
   useEffect(() => {
     if (!menuOpen) {
@@ -213,7 +219,7 @@ export function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
 
           <div className="flex shrink-0 items-center gap-3 sm:gap-4">
             <Link
-              href="/donate"
+              href={DONATE_HREF}
               className={`site-header__donate ${buttons.primaryDark} shrink-0`}
             >
               Donate

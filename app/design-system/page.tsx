@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import {
   buttons,
@@ -9,12 +8,14 @@ import {
   spacing,
   typography,
 } from "@/lib/design-system";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Design System Preview | Mums United",
+export const metadata = createPageMetadata({
+  title: "Design System Preview",
   description: "Internal visual reference for Mums United design tokens.",
-  robots: { index: false, follow: false },
-};
+  path: "/design-system",
+  noIndex: true,
+});
 
 const siteColours = [
   { name: "Ink", hex: "#17171c", note: "Primary text & dark buttons" },

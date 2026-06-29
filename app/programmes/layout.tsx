@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Programmes | Mums United",
+export const metadata = createPageMetadata({
+  title: "Programmes",
   description:
     "Explore Mums United programmes, workshops and community initiatives supporting families and young people across Sheffield.",
-};
+  path: "/programmes",
+});
 
 export default function ProgrammesLayout({
   children,

@@ -1,7 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { buttons, cardSpacingClasses, typography } from "@/lib/design-system";
+import { DONATE_HREF } from "@/lib/donate";
+import { containers, imageCrops, spacing } from "@/lib/layout";
+import { createPageMetadata, siteConfig } from "@/lib/seo";
 import { SiteHeader } from "./components/SiteHeader";
+
+export const metadata = createPageMetadata({
+  title: siteConfig.name,
+  description: siteConfig.description,
+  path: "/",
+});
 
 const impactStats = [
   [
@@ -52,14 +61,14 @@ const mediaCards = [
 export default function Home() {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader currentPath="/" />
 
-      <main className="bg-white pb-[60px] text-[#17171c] md:pb-20">
-        <div className="mx-auto flex w-full max-w-[1330px] flex-col gap-[60px] px-6 md:gap-20 lg:px-[60px]">
+      <main className={`bg-white text-[#17171c] ${spacing.mainBottom}`}>
+        <div className={containers.pageStack}>
           {/* Hero */}
           <section className="flex w-full flex-col">
-            <div className="flex flex-col items-center px-0 py-16 text-center md:px-8 md:py-20 lg:px-[60px] lg:py-[80px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+            <div className={`flex flex-col items-center px-0 text-center md:px-8 lg:px-[60px] ${spacing.heroPadding}`}>
+              <div className={containers.contentCentered}>
                 <p className={typography.eyebrow}>
                   Sheffield Charity Supporting Mothers, Young People and
                   Families
@@ -79,7 +88,7 @@ export default function Home() {
                 </p>
 
                 <div className="flex flex-row flex-wrap items-center justify-center gap-4 sm:gap-7">
-                  <Link href="/donate" className={buttons.primaryDark}>
+                  <Link href={DONATE_HREF} className={buttons.primaryDark}>
                     Donate
                   </Link>
                   <Link href="/contact" className={buttons.outlineDark}>
@@ -118,8 +127,8 @@ export default function Home() {
             aria-labelledby="impact-heading"
             className="scroll-reveal flex w-full flex-col"
           >
-            <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+            <div className={`flex flex-col items-center px-0 text-center md:px-8 lg:px-[60px] ${spacing.sectionIntroBottom}`}>
+              <div className={containers.contentCentered}>
                 <p className={typography.eyebrow}>Our Impact</p>
                 <h2 id="impact-heading" className={typography.sectionHeading}>
                   Creating safer, stronger communities together.
@@ -150,8 +159,8 @@ export default function Home() {
             aria-labelledby="featured-programmes-heading"
             className="scroll-reveal flex w-full flex-col items-center rounded-xl bg-[rgba(237,234,225,0.7)] px-6 max-md:py-[60px] md:px-8 md:pb-20 lg:px-[60px]"
           >
-            <div className="flex w-full flex-col items-center px-0 pb-[60px] text-center md:pt-20 lg:px-[60px]">
-              <div className="flex w-full max-w-[1090px] flex-col items-center gap-8">
+            <div className={`flex w-full flex-col items-center px-0 text-center md:px-8 lg:px-[60px] ${spacing.sectionIntroBottom} md:pt-20`}>
+              <div className={`${containers.contentCentered} max-w-[1090px]`}>
                 <p className={typography.eyebrow}>Featured Programmes</p>
                 <h2
                   id="featured-programmes-heading"
@@ -168,7 +177,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex w-full max-w-[1210px] flex-col items-center gap-[60px]">
+            <div className={`flex w-full flex-col items-center ${spacing.section}`}>
               <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
                 <article className="card-interactive overflow-hidden rounded-xl bg-white">
                   <div className="flex flex-col items-start p-8">
@@ -247,8 +256,8 @@ export default function Home() {
             aria-labelledby="featured-in-heading"
             className="scroll-reveal flex w-full flex-col"
           >
-            <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+            <div className={`flex flex-col items-center px-0 text-center md:px-8 lg:px-[60px] ${spacing.sectionIntroBottom}`}>
+              <div className={containers.contentCentered}>
                 <p className={typography.eyebrow}>Trusted Across Sheffield</p>
                 <h2 id="featured-in-heading" className={typography.sectionHeading}>
                   Recognised for supporting families, young people and
@@ -275,6 +284,7 @@ export default function Home() {
                       <Image
                         src={icon}
                         alt=""
+                        aria-hidden
                         width={48}
                         height={48}
                         className="size-12 object-contain mix-blend-multiply"
@@ -312,11 +322,11 @@ export default function Home() {
               src="/donations-cta-figma.jpg"
               alt="Hands stacked together in a gesture of community support"
               fill
-              className="object-cover object-center opacity-60"
+              className={`${imageCrops.emotionalCta} opacity-60`}
               sizes="100vw"
             />
             <div className="home-cta-content-padding relative z-10 flex w-full flex-col items-center text-center text-white md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+              <div className={containers.contentCentered}>
                 <p className={`${typography.ctaEyebrow} text-white`}>
                   SUPPORT MUMS UNITED
                 </p>
@@ -335,13 +345,13 @@ export default function Home() {
                 </p>
                 <div className="flex flex-row flex-nowrap items-center justify-center gap-4">
                   <Link
-                    href="/donate"
+                    href={DONATE_HREF}
                     className={buttons.imageCtaPrimary}
                   >
                     Donate Now
                   </Link>
                   <Link
-                    href="/impact"
+                    href="/about#about-impact-heading"
                     className={buttons.imageCtaSecondary}
                   >
                     Learn About Our Impact

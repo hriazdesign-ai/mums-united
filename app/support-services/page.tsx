@@ -1,14 +1,17 @@
 import { buttons, cardSpacingClasses, typography } from "@/lib/design-system";
-import type { Metadata } from "next";
+import { DONATE_HREF } from "@/lib/donate";
+import { containers, imageCrops, spacing } from "@/lib/layout";
+import { createPageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "../components/SiteHeader";
 
-export const metadata: Metadata = {
-  title: "Support Services | Mums United",
+export const metadata = createPageMetadata({
+  title: "Support Services",
   description:
     "Practical support, safe spaces and trusted help for mothers, young people and families across Sheffield.",
-};
+  path: "/support-services",
+});
 
 const blockEyebrowClassName =
   "text-[12px] font-normal leading-4 text-[#17171c]";
@@ -109,12 +112,12 @@ export default function SupportServicesPage() {
     <>
       <SiteHeader currentPath="/support-services" />
 
-      <main className="bg-white pb-[60px] text-[#17171c] md:pb-20">
-        <div className="mx-auto flex w-full max-w-[1330px] flex-col gap-[60px] px-6 md:gap-20 lg:px-[60px]">
+      <main className={`bg-white text-[#17171c] ${spacing.mainBottom}`}>
+        <div className={containers.pageStack}>
           {/* Hero + Featured Support */}
           <section className="flex w-full flex-col">
-            <div className="flex flex-col items-center px-0 py-16 text-center md:px-8 md:py-20 lg:px-[60px] lg:py-[80px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+            <div className={`flex flex-col items-center px-0 text-center md:px-8 lg:px-[60px] ${spacing.heroPadding}`}>
+              <div className={containers.contentCentered}>
                 <p className={typography.eyebrow}>Support Services</p>
 
                 <h1 className={typography.pageHeading}>
@@ -130,7 +133,7 @@ export default function SupportServicesPage() {
                   <Link href="/contact" className={buttons.primaryDark}>
                     Get Support
                   </Link>
-                  <Link href="/donate" className={buttons.outlineDark}>
+                  <Link href={DONATE_HREF} className={buttons.outlineDark}>
                     Donate
                   </Link>
                 </div>
@@ -179,8 +182,8 @@ export default function SupportServicesPage() {
             aria-labelledby="support-services-heading"
             className="scroll-reveal flex w-full flex-col"
           >
-            <div className="flex flex-col items-center px-0 pb-[60px] pt-0 text-center md:px-8 lg:px-[60px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+            <div className={`flex flex-col items-center px-0 pt-0 text-center md:px-8 lg:px-[60px] ${spacing.sectionIntroBottom} md:pt-20`}>
+              <div className={containers.contentCentered}>
                 <p className={typography.eyebrow}>Our Services</p>
                 <h2
                   id="support-services-heading"
@@ -236,8 +239,8 @@ export default function SupportServicesPage() {
             aria-labelledby="how-support-works-heading"
             className="scroll-reveal flex w-full flex-col"
           >
-            <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+            <div className={`flex flex-col items-center px-0 text-center md:px-8 lg:px-[60px] ${spacing.sectionIntroBottom}`}>
+              <div className={containers.contentCentered}>
                 <p className={typography.eyebrow}>How Support Works</p>
                 <h2
                   id="how-support-works-heading"
@@ -280,8 +283,8 @@ export default function SupportServicesPage() {
             aria-labelledby="trust-support-heading"
             className="scroll-reveal flex w-full flex-col"
           >
-            <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+            <div className={`flex flex-col items-center px-0 text-center md:px-8 lg:px-[60px] ${spacing.sectionIntroBottom}`}>
+              <div className={containers.contentCentered}>
                 <p className={typography.eyebrow}>Trust & Reassurance</p>
                 <h2
                   id="trust-support-heading"
@@ -323,11 +326,11 @@ export default function SupportServicesPage() {
               src="/support-cta-figma.jpg"
               alt="Hands stacked together in a gesture of community support"
               fill
-              className="object-cover object-center opacity-60"
+              className={`${imageCrops.emotionalCta} opacity-60`}
               sizes="100vw"
             />
             <div className="home-cta-content-padding relative z-10 flex w-full flex-col items-center text-center text-white md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+              <div className={containers.contentCentered}>
                 <h2
                   id="support-cta-heading"
                   className={typography.sectionHeadingPage}
@@ -346,7 +349,7 @@ export default function SupportServicesPage() {
                     Contact Us
                   </Link>
                   <Link
-                    href="/donate"
+                    href={DONATE_HREF}
                     className={buttons.imageCtaSecondary}
                   >
                     Donate

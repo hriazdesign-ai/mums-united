@@ -1,14 +1,17 @@
 import { buttons, cardSpacingClasses, typography } from "@/lib/design-system";
-import type { Metadata } from "next";
+import { DONATE_HREF } from "@/lib/donate";
+import { containers, imageCrops, scrollAnchor, spacing } from "@/lib/layout";
+import { createPageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "../components/SiteHeader";
 
-export const metadata: Metadata = {
-  title: "About Us | Mums United",
+export const metadata = createPageMetadata({
+  title: "About Us",
   description:
     "Learn about Mums United, a community-led charity supporting mothers, young people and families across Sheffield.",
-};
+  path: "/about",
+});
 
 const blockEyebrowClassName =
   "text-[12px] font-normal leading-4 text-[#17171c]";
@@ -82,12 +85,12 @@ export default function AboutPage() {
     <>
       <SiteHeader currentPath="/about" />
 
-      <main className="bg-white pb-[60px] text-[#17171c] md:pb-20">
-        <div className="mx-auto flex w-full max-w-[1330px] flex-col gap-[60px] px-6 md:gap-20 lg:px-[60px]">
+      <main className={`bg-white text-[#17171c] ${spacing.mainBottom}`}>
+        <div className={containers.pageStack}>
           {/* Hero */}
           <section className="flex w-full flex-col">
-            <div className="flex flex-col items-center px-0 py-16 text-center md:px-8 md:py-20 lg:px-[60px] lg:py-[80px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+            <div className={`flex flex-col items-center px-0 text-center md:px-8 lg:px-[60px] ${spacing.heroPadding}`}>
+              <div className={containers.contentCentered}>
                 <p className={typography.eyebrow}>About Mums United</p>
 
                 <h1 className={typography.pageHeading}>
@@ -104,14 +107,14 @@ export default function AboutPage() {
                   <Link href="/contact" className={buttons.primaryDark}>
                     Get Support
                   </Link>
-                  <Link href="/donate" className={buttons.outlineDark}>
+                  <Link href={DONATE_HREF} className={buttons.outlineDark}>
                     Donate
                   </Link>
                 </div>
               </div>
             </div>
 
-            <div className="flex w-full flex-col max-md:gap-0 md:gap-20">
+            <div className={`flex w-full flex-col max-md:gap-0 ${spacing.section}`}>
               {/* Our Story */}
               <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-[60px]">
                 <div className="flex flex-col justify-center lg:min-h-[455px]">
@@ -184,8 +187,8 @@ export default function AboutPage() {
             aria-labelledby="our-values-heading"
             className="scroll-reveal flex w-full flex-col"
           >
-            <div className="flex flex-col items-center px-0 pb-[60px] pt-0 text-center md:px-8 md:pt-20 lg:px-[60px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+            <div className={`flex flex-col items-center px-0 text-center md:px-8 lg:px-[60px] ${spacing.sectionIntroBottom} md:pt-20`}>
+              <div className={containers.contentCentered}>
                 <p className={typography.eyebrow}>Our Values</p>
                 <h2 id="our-values-heading" className={typography.sectionHeadingPage}>
                   What guides our work every day.
@@ -217,12 +220,12 @@ export default function AboutPage() {
             aria-labelledby="about-impact-heading"
             className="scroll-reveal flex w-full flex-col"
           >
-            <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+            <div className={`flex flex-col items-center px-0 text-center md:px-8 lg:px-[60px] ${spacing.sectionIntroBottom}`}>
+              <div className={containers.contentCentered}>
                 <p className={typography.eyebrow}>Our Impact</p>
                 <h2
                   id="about-impact-heading"
-                  className={typography.sectionHeadingPage}
+                  className={`${scrollAnchor} ${typography.sectionHeadingPage}`}
                 >
                   Making a difference across Sheffield.
                 </h2>
@@ -256,8 +259,8 @@ export default function AboutPage() {
             aria-labelledby="about-recognition-heading"
             className="scroll-reveal flex w-full flex-col"
           >
-            <div className="flex flex-col items-center px-0 pb-[60px] text-center md:px-8 lg:px-[60px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+            <div className={`flex flex-col items-center px-0 text-center md:px-8 lg:px-[60px] ${spacing.sectionIntroBottom}`}>
+              <div className={containers.contentCentered}>
                 <p className={typography.eyebrow}>Our Values</p>
                 <h2
                   id="about-recognition-heading"
@@ -301,11 +304,11 @@ export default function AboutPage() {
               src="/about-cta-figma.jpg"
               alt="Hands stacked together in a gesture of community support"
               fill
-              className="object-cover object-center opacity-60"
+              className={`${imageCrops.emotionalCta} opacity-60`}
               sizes="100vw"
             />
             <div className="home-cta-content-padding relative z-10 flex w-full flex-col items-center text-center text-white md:px-12 md:py-20 lg:px-[60px] lg:py-[80px]">
-              <div className="flex w-full max-w-[1210px] flex-col items-center gap-8">
+              <div className={containers.contentCentered}>
                 <h2
                   id="about-cta-heading"
                   className={typography.sectionHeadingPage}
@@ -320,7 +323,7 @@ export default function AboutPage() {
                     Contact Us
                   </Link>
                   <Link
-                    href="/donate"
+                    href={DONATE_HREF}
                     className={buttons.imageCtaSecondary}
                   >
                     Donate
